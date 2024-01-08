@@ -5,6 +5,7 @@
   import { OrbitControls } from "../js/OrbitControls";
   import { TWEEN } from "../js/tween.module.min.js";
   import { FlyControls } from "../js/FlyControls.js";
+  import SimpleModal from "./components/modal/index.svelte";
 
   let canvas, renderer;
   let controls;
@@ -14,6 +15,7 @@
   let camera;
   let clock;
   let fittingRoom;
+  let shirt;
   let points = [];
   let xCenterBox, yCenterBox, zCenterBox;
   let distanceXOfbox, distanceYOfbox, distanceZOfbox;
@@ -22,6 +24,11 @@
   let mouse = new THREE.Vector2();
   let helper;
   let iron;
+  let boxHover;
+  let shirtHover = null;
+  let simpleModalRef;
+  let showModal;
+  let groupShirt;
   let moveCameraClick = true;
   let isUserInteracting = false,
     onPointerDownMouseX = 0,
@@ -42,6 +49,7 @@
   const widthScreen = window.innerWidth;
   const heightScreen = window.innerHeight;
 
+  $: console.log("shirtHover: ", shirtHover);
   const init = () => {
     let path = "src/assets/cube-screen/";
     let format = ".jpg";
@@ -148,6 +156,42 @@
     // let rollOverMaterial = new THREE.MeshBasicMaterial( {  color: 0xff0000, flatShading: true, transparent: true, opacity: 0.7 } );
 
     helper = new THREE.Mesh(geometryHelper, rollOverMaterial);
+
+    loader.load(
+      "src/models/shirt.gltf",
+      function (gltf) {
+        shirt = gltf.scene;
+        // shirt.scale.set(0.5, 0.5, 0.5);
+        // boxHelper = new THREE.BoxHelper(fittingRoom, 0xff0000);
+
+        // scene.add(boxHelper);
+        // getBoxObject(boxHelper);
+        // boxHelper.position.y = -distanceYOfbox / 2;
+        // boxHelper.position.x = -distanceXOfbox / 2;
+        // fittingRoom.position.y = distanceYOfbox / 2;
+        // fittingRoom.position.x = -distanceXOfbox / 2;
+        // fittingRoom.position.z = distanceZOfbox / 2;
+        shirt.name = "shirt";
+        shirt.position.set(1, 0, 1);
+        console.log("shirt: ", shirt);
+
+        scene.add(shirt);
+
+        gltf.scene.traverse(function (child) {
+          if (child.isMesh) {
+            // console.log("in child.name: ", child.name);
+            // const groupShirt = new THREE.Group();
+            // groupShirt.add(child);
+            // groupShirt.name = "shirt";
+            // scene.add(groupShirt);
+          }
+        });
+      },
+      undefined,
+      function (error) {
+        console.error(error);
+      }
+    );
 
     loader.load(
       "src/models/fittting-room.gltf",
@@ -361,7 +405,7 @@
     requestAnimationFrame(animate);
     // cube.rotation.x += 0.01;
     // cube.rotation.y += 0.01;
-    camera.position.y = 0.5;
+    // camera.position.y = 0.5;
     update();
     TWEEN.update();
     // composer.render();
@@ -408,10 +452,50 @@
     }
   }
   const getNameObject = () => {
+    // showModal = true;
     let intersects = raycaster.intersectObjects(scene.children, true);
     let clickedName = intersects[0].object.name;
     console.log("clickedName22: ", clickedName);
+    if (clickedName == "mesh_0") {
+      boxHover = new THREE.BoxHelper(intersects[0].object, 0xff0000);
+      console.log("in BoxHover 1: ", boxHover.object.name);
+      // boxHover.update();
+      scene.add(boxHover);
+    }
   };
+
+  const hoverObject = (event) => {
+    console.log(" da hover");
+    mouse.x = (event.clientX / window.innerWidth) * 2 - 1;
+    mouse.y = -(event.clientY / window.innerHeight) * 2 + 1;
+    raycaster.setFromCamera(mouse, camera);
+    let intersects = raycaster.intersectObjects(scene.children, true);
+
+    if (intersects.length > 0) {
+      console.log("hover: ", intersects);
+      intersects.map((model) => {
+        console.log("model.object.name: ", model);
+        if (model.object.name == "mesh_0" && shirtHover == null) {
+          console.log("objecttt inn");
+          console.log("model object: ", model.object);
+          shirtHover = new THREE.BoxHelper(model.object, 0xff0000);
+          console.log("in BoxHover 1: ", shirtHover.object.name);
+          // shirtHover.update();
+          scene.add(shirtHover);
+          // scene.remove(helper);
+          getBoxObject(shirtHover);
+        } else {
+          console.log("objecttt out");
+          scene.remove(shirtHover);
+          shirtHover = null;
+        }
+      });
+    }
+  };
+
+  const showInfoModel = () => {};
+
+  const closeInfomodel = () => {};
   onMount(() => {
     init();
     animate();
@@ -428,8 +512,20 @@
     on:mouseup={moveCamera}
     on:mousedown={startTimer}
     on:click={getNameObject}
+    on:mousemove={hoverObject}
   />
 </main>
+
+<SimpleModal
+  bind:this={simpleModalRef}
+  heightSize={"150px"}
+  on:clickButton={showInfoModel}
+  on:closeButton={closeInfomodel}
+  saveButtonName={"Save AA"}
+  bind:showModal
+>
+  <div slot="content">hihi</div>
+</SimpleModal>
 
 <style>
   .full-screen {
