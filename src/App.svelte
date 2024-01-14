@@ -6,6 +6,17 @@
   import { TWEEN } from "../js/tween.module.min.js";
   import { FlyControls } from "../js/FlyControls.js";
   import SimpleModal from "./components/modal/index.svelte";
+  import { OutlinePass } from "../js/bloomEffect/OutlinePass.js";
+  import { OutputPass } from "../js/bloomEffect/OutputPass.js";
+
+  // import { OBJLoader } from './js/OBJLoader.js';
+  import { EffectComposer } from "../js/EffectComposer.js";
+  import { RenderPass } from "../js/RenderPass.js";
+  import { ShaderPass } from "../js/bloomEffect/ShaderPass.js";
+  import { CopyShader } from "../js/bloomEffect/CopyShader.js";
+  import { FXAAShader } from "../js/bloomEffect/FXAAShader.js";
+  import { GUI } from "../js/lil-gui.module.min.js";
+  import { CSS2DRenderer, CSS2DObject } from "../js/CSS2DRenderer.js";
 
   let canvas, renderer;
   let controls;
@@ -41,8 +52,23 @@
     theta = 0;
   let controlCamera = false;
   let startTime, endTime;
+  let composer, effectFXAA, outlinePass;
   startTime = new Date();
   let labelRenderer;
+  let selectedObjects = [];
+  let cssRenderer;
+  let textButtonView = "Go to Mall";
+  const params = {
+    edgeStrength: 3.0,
+    edgeGlow: 0.0,
+    edgeThickness: 1.0,
+    pulsePeriod: 0,
+    rotate: false,
+    usePatternTexture: false,
+  };
+  let isGoMallMode = false;
+  $: console.log("selectedObjects: ", selectedObjects);
+
   // get seconds
   let seconds = Math.round(startTime);
 
@@ -69,8 +95,10 @@
       1000
     );
     scene = new THREE.Scene();
-    camera.position.set(12, 1, 5);
-    camera.lookAt(0, 0, 0);
+    // camera.position.set(12, 5, 5);
+    camera.position.set(0, 10, 10);
+
+    camera.lookAt(1, 0, 0);
     //create ground
     const planeMesh = new THREE.Mesh(
       new THREE.PlaneGeometry(400, 200),
@@ -114,7 +142,7 @@
       scene.background = texture;
     });
 
-    const light1 = new THREE.AmbientLight(0xffffff, 0.3);
+    const light1 = new THREE.AmbientLight(0xffffff, 1);
     light1.name = "ambient_light";
     scene.add(light1);
 
@@ -130,7 +158,7 @@
     renderer.setSize(widthScreen, heightScreen);
 
     controls = new OrbitControls(camera, renderer.domElement);
-    controls.enabled = false;
+    controls.enabled = false ? isGoMallMode : true;
     controls.maxPolarAngle = 1.0;
     controls.minPolarAngle = -0.5;
 
@@ -173,8 +201,7 @@
         // fittingRoom.position.z = distanceZOfbox / 2;
         shirt.name = "shirt";
         shirt.position.set(1, 0, 1);
-        console.log("shirt: ", shirt);
-
+        outlinePass.selectedObjects = shirt;
         scene.add(shirt);
 
         gltf.scene.traverse(function (child) {
@@ -208,12 +235,10 @@
         fittingRoom.position.x = -distanceXOfbox / 2;
         fittingRoom.position.z = distanceZOfbox / 2;
 
-        console.log("fittingRoom: ", fittingRoom);
         scene.add(fittingRoom);
 
         gltf.scene.traverse(function (child) {
           if (child.isMesh) {
-            console.log("in child.name: ", child.name);
           }
         });
       },
@@ -222,12 +247,140 @@
         console.error(error);
       }
     );
+    // postprocessing
+
+    composer = new EffectComposer(renderer);
+
+    const renderPass = new RenderPass(scene, camera);
+    composer.addPass(renderPass);
+
+    outlinePass = new OutlinePass(
+      new THREE.Vector2(window.innerWidth, window.innerHeight),
+      scene,
+      camera
+    );
+
+    composer.addPass(outlinePass);
+
+    const textureLoader = new THREE.TextureLoader();
+    textureLoader.load("./images/tri_pattern.jpg", function (texture) {
+      outlinePass.patternTexture = texture;
+      texture.wrapS = THREE.RepeatWrapping;
+      texture.wrapT = THREE.RepeatWrapping;
+    });
+    const outputPass = new OutputPass();
+    composer.addPass(outputPass);
+
+    effectFXAA = new ShaderPass(FXAAShader);
+    effectFXAA.uniforms["resolution"].value.set(
+      1 / window.innerWidth,
+      1 / window.innerHeight
+    );
+    composer.addPass(effectFXAA);
+
+    const gui = new GUI({ width: 280 });
+
+    gui.add(params, "edgeStrength", 0.01, 10).onChange(function (value) {
+      outlinePass.edgeStrength = Number(value);
+    });
+
+    gui.add(params, "edgeGlow", 0.0, 1).onChange(function (value) {
+      outlinePass.edgeGlow = Number(value);
+    });
+
+    gui.add(params, "edgeThickness", 1, 4).onChange(function (value) {
+      outlinePass.edgeThickness = Number(value);
+    });
+
+    gui.add(params, "pulsePeriod", 0.0, 5).onChange(function (value) {
+      outlinePass.pulsePeriod = Number(value);
+    });
+
+    gui.add(params, "rotate");
+
+    gui.add(params, "usePatternTexture").onChange(function (value) {
+      outlinePass.usePatternTexture = value;
+    });
+
+    function Configuration() {
+      this.visibleEdgeColor = "#ffffff";
+      this.hiddenEdgeColor = "#190a05";
+    }
+
+    const conf = new Configuration();
+
+    gui.addColor(conf, "visibleEdgeColor").onChange(function (value) {
+      outlinePass.visibleEdgeColor.set(value);
+    });
+
+    gui.addColor(conf, "hiddenEdgeColor").onChange(function (value) {
+      outlinePass.hiddenEdgeColor.set(value);
+    });
+
+    function addSelectedObject(object) {
+      selectedObjects = [];
+      selectedObjects.push(shirt);
+      outlinePass.selectedObjects = selectedObjects;
+    }
+
+    const hoverObject = (event) => {
+      mouse.x = (event.clientX / window.innerWidth) * 2 - 1;
+      mouse.y = -(event.clientY / window.innerHeight) * 2 + 1;
+      raycaster.setFromCamera(mouse, camera);
+      let intersects = raycaster.intersectObject(scene, true);
+
+      if (intersects.length > 0) {
+        console.log("hover: ", intersects);
+        const selectedObject = intersects[0].object;
+        console.log("selectedObject: ", selectedObject);
+        // addSelectedObject(selectedObject);
+        outlinePass.selectedObjects = selectedObject;
+        // intersects.map((model) => {
+        //   console.log("model.object.name: ", model);
+        //   if (model.object.name == "mesh_0" && shirtHover == null) {
+        //     console.log("objecttt inn");
+        //     console.log("model object: ", model.object);
+        //     shirtHover = new THREE.BoxHelper(model.object, 0xff0000);
+        //     console.log("in BoxHover 1: ", shirtHover.object.name);
+        //     // shirtHover.update();
+        //     scene.add(shirtHover);
+        //     // scene.remove(helper);
+        //     getBoxObject(shirtHover);
+        //   } else {
+        //     console.log("objecttt out");
+        //     scene.remove(shirtHover);
+        //     shirtHover = null;
+        //   }
+        // });
+      }
+    };
+
+    // Create CSS2DRenderer
+    // cssRenderer = new CSS2DRenderer();
+    // cssRenderer.setSize(window.innerWidth, window.innerHeight);
+    // document.body.appendChild(cssRenderer.domElement);
+
+    // // Create a button as a CSS2DObject
+    // const button = createButton("Click me!", () => {
+    //   console.log("Button clicked!");
+    // });
+    // button.position.set(0, 0, 0); // Adjust the position in 3D space
+    // scene.add(button);
 
     container.addEventListener("pointerdown", onPointerDown);
+    container.addEventListener("pointermove", hoverObject, false);
 
     container.addEventListener("pointermove", onPointerMoveMouse, false);
   };
 
+  // const createButton = (text, onClick) => {
+  //   const buttonElement = document.createElement("button");
+  //   buttonElement.textContent = text;
+  //   buttonElement.addEventListener("click", onClick);
+
+  //   const buttonObject = new CSS2DObject(buttonElement);
+  //   return buttonObject;
+  // };
   function getBoxObject(boxHelper) {
     for (var i = 0; i < 8; ++i) {
       var x = boxHelper.geometry.attributes.position.getX(i);
@@ -235,7 +388,6 @@
       var z = boxHelper.geometry.attributes.position.getZ(i);
       points.push({ x: x, y: y, z: z });
     }
-    console.log("in points: ", points);
     distanceXOfbox = new THREE.Vector3(
       points[0].x,
       points[0].y,
@@ -265,8 +417,6 @@
     yCenterBox = (points[1].y + points[2].y) / 2;
     // z_centerBox = (points[3].z+ points[4].z)/2
     zCenterBox = (points[2].z + points[6].z) / 2;
-
-    console.log("centerBox: ", xCenterBox, yCenterBox, zCenterBox);
   }
   function onPointerDown(event) {
     if (event.isPrimary === false) return;
@@ -365,7 +515,8 @@
         if (
           intersects[0].object.isObject3D &&
           seconds < 0.05 &&
-          clickedName === "ground"
+          clickedName === "ground" &&
+          isGoMallMode == true
         ) {
           console.log("Dang vao duoc dieu huong");
           let coords = {
@@ -382,9 +533,9 @@
             })
             .onUpdate(() => camera.position.set(coords.x, coords.y, coords.z))
             .start();
-          controls.enabled = false;
-          isUserInteracting = true;
-          controlCamera = true;
+          // controls.enabled = false;
+          // isUserInteracting = true;
+          // controlCamera = true;
         } else {
           console.log("Ko Dang vao duoc dieu huong");
         }
@@ -398,7 +549,7 @@
     var forward = new THREE.Vector3();
     camera.getWorldDirection(forward);
 
-    controls.target.copy(camera.position).add(forward);
+    // controls.target.copy(camera.position).add(forward);
   }
 
   const animate = () => {
@@ -408,19 +559,29 @@
     // camera.position.y = 0.5;
     update();
     TWEEN.update();
-    // composer.render();
-    controls.addEventListener("end", () => {
-      updateCameraOrbit();
-    });
+    composer.render();
+    // controls.addEventListener("end", () => {
+    //   updateCameraOrbit();
+    // });
+
+    // cssRenderer.render(scene, camera);
+
     controls2.update(clock.getDelta());
     renderer.render(scene, camera);
   };
   function onWindowResize() {
+    const width = window.innerWidth;
+    const height = window.innerHeight;
     // widthTest
     // heightTest    camera.aspect = widthScreen / heightScreen;
 
     camera.updateProjectionMatrix();
+    composer.setSize(width, height);
 
+    effectFXAA.uniforms["resolution"].value.set(
+      1 / window.innerWidth,
+      1 / window.innerHeight
+    );
     renderer.setSize(widthScreen, heightScreen);
   }
 
@@ -440,13 +601,16 @@
       let y = 500 * Math.cos(phi);
       let z = 500 * Math.sin(phi) * Math.sin(theta);
 
-      // camera.lookAt( x, y, z );
-      // if (camera.position.y < 0){
       camera.lookAt(x, y, z);
 
-      // }
-
-      // camera.lookAt(0,0,0);
+      //Tính phi, theta, lat
+      //499.85707270112397 3.061616997868383e-14 -11.9543661757237
+      //x=1, y = 0, z = -0.0239
+      //phi = pi/2 = 1.570795
+      //theta = 0
+      //lon = 0
+      //lat = 0
+      console.log("x, y, z: ", x, y, z);
 
       renderer.render(scene, camera);
     }
@@ -454,48 +618,52 @@
   const getNameObject = () => {
     // showModal = true;
     let intersects = raycaster.intersectObjects(scene.children, true);
-    let clickedName = intersects[0].object.name;
-    console.log("clickedName22: ", clickedName);
-    if (clickedName == "mesh_0") {
-      boxHover = new THREE.BoxHelper(intersects[0].object, 0xff0000);
-      console.log("in BoxHover 1: ", boxHover.object.name);
-      // boxHover.update();
-      scene.add(boxHover);
-    }
-  };
-
-  const hoverObject = (event) => {
-    console.log(" da hover");
-    mouse.x = (event.clientX / window.innerWidth) * 2 - 1;
-    mouse.y = -(event.clientY / window.innerHeight) * 2 + 1;
-    raycaster.setFromCamera(mouse, camera);
-    let intersects = raycaster.intersectObjects(scene.children, true);
-
-    if (intersects.length > 0) {
-      console.log("hover: ", intersects);
-      intersects.map((model) => {
-        console.log("model.object.name: ", model);
-        if (model.object.name == "mesh_0" && shirtHover == null) {
-          console.log("objecttt inn");
-          console.log("model object: ", model.object);
-          shirtHover = new THREE.BoxHelper(model.object, 0xff0000);
-          console.log("in BoxHover 1: ", shirtHover.object.name);
-          // shirtHover.update();
-          scene.add(shirtHover);
-          // scene.remove(helper);
-          getBoxObject(shirtHover);
-        } else {
-          console.log("objecttt out");
-          scene.remove(shirtHover);
-          shirtHover = null;
-        }
-      });
-    }
+    // let clickedName = intersects[0].object;
+    // console.log("clickedName22: ", clickedName);
+    // if (clickedName == "mesh_0") {
+    //   boxHover = new THREE.BoxHelper(intersects[0].object, 0xff0000);
+    //   console.log("in BoxHover 1: ", boxHover.object.name);
+    //   // boxHover.update();
+    //   scene.add(boxHover);
+    // }
   };
 
   const showInfoModel = () => {};
 
   const closeInfomodel = () => {};
+
+  function onOverViewButton() {
+    isGoMallMode = !isGoMallMode;
+    if (isGoMallMode) {
+      isUserInteracting = true;
+      controlCamera = true;
+      controls.enabled = false;
+      let coords = {
+        x: 0,
+        y: 10,
+        z: 10,
+      };
+      new TWEEN.Tween(coords)
+        .to(
+          {
+            x: 0, // Lùi ra phía sau tòa nhà
+            y: 1,
+            z: 5,
+          },
+          1000
+        )
+        .onUpdate(() => {
+          camera.position.set(coords.x, coords.y, coords.z); // Từ vị trí đâu xuống
+          // camera.lookAt(1, 0, 0);
+          return camera;
+        })
+        .start();
+    } else {
+      isUserInteracting = false;
+      controlCamera = false;
+    }
+  }
+
   onMount(() => {
     init();
     animate();
@@ -504,6 +672,14 @@
   });
 </script>
 
+<div class="view-button">
+  <button
+    style="--focus-color: {isGoMallMode
+      ? '#1d6291'
+      : '#1f9bed'}; --focus-border: {isGoMallMode ? '2px solid blue' : 'none'}"
+    on:click={onOverViewButton}>{textButtonView}</button
+  >
+</div>
 <main>
   <canvas
     class="full-screen"
@@ -512,8 +688,8 @@
     on:mouseup={moveCamera}
     on:mousedown={startTimer}
     on:click={getNameObject}
-    on:mousemove={hoverObject}
-  />
+  >
+  </canvas>
 </main>
 
 <SimpleModal
@@ -531,5 +707,29 @@
   .full-screen {
     margin: 0 !important;
     padding: 0 !important;
+  }
+
+  .view-button {
+    left: 50%;
+    position: fixed;
+    bottom: 20px;
+    transform: translate(-50%, -50%);
+    z-index: 1000; /* Ensure the button appears on top of the canvas */
+  }
+
+  button {
+    padding: 10px;
+    background-color: var(--focus-color);
+    color: white;
+    cursor: pointer;
+    border: var(--focus-border);
+
+    outline: none;
+    overflow: hidden;
+    transition: background-color 0.3s; /* Added transition for smooth color change */
+  }
+
+  button:hover {
+    background-color: #74b9e7;
   }
 </style>
