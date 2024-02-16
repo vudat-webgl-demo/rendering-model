@@ -17,6 +17,9 @@
   import { FXAAShader } from "../js/bloomEffect/FXAAShader.js";
   import { GUI } from "../js/lil-gui.module.min.js";
   import { CSS2DRenderer, CSS2DObject } from "../js/CSS2DRenderer.js";
+  import { CSS3DRenderer, CSS3DObject } from "../js/CSS3DRenderer.js";
+
+  import { Split } from "@geoffcox/svelte-splitter";
 
   let canvas, renderer;
   let controls;
@@ -28,6 +31,7 @@
   let fittingRoom;
   let shirt;
   let points = [];
+  let hoveredObjects = [];
   let xCenterBox, yCenterBox, zCenterBox;
   let distanceXOfbox, distanceYOfbox, distanceZOfbox;
   let boxHelper;
@@ -35,10 +39,11 @@
   let mouse = new THREE.Vector2();
   let helper;
   let iron;
+  8;
   let boxHover;
   let shirtHover = null;
   let simpleModalRef;
-  let showModal;
+  let showModal = false;
   let groupShirt;
   let moveCameraClick = true;
   let isUserInteracting = false,
@@ -74,8 +79,10 @@
 
   const widthScreen = window.innerWidth;
   const heightScreen = window.innerHeight;
-
+  $: console.log("canvas: ", canvas);
   $: console.log("shirtHover: ", shirtHover);
+  $: console.log("showModal: ", showModal);
+  $: console.log("controls: 0", controls);
   const init = () => {
     let path = "src/assets/cube-screen/";
     let format = ".jpg";
@@ -186,7 +193,7 @@
     helper = new THREE.Mesh(geometryHelper, rollOverMaterial);
 
     loader.load(
-      "src/models/shirt.gltf",
+      "src/models/blue_jacket.gltf",
       function (gltf) {
         shirt = gltf.scene;
         // shirt.scale.set(0.5, 0.5, 0.5);
@@ -199,20 +206,20 @@
         // fittingRoom.position.y = distanceYOfbox / 2;
         // fittingRoom.position.x = -distanceXOfbox / 2;
         // fittingRoom.position.z = distanceZOfbox / 2;
-        shirt.name = "shirt";
-        shirt.position.set(1, 0, 1);
-        outlinePass.selectedObjects = shirt;
+
+        shirt.position.set(1, 0.5, 1);
+        shirt.scale.set(1, 1, 1);
         scene.add(shirt);
 
-        gltf.scene.traverse(function (child) {
-          if (child.isMesh) {
-            // console.log("in child.name: ", child.name);
-            // const groupShirt = new THREE.Group();
-            // groupShirt.add(child);
-            // groupShirt.name = "shirt";
-            // scene.add(groupShirt);
-          }
-        });
+        // gltf.scene.traverse(function (child) {
+        //   if (child.isMesh) {
+        //     // console.log("in child.name: ", child.name);
+        //     // const groupShirt = new THREE.Group();
+        //     // groupShirt.add(child);
+        //     // groupShirt.name = "shirt";
+        //     // scene.add(groupShirt);
+        //   }
+        // });
       },
       undefined,
       function (error) {
@@ -221,12 +228,11 @@
     );
 
     loader.load(
-      "src/models/fittting-room.gltf",
+      "src/models/motorbike/scene.gltf",
       function (gltf) {
         fittingRoom = gltf.scene;
         fittingRoom.scale.set(0.5, 0.5, 0.5);
         boxHelper = new THREE.BoxHelper(fittingRoom, 0xff0000);
-
         // scene.add(boxHelper);
         getBoxObject(boxHelper);
         // boxHelper.position.y = -distanceYOfbox / 2;
@@ -247,6 +253,7 @@
         console.error(error);
       }
     );
+
     // postprocessing
 
     composer = new EffectComposer(renderer);
@@ -268,8 +275,6 @@
       texture.wrapS = THREE.RepeatWrapping;
       texture.wrapT = THREE.RepeatWrapping;
     });
-    const outputPass = new OutputPass();
-    composer.addPass(outputPass);
 
     effectFXAA = new ShaderPass(FXAAShader);
     effectFXAA.uniforms["resolution"].value.set(
@@ -277,6 +282,32 @@
       1 / window.innerHeight
     );
     composer.addPass(effectFXAA);
+
+    function addSelectedObject(object) {
+      selectedObjects = [];
+      if (shirt) {
+        selectedObjects.push(shirt);
+      }
+
+      outlinePass.selectedObjects = selectedObjects;
+    }
+
+    addSelectedObject();
+
+    // function checkIntersection() {
+    //   raycaster.setFromCamera(mouse, camera);
+
+    //   const intersects = raycaster.intersectObject(scene, true);
+
+    //   if (intersects.length > 0) {
+    //     const selectedObject = intersects[0].object;
+    //     addSelectedObject(selectedObject);
+    //     outlinePass.selectedObjects = selectedObjects;
+    //     console.log("selectedObjects: ", selectedObjects);
+    //   } else {
+    //     // outlinePass.selectedObjects = [];
+    //   }
+    // }
 
     const gui = new GUI({ width: 280 });
 
@@ -317,12 +348,6 @@
       outlinePass.hiddenEdgeColor.set(value);
     });
 
-    function addSelectedObject(object) {
-      selectedObjects = [];
-      selectedObjects.push(shirt);
-      outlinePass.selectedObjects = selectedObjects;
-    }
-
     const hoverObject = (event) => {
       mouse.x = (event.clientX / window.innerWidth) * 2 - 1;
       mouse.y = -(event.clientY / window.innerHeight) * 2 + 1;
@@ -330,57 +355,68 @@
       let intersects = raycaster.intersectObject(scene, true);
 
       if (intersects.length > 0) {
-        console.log("hover: ", intersects);
         const selectedObject = intersects[0].object;
-        console.log("selectedObject: ", selectedObject);
-        // addSelectedObject(selectedObject);
-        outlinePass.selectedObjects = selectedObject;
-        // intersects.map((model) => {
-        //   console.log("model.object.name: ", model);
-        //   if (model.object.name == "mesh_0" && shirtHover == null) {
-        //     console.log("objecttt inn");
-        //     console.log("model object: ", model.object);
-        //     shirtHover = new THREE.BoxHelper(model.object, 0xff0000);
-        //     console.log("in BoxHover 1: ", shirtHover.object.name);
-        //     // shirtHover.update();
-        //     scene.add(shirtHover);
-        //     // scene.remove(helper);
-        //     getBoxObject(shirtHover);
-        //   } else {
-        //     console.log("objecttt out");
-        //     scene.remove(shirtHover);
-        //     shirtHover = null;
-        //   }
-        // });
+
+        hoveredObjects.map((obj, key) => {
+          if (obj.name == selectedObject.name) {
+            console.log("keyss: ", key);
+            console.log("hover nao nao");
+            addSelectedObject(hoveredObjects[key]);
+          }
+        });
+      }
+    };
+
+    const clickShowObject = () => {
+      let intersects = raycaster.intersectObjects(scene.children, true);
+      let clickedName = intersects[0].object;
+      console.log("clickedName22: ", clickedName);
+      if (clickedName.name == "Mesh_0") {
+        // boxHover = new THREE.BoxHelper(intersects[0].object, 0xff0000);
+
+        // scene.add(boxHover);
+        showModal = true;
       }
     };
 
     // Create CSS2DRenderer
-    // cssRenderer = new CSS2DRenderer();
-    // cssRenderer.setSize(window.innerWidth, window.innerHeight);
-    // document.body.appendChild(cssRenderer.domElement);
+    cssRenderer = new CSS2DRenderer();
+    cssRenderer.setSize(window.innerWidth, window.innerHeight);
+    document.body.appendChild(cssRenderer.domElement);
 
-    // // Create a button as a CSS2DObject
-    // const button = createButton("Click me!", () => {
-    //   console.log("Button clicked!");
-    // });
-    // button.position.set(0, 0, 0); // Adjust the position in 3D space
-    // scene.add(button);
+    // Create a button as a CSS2DObject
+    const button = createButton("Click me!", () => {
+      console.log("Button clicked!");
+    });
+    button.position.set(0, 0, 0); // Adjust the position in 3D space
+    scene.add(button);
 
+    // function onPointerMove(event) {
+    //   if (event.isPrimary === false) return;
+
+    //   mouse.x = (event.clientX / window.innerWidth) * 2 - 1;
+    //   mouse.y = -(event.clientY / window.innerHeight) * 2 + 1;
+
+    //   // checkIntersection();
+    // }
     container.addEventListener("pointerdown", onPointerDown);
-    container.addEventListener("pointermove", hoverObject, false);
+    container.addEventListener("click", clickShowObject);
+
+    // container.addEventListener("pointermove", hoverObject, false);
+    // container.addEventListener("pointermove", onPointerMove, false);
 
     container.addEventListener("pointermove", onPointerMoveMouse, false);
   };
 
-  // const createButton = (text, onClick) => {
-  //   const buttonElement = document.createElement("button");
-  //   buttonElement.textContent = text;
-  //   buttonElement.addEventListener("click", onClick);
+  const createButton = (text, onClick) => {
+    const buttonElement = document.createElement("button");
+    buttonElement.textContent = text;
+    buttonElement.addEventListener("click", onClick);
 
-  //   const buttonObject = new CSS2DObject(buttonElement);
-  //   return buttonObject;
-  // };
+    const buttonObject = new CSS2DObject(buttonElement);
+    console.log("buttonObject: ", buttonObject);
+    return buttonObject;
+  };
   function getBoxObject(boxHelper) {
     for (var i = 0; i < 8; ++i) {
       var x = boxHelper.geometry.attributes.position.getX(i);
@@ -452,7 +488,7 @@
       helper.position.set(0, 0, 0);
       // console.log('in intersects[0]: ',intersects[ 0 ])
       // helper.lookAt( intersects[ 0 ].face.area );
-      if (intersects[0].face.normal === null) {
+      if (intersects[0].face && intersects[0].face.normal === null) {
       } else {
         helper.lookAt(intersects[0].face.normal);
       }
@@ -564,7 +600,7 @@
     //   updateCameraOrbit();
     // });
 
-    // cssRenderer.render(scene, camera);
+    cssRenderer.render(scene, camera);
 
     controls2.update(clock.getDelta());
     renderer.render(scene, camera);
@@ -602,15 +638,6 @@
       let z = 500 * Math.sin(phi) * Math.sin(theta);
 
       camera.lookAt(x, y, z);
-
-      //Tính phi, theta, lat
-      //499.85707270112397 3.061616997868383e-14 -11.9543661757237
-      //x=1, y = 0, z = -0.0239
-      //phi = pi/2 = 1.570795
-      //theta = 0
-      //lon = 0
-      //lat = 0
-      console.log("x, y, z: ", x, y, z);
 
       renderer.render(scene, camera);
     }
@@ -661,8 +688,33 @@
     } else {
       isUserInteracting = false;
       controlCamera = false;
+      controls.enabled = true;
+      let coords = {
+        x: 0,
+        y: 1,
+        z: 5,
+      };
+      new TWEEN.Tween(coords)
+        .to(
+          {
+            x: 0, // Lùi ra phía sau tòa nhà
+            y: 10,
+            z: 10,
+          },
+          1000
+        )
+        .onUpdate(() => {
+          camera.position.set(coords.x, coords.y, coords.z); // Từ vị trí đâu xuống
+          camera.lookAt(1, 0, 0);
+          return camera;
+        })
+        .start();
     }
   }
+
+  const handleZoom = (e) => {
+    console.log("eeee zz: ", e);
+  };
 
   onMount(() => {
     init();
@@ -685,22 +737,40 @@
     class="full-screen"
     id="container"
     bind:this={canvas}
-    on:mouseup={moveCamera}
+    on:click={moveCamera}
     on:mousedown={startTimer}
     on:click={getNameObject}
+    on:zoom={handleZoom}
   >
   </canvas>
 </main>
 
 <SimpleModal
   bind:this={simpleModalRef}
-  heightSize={"150px"}
+  heightSize={"250px"}
   on:clickButton={showInfoModel}
   on:closeButton={closeInfomodel}
   saveButtonName={"Save AA"}
   bind:showModal
 >
-  <div slot="content">hihi</div>
+  <div slot="content">
+    <div>
+      Áo Thun Trơn Áo Phông Trắng Đen Xám Nam Nữ Form Xuông Vải Dày Mịn Không Xù
+      Lông
+    </div>
+    <div class="detail-product">
+      <Split initialPrimarySize="70%">
+        <div slot="primary" class="left-content">
+          <div>Price</div>
+          <div>About Product</div>
+          <div>Orgin</div>
+          <div>Color</div>
+          <div>Size</div>
+        </div>
+        <div slot="secondary" class="right-content">haha</div>
+      </Split>
+    </div>
+  </div>
 </SimpleModal>
 
 <style>
@@ -731,5 +801,19 @@
 
   button:hover {
     background-color: #74b9e7;
+  }
+
+  .left-content {
+    /* height: 100%; */
+  }
+
+  .right-content {
+    /* height: 100%; */
+  }
+
+  .detail-product {
+    /* width: 100%;
+    position: absolute;
+    height: 100%; */
   }
 </style>
