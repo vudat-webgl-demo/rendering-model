@@ -21,4 +21,16 @@ export const environments = [
     path: "./assets/environment/footprint_court_2k.exr",
     format: ".exr",
   },
+  {
+    id: "Forest",
+    name: "Forest",
+    path: "./assets/environment/forest.exr",
+    format: ".exr",
+  },
+  {
+    id: "Piz",
+    name: "Piz",
+    path: "./assets/environment/piz_compressed.exr",
+    format: ".exr",
+  },
 ];
