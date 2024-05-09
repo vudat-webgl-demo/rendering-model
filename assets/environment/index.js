@@ -33,4 +33,22 @@ export const environments = [
     path: "./assets/environment/piz_compressed.exr",
     format: ".exr",
   },
+  {
+    id: "Hospital",
+    name: "Hospital",
+    path: "./assets/environment/hospital_room_4k.exr",
+    format: ".exr",
+  },
+  {
+    id: "Reading",
+    name: "Reading",
+    path: "./assets/environment/reading_room_4k.exr",
+    format: ".exr",
+  },
+  {
+    id: "Abandoned",
+    name: "Abandoned",
+    path: "./assets/environment/abandoned_hall_01_4k.exr",
+    format: ".exr",
+  },
 ];
