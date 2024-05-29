@@ -114,18 +114,17 @@
     const light = new THREE.DirectionalLight(0xffffff, 0.8 * Math.PI);
     light.castShadow = true;
     light.shadow.bias = 0.0001;
-    // light.position.set(0.5, 0, 0.866); // ~60º
-    light.shadow.camera.top = 2000;
-    light.shadow.camera.bottom = -2000;
-    light.shadow.camera.left = -2000;
-    light.shadow.camera.right = 2000;
-    light.shadow.camera.near = 1200;
-    light.shadow.camera.far = 2500;
-    light.shadow.bias = 0.0001;
+    light.position.set(0.5 * 3, 1 * 3, 0.866 * 3); // ~60º
+    // light.shadow.camera.top = 2000;
+    // light.shadow.camera.bottom = -2000;
+    // light.shadow.camera.left = -2000;
+    // light.shadow.camera.right = 2000;
+    // light.shadow.camera.near = 1200;
+    // light.shadow.camera.far = 2500;
+    // light.shadow.bias = 0.0001;
 
     light.shadow.mapSize.width = SHADOW_MAP_WIDTH;
     light.shadow.mapSize.height = SHADOW_MAP_HEIGHT;
-
     scene.add(light);
 
     // const hemiLight = new THREE.HemisphereLight();
@@ -148,7 +147,7 @@
     renderer.setPixelRatio(window.devicePixelRatio);
     renderer.setSize(widthScreen, heightScreen);
     renderer.toneMapping = THREE.ACESFilmicToneMapping;
-    renderer.toneMappingExposure = Math.pow(2, 0);
+    // renderer.toneMappingExposure = Math.pow(2, 0);
     renderer.shadowMap.enabled = true;
     renderer.shadowMap.type = THREE.PCFShadowMap;
 
@@ -273,14 +272,15 @@
             if (child.material && child.material.aoMap) {
               aoMap = child.material.aoMap;
             }
-            // const sceneV2 = gltf.scene || gltf.scenes[0];
-            // const clipsV2 = gltf.animations || [];
-            // setContent(sceneV2, clipsV2);
-            // setContent(plane, "");
+
             return child;
           }
         });
         cubeCamera.update(renderer, scene);
+        // const sceneV2 = gltf.scene || gltf.scenes[0];
+        // const clipsV2 = gltf.animations || [];
+        // setContent(sceneV2, clipsV2);
+        // setContent(plane, "");
       },
       undefined,
       function (error) {
@@ -468,6 +468,8 @@
     // this.axesCorner.scale.set(size, size, size);
 
     controls.saveState();
+    object.scale.set(1, 1, 1);
+    console.log("object pos: ", object);
 
     scene.add(object);
 
@@ -535,7 +537,7 @@
     TWEEN.update();
 
     // cubeCamera.update(renderer, scene);
-    // composer.render();
+    composer.render();
 
     renderer.render(scene, camera);
   };
@@ -546,7 +548,7 @@
     camera.updateProjectionMatrix();
 
     renderer.setSize(width, height);
-    // composer.setSize(width, height);
+    composer.setSize(width, height);
   }
 
   onMount(() => {
