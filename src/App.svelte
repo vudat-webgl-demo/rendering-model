@@ -8,6 +8,13 @@
   import { environments } from "../src/assets/environment/index.js";
   import { RoomEnvironment } from "../js/RoomEnvironment.js";
   import { sRGBEncoding } from "../build/three.module";
+  import { EffectComposer } from "../js/bloomEffect/EffectComposer.js";
+  import { RenderPass } from "../js/RenderPass.js";
+  import { GTAOPass } from "../js/bloomEffect/GTAOPass.js";
+  import { OutputPass } from "../js/bloomEffect/OutputPass.js";
+  // import { GUI } from "../build/dat.gui.module.js";
+  import { GUI } from "../js/lil-gui.module.min.js";
+
   let canvas, renderer;
   let controls;
   let loader;
@@ -15,8 +22,8 @@
   let camera;
   let clock;
   let motobike;
-
-  let raycaster = new THREE.Raycaster();
+  let composer;
+  let raycaster = new THREE.Raycaster(); //
   let mouse = new THREE.Vector2();
   let helper;
   let iron;
@@ -28,37 +35,39 @@
   let pmremGenerator;
   let neutralEnvironment;
   let cubeRenderTarget;
-  let material1;
   let cubeCamera;
-  let pivot2;
-  let childVan;
-  let cubeRenderTarget2;
-  let cubeCamera2;
-  let cube;
+
   let initialState = {
     environment: "Forest",
     background: false,
   };
-  $: console.log("selectedObjects: ", selectedObjects);
 
+  let pmremCubeRenderTarget;
+  let internalEnvMap;
+  $: console.log("selectedObjects: ", selectedObjects);
   const widthScreen = window.innerWidth;
-  const heightScreen = window.innerHeight;
+  const heightScreen = window.innerHeight; //
   const SHADOW_MAP_WIDTH = 2048,
     SHADOW_MAP_HEIGHT = 1024;
   const vanElement = [
-    "Van-Road-Side-Wall-Upper",
-    "Van-Front-Upper",
-    "Van-Exterior-Road-Side-Top",
-    "Van_Roof",
-    "group111",
-    "group282",
-    "group281",
-    "group124",
-    "group280",
-    "group136",
-    "panel",
-    "panel001",
-    "group283",
+    "Color_M00168",
+    "Color_M00158",
+    "Color_M00136",
+    "Color_M00181",
+    "Color_M00197",
+    "Default_150150150008",
+    "Color_M00210",
+    "Color_M00173",
+    "Color_M00176",
+    "Color_M00127",
+    "Color_M00426",
+    "Default_150150150004",
+    "Color_M00169",
+    "Color_M00170",
+    "Color_M00149",
+    "Color_M00135",
+    "Color_M00426",
+    "Color_M00381",
   ];
   const init = () => {
     let path = "src/assets/cube-screen/";
@@ -79,10 +88,13 @@
       1000
     );
     camera.position.set(3, 2, 3);
-
-    // camera.position.set(1, 10, 10);
-
-    // camera.lookAt(1, 0, 0);
+    // camera = new THREE.PerspectiveCamera(
+    //   60,
+    //   widthScreen / heightScreen,
+    //   0.001,
+    //   10000
+    // );
+    // camera.position.set(0, 0, 0);
     scene = new THREE.Scene();
 
     clock = new THREE.Clock();
@@ -92,15 +104,17 @@
     // scene.background = reflectionCube;
     // scene.background = new THREE.Color(0xc2c2c2);
     scene.background = new THREE.Color(0x87ceeb);
+    scene.add(camera);
     const light1 = new THREE.AmbientLight(0xffffff, 0.3);
+    // light1.castShadow = true;
     light1.name = "ambient_light";
+
     scene.add(light1);
 
     const light = new THREE.DirectionalLight(0xffffff, 0.8 * Math.PI);
     light.castShadow = true;
     light.shadow.bias = 0.0001;
     // light.position.set(0.5, 0, 0.866); // ~60º
-    // light.name = "main_light";
     light.shadow.camera.top = 2000;
     light.shadow.camera.bottom = -2000;
     light.shadow.camera.left = -2000;
@@ -111,52 +125,43 @@
 
     light.shadow.mapSize.width = SHADOW_MAP_WIDTH;
     light.shadow.mapSize.height = SHADOW_MAP_HEIGHT;
+
     scene.add(light);
 
     // const hemiLight = new THREE.HemisphereLight();
 
     // scene.add(hemiLight);
     renderer = new THREE.WebGLRenderer({ canvas });
+    // renderer.physicallyCorrectLights = true;
+    // renderer.outputEncoding = sRGBEncoding;
+    // renderer.setClearColor(0xcccccc);
+    // renderer.setPixelRatio(window.devicePixelRatio);
+    // renderer.toneMapping = THREE.ACESFilmicToneMapping;
+    // renderer.setSize(widthScreen, heightScreen);
+    // renderer.shadowMap.enabled = true;
+    // renderer.shadowMap.type = THREE.PCFShadowMap;
+
     renderer.physicallyCorrectLights = true;
     renderer.outputEncoding = sRGBEncoding;
+
     renderer.setClearColor(0xcccccc);
     renderer.setPixelRatio(window.devicePixelRatio);
-    renderer.toneMapping = THREE.ACESFilmicToneMapping;
     renderer.setSize(widthScreen, heightScreen);
+    renderer.toneMapping = THREE.ACESFilmicToneMapping;
+    renderer.toneMappingExposure = Math.pow(2, 0);
     renderer.shadowMap.enabled = true;
     renderer.shadowMap.type = THREE.PCFShadowMap;
 
-    cubeRenderTarget = new THREE.WebGLCubeRenderTarget(128, {
-      generateMipmaps: true,
-      minFilter: THREE.LinearMipmapLinearFilter,
-    });
-
-    // cubeRenderTarget = new THREE.WebGLCubeRenderTarget(4000, {
-    //   format: THREE.RGBAFormat,
-    //   generateMipmaps: true,
-    //   minFilter: THREE.LinearMipmapLinearFilter,
-    //   encoding: THREE.sRGBEncoding,
-    // });
-
-    cubeCamera = new THREE.CubeCamera(0.1, 10000, cubeRenderTarget);
-
-    const cubeRenderTarget2 = new THREE.WebGLCubeRenderTarget(1024, {
+    cubeRenderTarget = new THREE.WebGLCubeRenderTarget(1024, {
       format: THREE.RGBAFormat,
       generateMipmaps: true,
       minFilter: THREE.LinearMipmapLinearFilter,
+      encoding: THREE.sRGBEncoding,
     });
-    // cubeRenderTarget2 = new THREE.WebGLCubeRenderTarget(4000, {
-    //   format: THREE.RGBAFormat,
-    //   generateMipmaps: true,
-    //   minFilter: THREE.LinearMipmapLinearFilter,
-    //   encoding: THREE.sRGBEncoding,
-    // });
-    cubeCamera2 = new THREE.CubeCamera(1, 10000, cubeRenderTarget2);
-    // cubeCamera = new THREE.CubeCamera(1, 10000, cubeRenderTarget);
-    // cubeCamera.update(renderer, scene);
-    // scene.add(cubeCamera);
-    cubeCamera2.scale.set(0.1, 0.1, 0.1);
-    cubeCamera2.position.set(-0.3, 0.65, 0);
+
+    cubeCamera = new THREE.CubeCamera(1, 10000, cubeRenderTarget);
+    cubeCamera.scale.set(0.1, 0.1, 0.1);
+    cubeCamera.position.set(-0.3, 0.65, 0);
 
     const geometry = new THREE.BoxGeometry(1, 1, 1);
     const material = new THREE.MeshBasicMaterial({ color: 0x00ff00 });
@@ -174,25 +179,18 @@
     );
     plane.rotateX(-Math.PI / 2);
     plane.receiveShadow = true;
+
     scene.add(plane);
 
-    material1 = new THREE.MeshPhongMaterial({
-      envMap: cubeRenderTarget.texture,
-    });
-    const ball1 = new THREE.Mesh(
-      new THREE.SphereGeometry(1, 32, 32),
-      material1
-    );
-    ball1.position.set(6, 1.1, 0);
-    ball1.castShadow = true;
-    ball1.receiveShadow = true;
-
-    scene.add(ball1);
-    // cubeCamera2.update(renderer, scene);
     cubeCamera.update(renderer, scene);
 
     pmremGenerator = new THREE.PMREMGenerator(renderer);
     pmremGenerator.compileEquirectangularShader();
+
+    pmremCubeRenderTarget = pmremGenerator.fromEquirectangular(
+      cubeRenderTarget.texture
+    );
+    internalEnvMap = pmremCubeRenderTarget?.texture;
 
     neutralEnvironment = pmremGenerator.fromScene(
       new RoomEnvironment()
@@ -204,6 +202,18 @@
     // controls.minPolarAngle = -0.5;
     // controls.enableDamping = true;
     // controls.screenSpacePanning = true;
+
+    composer = new EffectComposer(renderer);
+
+    const renderPass = new RenderPass(scene, camera);
+    composer.addPass(renderPass);
+
+    const gtaoPass = new GTAOPass(scene, camera, widthScreen, heightScreen);
+    gtaoPass.output = GTAOPass.OUTPUT.Denoise;
+    composer.addPass(gtaoPass);
+
+    const outputPass = new OutputPass();
+    composer.addPass(outputPass);
 
     loader = new GLTFLoader();
     //Pointer
@@ -237,23 +247,40 @@
             child.castShadow = true;
             child.receiveShadow = true;
 
-            // child.material.envMap = cubeRenderTarget2.texture;
-            // console.log("child: ", child);
-            console.log("child is: ", child);
-            vanElement.map((dt) => {
-              console.log("dt is: ", dt);
-              if (dt == child.parent.name) {
-                console.log("===: ", dt, child.parent.name);
+            // child.material.envMap = cubeRenderTarget.texture;
+            for (let i = 0; i < vanElement.length; i++) {
+              if (child.name == vanElement[i]) {
                 child.material.envMap = exrEnv;
+                break;
               } else {
-                child.material.envMap = cubeRenderTarget2.texture;
+                child.material.envMap = cubeRenderTarget.texture;
+                if (child.material.map)
+                  child.material.map.encoding = sRGBEncoding;
+                if (child.material.emissiveMap)
+                  child.material.emissiveMap.encoding = sRGBEncoding;
+                if (child.material.map || child.material.emissiveMap)
+                  child.material.needsUpdate = true;
               }
-            });
+            }
+
+            if (child.name == "Color_M00135" || child.name == "Color_M00426") {
+              child.visible = false;
+            }
+
+            const box = new THREE.Box3().setFromObject(scene);
+            gtaoPass.setSceneClipBox(box);
+            let aoMap;
+            if (child.material && child.material.aoMap) {
+              aoMap = child.material.aoMap;
+            }
+            // const sceneV2 = gltf.scene || gltf.scenes[0];
+            // const clipsV2 = gltf.animations || [];
+            // setContent(sceneV2, clipsV2);
+            // setContent(plane, "");
+            return child;
           }
         });
-        cubeCamera2.update(renderer, scene);
-
-        // cubeCamera.position.copy(cube);
+        cubeCamera.update(renderer, scene);
       },
       undefined,
       function (error) {
@@ -261,7 +288,131 @@
       }
     );
     updateEnvironment();
+
+    cubeCamera.update(renderer, scene);
+
+    // Init gui
+    const gui = new GUI();
+
+    gui
+      .add(gtaoPass, "output", {
+        Default: GTAOPass.OUTPUT.Default,
+        Diffuse: GTAOPass.OUTPUT.Diffuse,
+        "AO Only": GTAOPass.OUTPUT.AO,
+        "AO Only + Denoise": GTAOPass.OUTPUT.Denoise,
+        Depth: GTAOPass.OUTPUT.Depth,
+        Normal: GTAOPass.OUTPUT.Normal,
+      })
+      .onChange(function (value) {
+        gtaoPass.output = value;
+      });
+
+    const aoParameters = {
+      radius: 0.25,
+      distanceExponent: 1,
+      thickness: 1,
+      scale: 1,
+      samples: 16,
+      distanceFallOff: 1,
+      screenSpaceRadius: false,
+    };
+    const pdParameters = {
+      lumaPhi: 10,
+      depthPhi: 2,
+      normalPhi: 3,
+      radius: 4,
+      radiusExponent: 1,
+      rings: 2,
+      samples: 16,
+    };
+    gtaoPass.updateGtaoMaterial(aoParameters);
+    gtaoPass.updatePdMaterial(pdParameters);
+    gui.add(gtaoPass, "blendIntensity").min(0).max(1).step(0.01);
+    gui
+      .add(aoParameters, "radius")
+      .min(0.01)
+      .max(1)
+      .step(0.01)
+      .onChange(() => gtaoPass.updateGtaoMaterial(aoParameters));
+    gui
+      .add(aoParameters, "distanceExponent")
+      .min(1)
+      .max(4)
+      .step(0.01)
+      .onChange(() => gtaoPass.updateGtaoMaterial(aoParameters));
+    gui
+      .add(aoParameters, "thickness")
+      .min(0.01)
+      .max(10)
+      .step(0.01)
+      .onChange(() => gtaoPass.updateGtaoMaterial(aoParameters));
+    gui
+      .add(aoParameters, "distanceFallOff")
+      .min(0)
+      .max(1)
+      .step(0.01)
+      .onChange(() => gtaoPass.updateGtaoMaterial(aoParameters));
+    gui
+      .add(aoParameters, "scale")
+      .min(0.01)
+      .max(2.0)
+      .step(0.01)
+      .onChange(() => gtaoPass.updateGtaoMaterial(aoParameters));
+    gui
+      .add(aoParameters, "samples")
+      .min(2)
+      .max(32)
+      .step(1)
+      .onChange(() => gtaoPass.updateGtaoMaterial(aoParameters));
+    gui
+      .add(aoParameters, "screenSpaceRadius")
+      .onChange(() => gtaoPass.updateGtaoMaterial(aoParameters));
+    gui
+      .add(pdParameters, "lumaPhi")
+      .min(0)
+      .max(20)
+      .step(0.01)
+      .onChange(() => gtaoPass.updatePdMaterial(pdParameters));
+    gui
+      .add(pdParameters, "depthPhi")
+      .min(0.01)
+      .max(20)
+      .step(0.01)
+      .onChange(() => gtaoPass.updatePdMaterial(pdParameters));
+    gui
+      .add(pdParameters, "normalPhi")
+      .min(0.01)
+      .max(20)
+      .step(0.01)
+      .onChange(() => gtaoPass.updatePdMaterial(pdParameters));
+    gui
+      .add(pdParameters, "radius")
+      .min(0)
+      .max(32)
+      .step(1)
+      .onChange(() => gtaoPass.updatePdMaterial(pdParameters));
+    gui
+      .add(pdParameters, "radiusExponent")
+      .min(0.1)
+      .max(4)
+      .step(0.1)
+      .onChange(() => gtaoPass.updatePdMaterial(pdParameters));
+    gui
+      .add(pdParameters, "rings")
+      .min(1)
+      .max(16)
+      .step(0.125)
+      .onChange(() => gtaoPass.updatePdMaterial(pdParameters));
+    gui
+      .add(pdParameters, "samples")
+      .min(2)
+      .max(32)
+      .step(1)
+      .onChange(() => gtaoPass.updatePdMaterial(pdParameters));
+
+    gui.open();
   };
+
   const updateEnvironment = () => {
     const environment = environments.filter(
       (entry) => entry.name === initialState.environment
@@ -280,6 +431,59 @@
       // scene.environment = envMap;
       // scene.background = initialState.background ? envMap : null;
     });
+  };
+
+  const setContent = (object, clips) => {
+    // clear();
+
+    const box = new THREE.Box3().setFromObject(object);
+    const size = box.getSize(new THREE.Vector3()).length();
+    const center = box.getCenter(new THREE.Vector3());
+
+    controls.reset();
+
+    object.position.x += object.position.x - center.x;
+    object.position.y += object.position.y - center.y;
+    object.position.z += object.position.z - center.z;
+
+    controls.maxDistance = size * 10;
+    controls.enableDamping = true;
+    camera.near = size / 100;
+    camera.far = size * 100;
+    camera.updateProjectionMatrix();
+
+    camera.position.copy(center);
+    camera.position.x += size / 2.0;
+    camera.position.y += size / 5.0;
+    camera.position.z += size / 2.0;
+    camera.lookAt(center);
+
+    // this.setCamera(DEFAULT_CAMERA);
+
+    // this.axesCamera.position.copy(this.defaultCamera.position);
+    // this.axesCamera.lookAt(this.axesScene.position);
+    // this.axesCamera.near = size / 100;
+    // this.axesCamera.far = size * 100;
+    // this.axesCamera.updateProjectionMatrix();
+    // this.axesCorner.scale.set(size, size, size);
+
+    controls.saveState();
+
+    scene.add(object);
+
+    // this.content = object;
+
+    // this.state.punctualLights = true;
+
+    // this.content.traverse((node) => {
+    //   if (node.isLight) {
+    //     this.state.punctualLights = false;
+    //   } else if (node.isMesh) {
+    //     // TODO(https://github.com/mrdoob/three.js/pull/18235): Clean up.
+    //     node.material.depthWrite = !node.material.transparent;
+    //   }
+    // }
+    //})
   };
 
   const getCubeMapTexture = (environment) => {
@@ -329,24 +533,20 @@
     requestAnimationFrame(animate);
     controls.update();
     TWEEN.update();
-    // cubeCamera.update(renderer, scene);
-    // cubeCamera2.update(renderer, scene);
-    // cubeCamera.update(renderer, scene);
 
-    const delta = clock.getDelta();
-
-    // childVan && childVan.rotateY(-0.3 * delta);
-    // pivot2 && pivot2.rotateY(0.3 * delta);
+    // cubeCamera.update(renderer, scene);
+    // composer.render();
 
     renderer.render(scene, camera);
   };
   function onWindowResize() {
     const width = window.innerWidth;
     const height = window.innerHeight;
-
+    // camera.aspect = width / height;
     camera.updateProjectionMatrix();
 
     renderer.setSize(width, height);
+    // composer.setSize(width, height);
   }
 
   onMount(() => {
