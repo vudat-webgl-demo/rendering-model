@@ -1,5 +1,5 @@
 import { Color } from "../build/three.module.js";
-import { Pass } from "../js/bloomEffect/Pass.js";
+import { Pass } from "./post-processing/Pass.js";
 
 class RenderPass extends Pass {
   constructor(scene, camera, overrideMaterial, clearColor, clearAlpha) {

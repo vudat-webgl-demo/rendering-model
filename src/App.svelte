@@ -8,10 +8,20 @@
   import { environments } from "../src/assets/environment/index.js";
   import { RoomEnvironment } from "../js/RoomEnvironment.js";
   import { sRGBEncoding } from "../build/three.module";
-  import { EffectComposer } from "../js/bloomEffect/EffectComposer.js";
+  import { EffectComposer } from "../js/post-processing/EffectComposer.js";
   import { RenderPass } from "../js/RenderPass.js";
-  import { GTAOPass } from "../js/bloomEffect/GTAOPass.js";
-  import { OutputPass } from "../js/bloomEffect/OutputPass.js";
+  import { GTAOPass } from "../js/post-processing/GTAOPass.js";
+  import { OutputPass } from "../js/post-processing/OutputPass.js";
+  import { ReflectorForSSRPass } from "../js/post-processing/ReflectorForSSRPass.js";
+  import { SSRPass } from "../js/post-processing/SSRPass.js";
+  import { GammaCorrectionShader } from "../js/shaders/GammaCorrectionShader.js";
+
+  import { LuminosityShader } from "../js/shaders/LuminosityShader.js";
+
+  import { ShaderPass } from "../js/post-processing/ShaderPass.js";
+  import { ACESFilmicToneMappingShader } from "../js/shaders/ACESFilmicToneMappingShader.js";
+  import { CopyShader } from "../js/shaders/CopyShader.js";
+
   // import { GUI } from "../build/dat.gui.module.js";
   import { GUI } from "../js/lil-gui.module.min.js";
 
@@ -36,12 +46,21 @@
   let neutralEnvironment;
   let cubeRenderTarget;
   let cubeCamera;
+  const ssrParams = {
+    enableSSR: true,
+    autoRotate: true,
+    otherMeshes: true,
+    groundReflector: true,
+  };
 
+  let ssrPass;
+  const otherMeshes = [];
+  let groundReflector;
+  const selects = [];
   let initialState = {
     environment: "Forest",
     background: false,
   };
-
   let pmremCubeRenderTarget;
   let internalEnvMap;
   $: console.log("selectedObjects: ", selectedObjects);
@@ -84,8 +103,8 @@
     camera = new THREE.PerspectiveCamera(
       60,
       widthScreen / heightScreen,
-      0.01,
-      1000
+      0.1,
+      100
     );
     camera.position.set(3, 2, 3);
     // camera = new THREE.PerspectiveCamera(
@@ -96,6 +115,7 @@
     // );
     // camera.position.set(0, 0, 0);
     scene = new THREE.Scene();
+    scene.background = new THREE.Color(0xcccccc);
 
     clock = new THREE.Clock();
     const Camhelper = new THREE.CameraHelper(camera);
@@ -103,7 +123,6 @@
 
     // scene.background = reflectionCube;
     // scene.background = new THREE.Color(0xc2c2c2);
-    scene.background = new THREE.Color(0x87ceeb);
     scene.add(camera);
     const light1 = new THREE.AmbientLight(0xffffff, 0.3);
     // light1.castShadow = true;
@@ -113,15 +132,15 @@
 
     const light = new THREE.DirectionalLight(0xffffff, 0.8 * Math.PI);
     light.castShadow = true;
-    light.shadow.bias = 0.0001;
-    light.position.set(0.5 * 3, 1 * 3, 0.866 * 3); // ~60º
-    // light.shadow.camera.top = 2000;
-    // light.shadow.camera.bottom = -2000;
-    // light.shadow.camera.left = -2000;
-    // light.shadow.camera.right = 2000;
-    // light.shadow.camera.near = 1200;
-    // light.shadow.camera.far = 2500;
     // light.shadow.bias = 0.0001;
+    // light.position.set(0.5 * 2, 1 * 2, 0.866 * 2); // ~60º
+    light.shadow.camera.top = 2000;
+    light.shadow.camera.bottom = -2000;
+    light.shadow.camera.left = -2000;
+    light.shadow.camera.right = 2000;
+    light.shadow.camera.near = 1200;
+    light.shadow.camera.far = 2500;
+    light.shadow.bias = 0.0001;
 
     light.shadow.mapSize.width = SHADOW_MAP_WIDTH;
     light.shadow.mapSize.height = SHADOW_MAP_HEIGHT;
@@ -131,14 +150,6 @@
 
     // scene.add(hemiLight);
     renderer = new THREE.WebGLRenderer({ canvas });
-    // renderer.physicallyCorrectLights = true;
-    // renderer.outputEncoding = sRGBEncoding;
-    // renderer.setClearColor(0xcccccc);
-    // renderer.setPixelRatio(window.devicePixelRatio);
-    // renderer.toneMapping = THREE.ACESFilmicToneMapping;
-    // renderer.setSize(widthScreen, heightScreen);
-    // renderer.shadowMap.enabled = true;
-    // renderer.shadowMap.type = THREE.PCFShadowMap;
 
     renderer.physicallyCorrectLights = true;
     renderer.outputEncoding = sRGBEncoding;
@@ -147,7 +158,7 @@
     renderer.setPixelRatio(window.devicePixelRatio);
     renderer.setSize(widthScreen, heightScreen);
     renderer.toneMapping = THREE.ACESFilmicToneMapping;
-    // renderer.toneMappingExposure = Math.pow(2, 0);
+    renderer.toneMappingExposure = Math.pow(2, 0);
     renderer.shadowMap.enabled = true;
     renderer.shadowMap.type = THREE.PCFShadowMap;
 
@@ -168,18 +179,31 @@
     cube.position.set(-0.3, 0.65, 0);
     // scene.add(cube);
 
-    const planeGeometry = new THREE.PlaneGeometry(25, 25);
-    const texture = new THREE.TextureLoader().load(
-      "src/images/tri_pattern.jpg"
-    );
-    const plane = new THREE.Mesh(
-      planeGeometry,
-      new THREE.MeshPhongMaterial({ map: texture })
-    );
-    plane.rotateX(-Math.PI / 2);
-    plane.receiveShadow = true;
+    // const planeGeometry = new THREE.PlaneGeometry(25, 25);
+    // const texture = new THREE.TextureLoader().load(
+    //   "src/images/tri_pattern.jpg"
+    // );
+    // const plane = new THREE.Mesh(
+    //   planeGeometry,
+    //   new THREE.MeshPhongMaterial({ map: texture })
+    // );
+    // plane.rotateX(-Math.PI / 2);
+    // plane.receiveShadow = true;
 
-    scene.add(plane);
+    // scene.add(plane);
+
+    let geometryV2 = new THREE.PlaneGeometry(25, 25);
+    groundReflector = new ReflectorForSSRPass(geometryV2, {
+      clipBias: 0.0003,
+      textureWidth: window.innerWidth,
+      textureHeight: window.innerHeight,
+      color: 0x888888,
+      useDepthTexture: true,
+    });
+    groundReflector.material.depthWrite = false;
+    groundReflector.rotation.x = -Math.PI / 2;
+    groundReflector.visible = false;
+    // scene.add(groundReflector);
 
     cubeCamera.update(renderer, scene);
 
@@ -211,6 +235,31 @@
     gtaoPass.output = GTAOPass.OUTPUT.Denoise;
     composer.addPass(gtaoPass);
 
+    ssrPass = new SSRPass({
+      renderer,
+      scene,
+      camera,
+      width: widthScreen,
+      height: heightScreen,
+      groundReflector: ssrParams.groundReflector ? groundReflector : null,
+      selects: ssrParams.groundReflector ? selects : null,
+    });
+
+    composer.addPass(ssrPass);
+
+    const gammaCorrectionPass = new ShaderPass(GammaCorrectionShader);
+    composer.addPass(gammaCorrectionPass);
+
+    // const luminosityPass = new ShaderPass(LuminosityShader);
+    // composer.addPass(luminosityPass);
+    // Final pass to copy to screen
+    // const copyPass = new ShaderPass(CopyShader);
+    // copyPass.renderToScreen = true;
+    // composer.addPass(copyPass);
+
+    // const ACESFilmicPass = new ShaderPass(ACESFilmicToneMappingShader);
+    // composer.addPass(ACESFilmicPass);
+
     const outputPass = new OutputPass();
     composer.addPass(outputPass);
 
@@ -232,13 +281,14 @@
     helper = new THREE.Mesh(geometryHelper, rollOverMaterial);
 
     loader.load(
-      "src/models/van/van2.glb",
+      "src/models/van/reality_van.glb",
       function (gltf) {
         motobike = gltf.scene;
         // motobike.position.y = distanceYOfbox / 2;
         // motobike.position.x = -distanceXOfbox / 2;
         // motobike.position.z = distanceZOfbox / 2;
         motobike.scale.set(10, 10, 10);
+
         scene.add(motobike);
 
         gltf.scene.traverse(function (child) {
@@ -250,8 +300,13 @@
             for (let i = 0; i < vanElement.length; i++) {
               if (child.name == vanElement[i]) {
                 child.material.envMap = exrEnv;
+                selects.push(child); //bị rọi
+
                 break;
               } else {
+                // selects.push(child);
+                selects.push(child);
+                otherMeshes.push(child); //Rọi vào đứa khác
                 child.material.envMap = cubeRenderTarget.texture;
                 if (child.material.map)
                   child.material.map.encoding = sRGBEncoding;
@@ -410,6 +465,72 @@
       .step(1)
       .onChange(() => gtaoPass.updatePdMaterial(pdParameters));
 
+    gui.add(ssrParams, "enableSSR").name("Enable SSR");
+    gui.add(ssrParams, "groundReflector").onChange(() => {
+      if (ssrParams.groundReflector) {
+        (ssrPass.groundReflector = groundReflector),
+          (ssrPass.selects = selects);
+      } else {
+        (ssrPass.groundReflector = null), (ssrPass.selects = null);
+      }
+    });
+    ssrPass.thickness = 0.018;
+    gui.add(ssrPass, "thickness").min(0).max(0.1).step(0.0001);
+    ssrPass.infiniteThick = false;
+    gui.add(ssrPass, "infiniteThick");
+    gui.add(ssrParams, "autoRotate").onChange(() => {
+      controls.enabled = !ssrParams.autoRotate;
+    });
+
+    const folder = gui.addFolder("more settings");
+    folder.add(ssrPass, "fresnel").onChange(() => {
+      groundReflector.fresnel = ssrPass.fresnel;
+    });
+    folder.add(ssrPass, "distanceAttenuation").onChange(() => {
+      groundReflector.distanceAttenuation = ssrPass.distanceAttenuation;
+    });
+    ssrPass.maxDistance = 0.3;
+    groundReflector.maxDistance = ssrPass.maxDistance;
+    folder
+      .add(ssrPass, "maxDistance")
+      .min(0)
+      .max(0.5)
+      .step(0.001)
+      .onChange(() => {
+        groundReflector.maxDistance = ssrPass.maxDistance;
+      });
+    folder.add(ssrParams, "otherMeshes").onChange(() => {
+      if (ssrParams.otherMeshes) {
+        otherMeshes.forEach((mesh) => (mesh.visible = true));
+      } else {
+        otherMeshes.forEach((mesh) => (mesh.visible = false));
+      }
+    });
+    folder.add(ssrPass, "bouncing");
+    folder
+      .add(ssrPass, "output", {
+        Default: SSRPass.OUTPUT.Default,
+        "SSR Only": SSRPass.OUTPUT.SSR,
+        Beauty: SSRPass.OUTPUT.Beauty,
+        Depth: SSRPass.OUTPUT.Depth,
+        Normal: SSRPass.OUTPUT.Normal,
+        Metalness: SSRPass.OUTPUT.Metalness,
+      })
+      .onChange(function (value) {
+        ssrPass.output = value;
+      });
+    ssrPass.opacity = 0.355;
+    groundReflector.opacity = ssrPass.opacity;
+    folder
+      .add(ssrPass, "opacity")
+      .min(0)
+      .max(1)
+      .onChange(() => {
+        groundReflector.opacity = ssrPass.opacity;
+      });
+    folder.add(ssrPass, "blur");
+    // folder.open()
+    // gui.close()
     gui.open();
   };
 
@@ -536,10 +657,24 @@
     controls.update();
     TWEEN.update();
 
-    // cubeCamera.update(renderer, scene);
-    composer.render();
+    if (ssrParams.enableSSR) {
+      // TODO: groundReflector has full ground info, need use it to solve reflection gaps problem on objects when camera near ground.
+      // TODO: the normal and depth info where groundReflector reflected need to be changed.
 
-    renderer.render(scene, camera);
+      // renderer.render(scene, camera);
+      composer.render();
+    } else {
+      renderer.render(scene, camera);
+    }
+    // renderer.autoClear = false;
+    // renderer.clear();
+
+    // camera.layers.set(1);
+    // composer.render();
+
+    // renderer.clearDepth();
+    // camera.layers.set(0);
+    // renderer.render(scene, camera);
   };
   function onWindowResize() {
     const width = window.innerWidth;
@@ -549,6 +684,8 @@
 
     renderer.setSize(width, height);
     composer.setSize(width, height);
+    groundReflector.getRenderTarget().setSize(width, height);
+    groundReflector.resolution.set(width, height);
   }
 
   onMount(() => {
