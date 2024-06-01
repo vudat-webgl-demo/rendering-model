@@ -11,18 +11,14 @@
   import { EffectComposer } from "../js/post-processing/EffectComposer.js";
   import { RenderPass } from "../js/RenderPass.js";
   import { GTAOPass } from "../js/post-processing/GTAOPass.js";
+
   import { OutputPass } from "../js/post-processing/OutputPass.js";
   import { ReflectorForSSRPass } from "../js/post-processing/ReflectorForSSRPass.js";
   import { SSRPass } from "../js/post-processing/SSRPass.js";
   import { GammaCorrectionShader } from "../js/shaders/GammaCorrectionShader.js";
-
   import { LuminosityShader } from "../js/shaders/LuminosityShader.js";
-
   import { ShaderPass } from "../js/post-processing/ShaderPass.js";
-  import { ACESFilmicToneMappingShader } from "../js/shaders/ACESFilmicToneMappingShader.js";
-  import { CopyShader } from "../js/shaders/CopyShader.js";
-
-  // import { GUI } from "../build/dat.gui.module.js";
+  import { FXAAShader } from "../js/post-processing/FXAAShader.js";
   import { GUI } from "../js/lil-gui.module.min.js";
 
   let canvas, renderer;
@@ -31,17 +27,11 @@
   let scene;
   let camera;
   let clock;
-  let motobike;
+  let van;
   let composer;
-  let raycaster = new THREE.Raycaster(); //
-  let mouse = new THREE.Vector2();
-  let helper;
-  let iron;
   let exrEnv;
   let startTime, endTime;
   startTime = new Date();
-  let selectedObjects = [];
-  let isGoMallMode = false;
   let pmremGenerator;
   let neutralEnvironment;
   let cubeRenderTarget;
@@ -63,7 +53,6 @@
   };
   let pmremCubeRenderTarget;
   let internalEnvMap;
-  $: console.log("selectedObjects: ", selectedObjects);
   const widthScreen = window.innerWidth;
   const heightScreen = window.innerHeight; //
   const SHADOW_MAP_WIDTH = 2048,
@@ -106,26 +95,15 @@
       0.1,
       100
     );
-    camera.position.set(3, 2, 3);
-    // camera = new THREE.PerspectiveCamera(
-    //   60,
-    //   widthScreen / heightScreen,
-    //   0.001,
-    //   10000
-    // );
-    // camera.position.set(0, 0, 0);
+    camera.position.set(0, 3, -1);
+
     scene = new THREE.Scene();
     scene.background = new THREE.Color(0xcccccc);
 
     clock = new THREE.Clock();
-    const Camhelper = new THREE.CameraHelper(camera);
-    // scene.add(Camhelper);
 
-    // scene.background = reflectionCube;
-    // scene.background = new THREE.Color(0xc2c2c2);
     scene.add(camera);
     const light1 = new THREE.AmbientLight(0xffffff, 0.3);
-    // light1.castShadow = true;
     light1.name = "ambient_light";
 
     scene.add(light1);
@@ -146,14 +124,9 @@
     light.shadow.mapSize.height = SHADOW_MAP_HEIGHT;
     scene.add(light);
 
-    // const hemiLight = new THREE.HemisphereLight();
-
-    // scene.add(hemiLight);
-    renderer = new THREE.WebGLRenderer({ canvas });
-
+    renderer = new THREE.WebGLRenderer({ canvas, antialias: true });
     renderer.physicallyCorrectLights = true;
     renderer.outputEncoding = sRGBEncoding;
-
     renderer.setClearColor(0xcccccc);
     renderer.setPixelRatio(window.devicePixelRatio);
     renderer.setSize(widthScreen, heightScreen);
@@ -177,20 +150,6 @@
     const material = new THREE.MeshBasicMaterial({ color: 0x00ff00 });
     const cube = new THREE.Mesh(geometry, material);
     cube.position.set(-0.3, 0.65, 0);
-    // scene.add(cube);
-
-    // const planeGeometry = new THREE.PlaneGeometry(25, 25);
-    // const texture = new THREE.TextureLoader().load(
-    //   "src/images/tri_pattern.jpg"
-    // );
-    // const plane = new THREE.Mesh(
-    //   planeGeometry,
-    //   new THREE.MeshPhongMaterial({ map: texture })
-    // );
-    // plane.rotateX(-Math.PI / 2);
-    // plane.receiveShadow = true;
-
-    // scene.add(plane);
 
     let geometryV2 = new THREE.PlaneGeometry(25, 25);
     groundReflector = new ReflectorForSSRPass(geometryV2, {
@@ -223,7 +182,7 @@
     controls.enabled = true;
     // controls.maxPolarAngle = 1.0;
     // controls.minPolarAngle = -0.5;
-    // controls.enableDamping = true;
+    controls.enableDamping = true;
     // controls.screenSpacePanning = true;
 
     composer = new EffectComposer(renderer);
@@ -232,8 +191,8 @@
     composer.addPass(renderPass);
 
     const gtaoPass = new GTAOPass(scene, camera, widthScreen, heightScreen);
-    gtaoPass.output = GTAOPass.OUTPUT.Denoise;
-    composer.addPass(gtaoPass);
+    gtaoPass.output = GTAOPass.OUTPUT.Default;
+    // composer.addPass(gtaoPass);
 
     ssrPass = new SSRPass({
       renderer,
@@ -246,50 +205,33 @@
     });
 
     composer.addPass(ssrPass);
+    composer.addPass(gtaoPass);
+
+    // composer.addPass(ssaoPass);
+
+    const fxaaPass = new ShaderPass(FXAAShader);
+    const pixelRatio = renderer.getPixelRatio();
+
+    fxaaPass.material.uniforms["resolution"].value.x =
+      1 / (canvas.offsetWidth * pixelRatio);
+    fxaaPass.material.uniforms["resolution"].value.y =
+      1 / (canvas.offsetHeight * pixelRatio);
 
     const gammaCorrectionPass = new ShaderPass(GammaCorrectionShader);
     composer.addPass(gammaCorrectionPass);
 
-    // const luminosityPass = new ShaderPass(LuminosityShader);
-    // composer.addPass(luminosityPass);
-    // Final pass to copy to screen
-    // const copyPass = new ShaderPass(CopyShader);
-    // copyPass.renderToScreen = true;
-    // composer.addPass(copyPass);
-
-    // const ACESFilmicPass = new ShaderPass(ACESFilmicToneMappingShader);
-    // composer.addPass(ACESFilmicPass);
-
     const outputPass = new OutputPass();
     composer.addPass(outputPass);
+    composer.addPass(fxaaPass);
 
     loader = new GLTFLoader();
-    //Pointer
-    let geometryHelper = new THREE.CircleGeometry(0.3, 10000);
-    geometryHelper.translate(0, 0, 0.01);
-    const marker = new THREE.TextureLoader().load("src/assets/marker.png");
-
-    let rollOverMaterial = new THREE.MeshBasicMaterial({
-      map: marker,
-      color: 0x00000,
-      flatShading: true,
-      transparent: true,
-      opacity: 0.7,
-    });
-    // let rollOverMaterial = new THREE.MeshBasicMaterial( {  color: 0xff0000, flatShading: true, transparent: true, opacity: 0.7 } );
-
-    helper = new THREE.Mesh(geometryHelper, rollOverMaterial);
-
     loader.load(
       "src/models/van/reality_van.glb",
       function (gltf) {
-        motobike = gltf.scene;
-        // motobike.position.y = distanceYOfbox / 2;
-        // motobike.position.x = -distanceXOfbox / 2;
-        // motobike.position.z = distanceZOfbox / 2;
-        motobike.scale.set(10, 10, 10);
+        van = gltf.scene;
+        van.scale.set(10, 10, 10);
 
-        scene.add(motobike);
+        scene.add(van);
 
         gltf.scene.traverse(function (child) {
           if (child.isMesh) {
@@ -303,7 +245,7 @@
                 selects.push(child); //bị rọi
 
                 break;
-              } else {
+              } else if (child.name != "Color_M00185") {
                 // selects.push(child);
                 selects.push(child);
                 otherMeshes.push(child); //Rọi vào đứa khác
@@ -323,19 +265,11 @@
 
             const box = new THREE.Box3().setFromObject(scene);
             gtaoPass.setSceneClipBox(box);
-            let aoMap;
-            if (child.material && child.material.aoMap) {
-              aoMap = child.material.aoMap;
-            }
 
             return child;
           }
         });
         cubeCamera.update(renderer, scene);
-        // const sceneV2 = gltf.scene || gltf.scenes[0];
-        // const clipsV2 = gltf.animations || [];
-        // setContent(sceneV2, clipsV2);
-        // setContent(plane, "");
       },
       undefined,
       function (error) {
@@ -343,7 +277,6 @@
       }
     );
     updateEnvironment();
-
     cubeCamera.update(renderer, scene);
 
     // Init gui
@@ -363,11 +296,11 @@
       });
 
     const aoParameters = {
-      radius: 0.25,
-      distanceExponent: 1,
+      radius: 0.2,
+      distanceExponent: 1.85,
       thickness: 1,
-      scale: 1,
-      samples: 16,
+      scale: 1.5,
+      samples: 32,
       distanceFallOff: 1,
       screenSpaceRadius: false,
     };
@@ -375,10 +308,10 @@
       lumaPhi: 10,
       depthPhi: 2,
       normalPhi: 3,
-      radius: 4,
+      radius: 0.5,
       radiusExponent: 1,
       rings: 2,
-      samples: 16,
+      samples: 32,
     };
     gtaoPass.updateGtaoMaterial(aoParameters);
     gtaoPass.updatePdMaterial(pdParameters);
@@ -519,7 +452,7 @@
       .onChange(function (value) {
         ssrPass.output = value;
       });
-    ssrPass.opacity = 0.355;
+    ssrPass.opacity = 0.5;
     groundReflector.opacity = ssrPass.opacity;
     folder
       .add(ssrPass, "opacity")
@@ -530,8 +463,8 @@
       });
     folder.add(ssrPass, "blur");
     // folder.open()
-    // gui.close()
-    gui.open();
+    gui.close();
+    gui.hide();
   };
 
   const updateEnvironment = () => {
@@ -540,73 +473,10 @@
     )[0];
 
     getCubeMapTexture(environment).then(({ envMap }) => {
-      // if (
-      //   (!envMap || !this.state.background) &&
-      //   this.activeCamera === this.defaultCamera
-      // ) {
-      //   // this.scene.add(this.vignette);
-      // } else {
-      //   // this.scene.remove(this.vignette);
-      // }
       exrEnv = envMap;
       // scene.environment = envMap;
       // scene.background = initialState.background ? envMap : null;
     });
-  };
-
-  const setContent = (object, clips) => {
-    // clear();
-
-    const box = new THREE.Box3().setFromObject(object);
-    const size = box.getSize(new THREE.Vector3()).length();
-    const center = box.getCenter(new THREE.Vector3());
-
-    controls.reset();
-
-    object.position.x += object.position.x - center.x;
-    object.position.y += object.position.y - center.y;
-    object.position.z += object.position.z - center.z;
-
-    controls.maxDistance = size * 10;
-    controls.enableDamping = true;
-    camera.near = size / 100;
-    camera.far = size * 100;
-    camera.updateProjectionMatrix();
-
-    camera.position.copy(center);
-    camera.position.x += size / 2.0;
-    camera.position.y += size / 5.0;
-    camera.position.z += size / 2.0;
-    camera.lookAt(center);
-
-    // this.setCamera(DEFAULT_CAMERA);
-
-    // this.axesCamera.position.copy(this.defaultCamera.position);
-    // this.axesCamera.lookAt(this.axesScene.position);
-    // this.axesCamera.near = size / 100;
-    // this.axesCamera.far = size * 100;
-    // this.axesCamera.updateProjectionMatrix();
-    // this.axesCorner.scale.set(size, size, size);
-
-    controls.saveState();
-    object.scale.set(1, 1, 1);
-    console.log("object pos: ", object);
-
-    scene.add(object);
-
-    // this.content = object;
-
-    // this.state.punctualLights = true;
-
-    // this.content.traverse((node) => {
-    //   if (node.isLight) {
-    //     this.state.punctualLights = false;
-    //   } else if (node.isMesh) {
-    //     // TODO(https://github.com/mrdoob/three.js/pull/18235): Clean up.
-    //     node.material.depthWrite = !node.material.transparent;
-    //   }
-    // }
-    //})
   };
 
   const getCubeMapTexture = (environment) => {
@@ -638,19 +508,19 @@
     });
   };
 
-  const getDetailModel = (event) => {
-    console.log("click detail");
-    event.preventDefault();
-    mouse.x = (event.clientX / window.innerWidth) * 2 - 1;
-    mouse.y = -(event.clientY / window.innerHeight) * 2 + 1;
-    raycaster.setFromCamera(mouse, camera);
-    let intersects = raycaster.intersectObjects(scene.children, true);
+  // const getDetailModel = (event) => {
+  //   console.log("click detail");
+  //   event.preventDefault();
+  //   mouse.x = (event.clientX / window.innerWidth) * 2 - 1;
+  //   mouse.y = -(event.clientY / window.innerHeight) * 2 + 1;
+  //   raycaster.setFromCamera(mouse, camera);
+  //   let intersects = raycaster.intersectObjects(scene.children, true);
 
-    if (intersects.length > 0) {
-      let clickObject = intersects[0].object;
-      console.log("click Object: ", clickObject);
-    }
-  };
+  //   if (intersects.length > 0) {
+  //     let clickObject = intersects[0].object;
+  //     console.log("click Object: ", clickObject);
+  //   }
+  // };
 
   const animate = () => {
     requestAnimationFrame(animate);
@@ -658,30 +528,16 @@
     TWEEN.update();
 
     if (ssrParams.enableSSR) {
-      // TODO: groundReflector has full ground info, need use it to solve reflection gaps problem on objects when camera near ground.
-      // TODO: the normal and depth info where groundReflector reflected need to be changed.
-
-      // renderer.render(scene, camera);
       composer.render();
     } else {
       renderer.render(scene, camera);
     }
-    // renderer.autoClear = false;
-    // renderer.clear();
-
-    // camera.layers.set(1);
-    // composer.render();
-
-    // renderer.clearDepth();
-    // camera.layers.set(0);
-    // renderer.render(scene, camera);
   };
   function onWindowResize() {
     const width = window.innerWidth;
     const height = window.innerHeight;
-    // camera.aspect = width / height;
-    camera.updateProjectionMatrix();
 
+    camera.updateProjectionMatrix();
     renderer.setSize(width, height);
     composer.setSize(width, height);
     groundReflector.getRenderTarget().setSize(width, height);
@@ -697,19 +553,10 @@
 </script>
 
 <main>
-  <canvas
-    class="full-screen"
-    id="container"
-    bind:this={canvas}
-    on:click={getDetailModel}
-  >
-  </canvas>
+  <canvas class="full-screen" id="container" bind:this={canvas}> </canvas>
 </main>
 
-<!-- on:click={moveCamera}
-    on:mousedown={startTimer}
-    on:click={getNameObject}
-    on:zoom={handleZoom} -->
+<!-- on:click={getDetailModel} -->
 
 <style>
   .full-screen {
