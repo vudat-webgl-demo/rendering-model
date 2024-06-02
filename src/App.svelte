@@ -11,7 +11,6 @@
   import { EffectComposer } from "../js/post-processing/EffectComposer.js";
   import { RenderPass } from "../js/RenderPass.js";
   import { GTAOPass } from "../js/post-processing/GTAOPass.js";
-
   import { OutputPass } from "../js/post-processing/OutputPass.js";
   import { ReflectorForSSRPass } from "../js/post-processing/ReflectorForSSRPass.js";
   import { SSRPass } from "../js/post-processing/SSRPass.js";
@@ -77,6 +76,10 @@
     "Color_M00426",
     "Color_M00381",
   ];
+  let mouse = new THREE.Vector2();
+  let raycaster = new THREE.Raycaster();
+  let isGoMallMode = false;
+  let textButtonView = "View Mode";
   const init = () => {
     let path = "src/assets/cube-screen/";
     let format = ".jpg";
@@ -90,7 +93,7 @@
       path + "pano_b" + format,
     ];
     camera = new THREE.PerspectiveCamera(
-      60,
+      75,
       widthScreen / heightScreen,
       0.1,
       100
@@ -183,6 +186,7 @@
     // controls.maxPolarAngle = 1.0;
     // controls.minPolarAngle = -0.5;
     controls.enableDamping = true;
+    controls.dampingFactor = 0.4;
     // controls.screenSpacePanning = true;
 
     composer = new EffectComposer(renderer);
@@ -465,6 +469,11 @@
     // folder.open()
     gui.close();
     gui.hide();
+
+    controls.addEventListener("change", () => {
+      console.log("camera position: ", camera.position);
+      console.log("controls target: ", controls.target);
+    });
   };
 
   const updateEnvironment = () => {
@@ -518,6 +527,7 @@
 
   //   if (intersects.length > 0) {
   //     let clickObject = intersects[0].object;
+  //     console.log("coordinate: ", intersects[0].point);
   //     console.log("click Object: ", clickObject);
   //   }
   // };
@@ -544,6 +554,54 @@
     groundReflector.resolution.set(width, height);
   }
 
+  const onOverViewButton = () => {
+    isGoMallMode = !isGoMallMode;
+    if (isGoMallMode) {
+      textButtonView = "Home Mode";
+      //look at inside van
+      let coords = {
+        x: camera.position.x,
+        y: camera.position.y,
+        z: camera.position.z,
+      };
+      new TWEEN.Tween(coords)
+        .to({
+          x: 0.33266818379163465,
+          y: 0.4567208098842309,
+          z: 0.009396602938231524,
+        })
+        .onUpdate(() => {
+          controls.target.set(
+            -0.18035187854860613,
+            0.34989708000472913,
+            0.014436166392607084
+          );
+          return camera.position.copy(coords);
+        })
+        .start();
+    } else {
+      textButtonView = "View Mode";
+
+      //back initial position
+      let coords = {
+        x: camera.position.x,
+        y: camera.position.y,
+        z: camera.position.z,
+      };
+      new TWEEN.Tween(coords)
+        .to({
+          x: 0,
+          y: 3,
+          z: -1,
+        })
+        .onUpdate(() => {
+          controls.target.set(0, 0, 0);
+          return camera.position.copy(coords);
+        })
+        .start();
+    }
+  };
+
   onMount(() => {
     init();
     animate();
@@ -553,6 +611,13 @@
 </script>
 
 <main>
+  <div class="view-button">
+    <button
+      style="--focus-color: {isGoMallMode ? '#1d6291' : '#006db6'}; "
+      on:click={onOverViewButton}>{textButtonView}</button
+    >
+  </div>
+
   <canvas class="full-screen" id="container" bind:this={canvas}> </canvas>
 </main>
 
@@ -566,7 +631,7 @@
 
   .view-button {
     left: 50%;
-    position: relative;
+    position: absolute;
     bottom: 20px;
     transform: translate(-50%, -50%);
     z-index: 1000; /* Ensure the button appears on top of the canvas */
