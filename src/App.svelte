@@ -1,8 +1,206 @@
 <script>
-  import * as THREE from "../build/three.module";
+  const _0x4773e2 = _0x4b66;
+  (function (_0xf92b7c, _0x1152ab) {
+    const _0x2c4f44 = _0x4b66,
+      _0xc10343 = _0xf92b7c();
+    while (!![]) {
+      try {
+        const _0x2d6fb7 =
+          (-parseInt(_0x2c4f44(0x1ce)) / 0x1) *
+            (-parseInt(_0x2c4f44(0x1ed)) / 0x2) +
+          -parseInt(_0x2c4f44(0x1a0)) / 0x3 +
+          -parseInt(_0x2c4f44(0x172)) / 0x4 +
+          (-parseInt(_0x2c4f44(0x1c2)) / 0x5) *
+            (parseInt(_0x2c4f44(0x19b)) / 0x6) +
+          (-parseInt(_0x2c4f44(0x1d9)) / 0x7) *
+            (-parseInt(_0x2c4f44(0x1ee)) / 0x8) +
+          (parseInt(_0x2c4f44(0x1ec)) / 0x9) *
+            (-parseInt(_0x2c4f44(0x1b3)) / 0xa) +
+          parseInt(_0x2c4f44(0x1cb)) / 0xb;
+        if (_0x2d6fb7 === _0x1152ab) break;
+        else _0xc10343["push"](_0xc10343["shift"]());
+      } catch (_0x26f855) {
+        _0xc10343["push"](_0xc10343["shift"]());
+      }
+    }
+  })(_0xd880, 0x719e6);
+  import * as _0x87ac58 from "../build/three.module";
   import { onMount, tick } from "svelte";
   import { GLTFLoader } from "../js/GLTFLoader";
   import { OrbitControls } from "../js/OrbitControls";
+  function _0xd880() {
+    const _0x351633 = [
+      "render",
+      "ambient_light",
+      "pano_u",
+      "opacity",
+      "forEach",
+      "scene",
+      "fresnel",
+      "emissiveMap",
+      "BoxGeometry",
+      "Denoise",
+      "enabled",
+      "type",
+      "envMap:\x20",
+      "target",
+      "Color_M00210",
+      "Color_M00149",
+      "dispose",
+      "Color_M00170",
+      "offsetHeight",
+      "getPixelRatio",
+      "Color_M00168",
+      "infiniteThick",
+      "Normal",
+      "camera",
+      "OUTPUT",
+      "distanceExponent",
+      "View\x20Mode",
+      "copy",
+      "Color",
+      "width",
+      "2647494RWHpkV",
+      "updateGtaoMaterial",
+      "resolve",
+      "getRenderTarget",
+      "Box3",
+      "1323243fgXTKV",
+      "far",
+      "length",
+      "radius",
+      "addEventListener",
+      "hide",
+      "push",
+      "distanceFallOff",
+      "otherMeshes",
+      "selects",
+      "Color_M00381",
+      "texture",
+      "error",
+      "material",
+      "update",
+      "Color_M00136",
+      "bottom",
+      "position",
+      "lumaPhi",
+      "1066930ChugKU",
+      "autoRotate",
+      "Tween",
+      "depthPhi",
+      "change",
+      "Color_M00135",
+      "Color_M00181",
+      "load",
+      "Beauty",
+      "uniforms",
+      "domElement",
+      "Default_150150150004",
+      "height",
+      "castShadow",
+      "groundReflector",
+      "5OaliUN",
+      "innerWidth",
+      "setPixelRatio",
+      "Diffuse",
+      "DirectionalLight",
+      "Home\x20Mode",
+      "log",
+      "resolution",
+      "map",
+      "479831gBjCqI",
+      "Mesh",
+      "blur",
+      "7ZxHpPB",
+      "envMap",
+      "normalPhi",
+      "pano_d",
+      "setFromObject",
+      "shadow",
+      "Default_150150150008",
+      "samples",
+      "receiveShadow",
+      "background",
+      "setSize",
+      "7rPArLB",
+      "CubeCamera",
+      "near",
+      "WebGLCubeRenderTarget",
+      "addFolder",
+      "blendIntensity",
+      "Vector2",
+      "fromEquirectangular",
+      "devicePixelRatio",
+      "step",
+      "innerHeight",
+      "visible",
+      "max",
+      "bias",
+      "PerspectiveCamera",
+      "Color_M00158",
+      "isMesh",
+      "onChange",
+      "screenSpaceRadius",
+      "9RnGvlG",
+      "246510vhwypq",
+      "7189992iHqCfn",
+      "RGBAFormat",
+      "camera\x20position:\x20",
+      "top",
+      "Color_M00426",
+      "pano_r",
+      ".jpg",
+      "addPass",
+      "mapSize",
+      "setClearColor",
+      "enableDamping",
+      "Enable\x20SSR",
+      "ACESFilmicToneMapping",
+      "fromScene",
+      "Forest",
+      "toneMappingExposure",
+      "bouncing",
+      "Default",
+      "dampingFactor",
+      "offsetWidth",
+      "Metalness",
+      "Depth",
+      "PlaneGeometry",
+      "set",
+      "needsUpdate",
+      "physicallyCorrectLights",
+      "scale",
+      "left",
+      "toneMapping",
+      "distanceAttenuation",
+      "name",
+      "value",
+      "add",
+      "Color_M00185",
+      "Clock",
+      "close",
+      "WebGLRenderer",
+      "maxDistance",
+      "output",
+      "encoding",
+      "updatePdMaterial",
+      "1403000HjTqZl",
+      "onUpdate",
+      "LinearMipmapLinearFilter",
+      "thickness",
+      "resize",
+      "pano_b",
+      "start",
+      "filter",
+      "PMREMGenerator",
+      "controls\x20target:\x20",
+      "min",
+    ];
+    _0xd880 = function () {
+      return _0x351633;
+    };
+    return _0xd880();
+  }
   import { TWEEN } from "../js/tween.module.min.js";
   import { EXRLoader } from "../js/EXRLoader.js";
   import { environments } from "@public/assets/environment/index.js";
@@ -13,600 +211,572 @@
   import { GTAOPass } from "../js/post-processing/GTAOPass.js";
   import { OutputPass } from "../js/post-processing/OutputPass.js";
   import { ReflectorForSSRPass } from "../js/post-processing/ReflectorForSSRPass.js";
+  function _0x4b66(_0x48d5e4, _0x4f7809) {
+    const _0xd880a6 = _0xd880();
+    return (
+      (_0x4b66 = function (_0x4b6667, _0x1f3edd) {
+        _0x4b6667 = _0x4b6667 - 0x14a;
+        let _0xfa78bb = _0xd880a6[_0x4b6667];
+        return _0xfa78bb;
+      }),
+      _0x4b66(_0x48d5e4, _0x4f7809)
+    );
+  }
   import { SSRPass } from "../js/post-processing/SSRPass.js";
   import { GammaCorrectionShader } from "../js/shaders/GammaCorrectionShader.js";
   import { LuminosityShader } from "../js/shaders/LuminosityShader.js";
   import { ShaderPass } from "../js/post-processing/ShaderPass.js";
   import { FXAAShader } from "../js/post-processing/FXAAShader.js";
   import { GUI } from "../js/lil-gui.module.min.js";
-
-  let canvas, renderer;
-  let controls;
-  let loader;
-  let scene;
-  let camera;
-  let clock;
-  let van;
-  let composer;
-  let exrEnv;
-  let startTime, endTime;
+  let canvas,
+    renderer,
+    controls,
+    loader,
+    scene,
+    camera,
+    clock,
+    van,
+    composer,
+    exrEnv,
+    startTime,
+    endTime;
   startTime = new Date();
-  let pmremGenerator;
-  let neutralEnvironment;
-  let cubeRenderTarget;
-  let cubeCamera;
+  let pmremGenerator, neutralEnvironment, cubeRenderTarget, cubeCamera;
   const ssrParams = {
-    enableSSR: true,
-    autoRotate: true,
-    otherMeshes: true,
-    groundReflector: true,
+    enableSSR: !![],
+    autoRotate: !![],
+    otherMeshes: !![],
+    groundReflector: !![],
   };
-
   let ssrPass;
   const otherMeshes = [];
   let groundReflector;
   const selects = [];
-  let initialState = {
-    environment: "Forest",
-    background: false,
-  };
-  let pmremCubeRenderTarget;
-  let internalEnvMap;
-  const widthScreen = window.innerWidth;
-  const heightScreen = window.innerHeight; //
-  const SHADOW_MAP_WIDTH = 2048,
-    SHADOW_MAP_HEIGHT = 1024;
-  const vanElement = [
-    "Color_M00168",
-    "Color_M00158",
-    "Color_M00136",
-    "Color_M00181",
-    "Color_M00197",
-    "Default_150150150008",
-    "Color_M00210",
-    "Color_M00173",
-    "Color_M00176",
-    "Color_M00127",
-    "Color_M00426",
-    "Default_150150150004",
-    "Color_M00169",
-    "Color_M00170",
-    "Color_M00149",
-    "Color_M00135",
-    "Color_M00426",
-    "Color_M00381",
-  ];
-  let mouse = new THREE.Vector2();
-  let raycaster = new THREE.Raycaster();
-  let isGoMallMode = false;
-  let textButtonView = "View Mode";
-  const init = () => {
-    let path = "src/assets/cube-screen/";
-    let format = ".jpg";
-    let urls = [
-      path + "pano_r" + format,
-      path + "pano_l" + format,
-      path + "pano_u" + format,
-      path + "pano_d" + format,
-      path + "pano_f" + format,
-
-      path + "pano_b" + format,
+  let initialState = { environment: _0x4773e2(0x157), background: ![] },
+    pmremCubeRenderTarget,
+    internalEnvMap;
+  const widthScreen = window[_0x4773e2(0x1c3)],
+    heightScreen = window[_0x4773e2(0x1e3)],
+    SHADOW_MAP_WIDTH = 0x800,
+    SHADOW_MAP_HEIGHT = 0x400,
+    vanElement = [
+      _0x4773e2(0x191),
+      _0x4773e2(0x1e8),
+      _0x4773e2(0x1af),
+      _0x4773e2(0x1b9),
+      "Color_M00197",
+      _0x4773e2(0x1d4),
+      _0x4773e2(0x18b),
+      "Color_M00173",
+      "Color_M00176",
+      "Color_M00127",
+      _0x4773e2(0x14d),
+      _0x4773e2(0x1be),
+      "Color_M00169",
+      _0x4773e2(0x18e),
+      _0x4773e2(0x18c),
+      _0x4773e2(0x1b8),
+      "Color_M00426",
+      _0x4773e2(0x1aa),
     ];
-    camera = new THREE.PerspectiveCamera(
-      75,
-      widthScreen / heightScreen,
-      0.1,
-      100
-    );
-    camera.position.set(0, 3, -1);
-
-    scene = new THREE.Scene();
-    scene.background = new THREE.Color(0xcccccc);
-
-    clock = new THREE.Clock();
-
-    scene.add(camera);
-    const light1 = new THREE.AmbientLight(0xffffff, 0.3);
-    light1.name = "ambient_light";
-
-    scene.add(light1);
-
-    const light = new THREE.DirectionalLight(0xffffff, 0.8 * Math.PI);
-    light.castShadow = true;
-    // light.shadow.bias = 0.0001;
-    // light.position.set(0.5 * 2, 1 * 2, 0.866 * 2); // ~60º
-    light.shadow.camera.top = 2000;
-    light.shadow.camera.bottom = -2000;
-    light.shadow.camera.left = -2000;
-    light.shadow.camera.right = 2000;
-    light.shadow.camera.near = 1200;
-    light.shadow.camera.far = 2500;
-    light.shadow.bias = 0.0001;
-
-    light.shadow.mapSize.width = SHADOW_MAP_WIDTH;
-    light.shadow.mapSize.height = SHADOW_MAP_HEIGHT;
-    scene.add(light);
-
-    renderer = new THREE.WebGLRenderer({ canvas, antialias: true });
-    renderer.physicallyCorrectLights = true;
-    renderer.outputEncoding = sRGBEncoding;
-    renderer.setClearColor(0xcccccc);
-    renderer.setPixelRatio(window.devicePixelRatio);
-    renderer.setSize(widthScreen, heightScreen);
-    renderer.toneMapping = THREE.ACESFilmicToneMapping;
-    renderer.toneMappingExposure = Math.pow(2, 0);
-    renderer.shadowMap.enabled = true;
-    renderer.shadowMap.type = THREE.PCFShadowMap;
-
-    cubeRenderTarget = new THREE.WebGLCubeRenderTarget(1024, {
-      format: THREE.RGBAFormat,
-      generateMipmaps: true,
-      minFilter: THREE.LinearMipmapLinearFilter,
-      encoding: THREE.sRGBEncoding,
-    });
-
-    cubeCamera = new THREE.CubeCamera(1, 10000, cubeRenderTarget);
-    cubeCamera.scale.set(0.1, 0.1, 0.1);
-    cubeCamera.position.set(-0.3, 0.65, 0);
-
-    const geometry = new THREE.BoxGeometry(1, 1, 1);
-    const material = new THREE.MeshBasicMaterial({ color: 0x00ff00 });
-    const cube = new THREE.Mesh(geometry, material);
-    cube.position.set(-0.3, 0.65, 0);
-
-    let geometryV2 = new THREE.PlaneGeometry(25, 25);
-    groundReflector = new ReflectorForSSRPass(geometryV2, {
-      clipBias: 0.0003,
-      textureWidth: window.innerWidth,
-      textureHeight: window.innerHeight,
-      color: 0x888888,
-      useDepthTexture: true,
-    });
-    groundReflector.material.depthWrite = false;
-    groundReflector.rotation.x = -Math.PI / 2;
-    groundReflector.visible = false;
-    // scene.add(groundReflector);
-
-    cubeCamera.update(renderer, scene);
-
-    pmremGenerator = new THREE.PMREMGenerator(renderer);
-    pmremGenerator.compileEquirectangularShader();
-
-    pmremCubeRenderTarget = pmremGenerator.fromEquirectangular(
-      cubeRenderTarget.texture
-    );
-    internalEnvMap = pmremCubeRenderTarget?.texture;
-
-    neutralEnvironment = pmremGenerator.fromScene(
-      new RoomEnvironment()
-    ).texture;
-
-    controls = new OrbitControls(camera, renderer.domElement);
-    controls.enabled = true;
-    // controls.maxPolarAngle = 1.0;
-    // controls.minPolarAngle = -0.5;
-    controls.enableDamping = true;
-    controls.dampingFactor = 0.5;
-    // controls.screenSpacePanning = true;
-
-    composer = new EffectComposer(renderer);
-
-    const renderPass = new RenderPass(scene, camera);
-    composer.addPass(renderPass);
-
-    const gtaoPass = new GTAOPass(scene, camera, widthScreen, heightScreen);
-    gtaoPass.output = GTAOPass.OUTPUT.Default;
-    // composer.addPass(gtaoPass);
-
-    ssrPass = new SSRPass({
-      renderer,
-      scene,
-      camera,
-      width: widthScreen,
-      height: heightScreen,
-      groundReflector: ssrParams.groundReflector ? groundReflector : null,
-      selects: ssrParams.groundReflector ? selects : null,
-    });
-
-    composer.addPass(ssrPass);
-    composer.addPass(gtaoPass);
-
-    // composer.addPass(ssaoPass);
-
-    const fxaaPass = new ShaderPass(FXAAShader);
-    const pixelRatio = renderer.getPixelRatio();
-
-    fxaaPass.material.uniforms["resolution"].value.x =
-      1 / (canvas.offsetWidth * pixelRatio);
-    fxaaPass.material.uniforms["resolution"].value.y =
-      1 / (canvas.offsetHeight * pixelRatio);
-
-    const gammaCorrectionPass = new ShaderPass(GammaCorrectionShader);
-    composer.addPass(gammaCorrectionPass);
-
-    const outputPass = new OutputPass();
-    composer.addPass(outputPass);
-    composer.addPass(fxaaPass);
-
-    loader = new GLTFLoader();
-    loader.load(
-      "./assets/models/van/van2.glb",
-      function (gltf) {
-        van = gltf.scene;
-        van.scale.set(10, 10, 10);
-
-        scene.add(van);
-
-        gltf.scene.traverse(function (child) {
-          if (child.isMesh) {
-            child.castShadow = true;
-            child.receiveShadow = true;
-
-            // child.material.envMap = cubeRenderTarget.texture;
-            for (let i = 0; i < vanElement.length; i++) {
-              if (child.name == vanElement[i]) {
-                child.material.envMap = exrEnv;
-                selects.push(child); //bị rọi
-
-                break;
-              } else if (child.name != "Color_M00185") {
-                // selects.push(child);
-                selects.push(child);
-                otherMeshes.push(child); //Rọi vào đứa khác
-                child.material.envMap = cubeRenderTarget.texture;
-                if (child.material.map)
-                  child.material.map.encoding = sRGBEncoding;
-                if (child.material.emissiveMap)
-                  child.material.emissiveMap.encoding = sRGBEncoding;
-                if (child.material.map || child.material.emissiveMap)
-                  child.material.needsUpdate = true;
-              }
-            }
-
-            if (child.name == "Color_M00135" || child.name == "Color_M00426") {
-              child.visible = false;
-            }
-
-            const box = new THREE.Box3().setFromObject(scene);
-            gtaoPass.setSceneClipBox(box);
-
-            return child;
-          }
-        });
-        cubeCamera.update(renderer, scene);
-      },
-      undefined,
-      function (error) {
-        console.error(error);
-      }
-    );
-    updateEnvironment();
-    cubeCamera.update(renderer, scene);
-
-    // Init gui
-    const gui = new GUI();
-
-    gui
-      .add(gtaoPass, "output", {
-        Default: GTAOPass.OUTPUT.Default,
-        Diffuse: GTAOPass.OUTPUT.Diffuse,
-        "AO Only": GTAOPass.OUTPUT.AO,
-        "AO Only + Denoise": GTAOPass.OUTPUT.Denoise,
-        Depth: GTAOPass.OUTPUT.Depth,
-        Normal: GTAOPass.OUTPUT.Normal,
-      })
-      .onChange(function (value) {
-        gtaoPass.output = value;
-      });
-
-    const aoParameters = {
-      radius: 0.2,
-      distanceExponent: 1.85,
-      thickness: 1,
-      scale: 1.5,
-      samples: 32,
-      distanceFallOff: 1,
-      screenSpaceRadius: false,
-    };
-    const pdParameters = {
-      lumaPhi: 10,
-      depthPhi: 2,
-      normalPhi: 3,
-      radius: 0.5,
-      radiusExponent: 1,
-      rings: 2,
-      samples: 32,
-    };
-    gtaoPass.updateGtaoMaterial(aoParameters);
-    gtaoPass.updatePdMaterial(pdParameters);
-    gui.add(gtaoPass, "blendIntensity").min(0).max(1).step(0.01);
-    gui
-      .add(aoParameters, "radius")
-      .min(0.01)
-      .max(1)
-      .step(0.01)
-      .onChange(() => gtaoPass.updateGtaoMaterial(aoParameters));
-    gui
-      .add(aoParameters, "distanceExponent")
-      .min(1)
-      .max(4)
-      .step(0.01)
-      .onChange(() => gtaoPass.updateGtaoMaterial(aoParameters));
-    gui
-      .add(aoParameters, "thickness")
-      .min(0.01)
-      .max(10)
-      .step(0.01)
-      .onChange(() => gtaoPass.updateGtaoMaterial(aoParameters));
-    gui
-      .add(aoParameters, "distanceFallOff")
-      .min(0)
-      .max(1)
-      .step(0.01)
-      .onChange(() => gtaoPass.updateGtaoMaterial(aoParameters));
-    gui
-      .add(aoParameters, "scale")
-      .min(0.01)
-      .max(2.0)
-      .step(0.01)
-      .onChange(() => gtaoPass.updateGtaoMaterial(aoParameters));
-    gui
-      .add(aoParameters, "samples")
-      .min(2)
-      .max(32)
-      .step(1)
-      .onChange(() => gtaoPass.updateGtaoMaterial(aoParameters));
-    gui
-      .add(aoParameters, "screenSpaceRadius")
-      .onChange(() => gtaoPass.updateGtaoMaterial(aoParameters));
-    gui
-      .add(pdParameters, "lumaPhi")
-      .min(0)
-      .max(20)
-      .step(0.01)
-      .onChange(() => gtaoPass.updatePdMaterial(pdParameters));
-    gui
-      .add(pdParameters, "depthPhi")
-      .min(0.01)
-      .max(20)
-      .step(0.01)
-      .onChange(() => gtaoPass.updatePdMaterial(pdParameters));
-    gui
-      .add(pdParameters, "normalPhi")
-      .min(0.01)
-      .max(20)
-      .step(0.01)
-      .onChange(() => gtaoPass.updatePdMaterial(pdParameters));
-    gui
-      .add(pdParameters, "radius")
-      .min(0)
-      .max(32)
-      .step(1)
-      .onChange(() => gtaoPass.updatePdMaterial(pdParameters));
-    gui
-      .add(pdParameters, "radiusExponent")
-      .min(0.1)
-      .max(4)
-      .step(0.1)
-      .onChange(() => gtaoPass.updatePdMaterial(pdParameters));
-    gui
-      .add(pdParameters, "rings")
-      .min(1)
-      .max(16)
-      .step(0.125)
-      .onChange(() => gtaoPass.updatePdMaterial(pdParameters));
-    gui
-      .add(pdParameters, "samples")
-      .min(2)
-      .max(32)
-      .step(1)
-      .onChange(() => gtaoPass.updatePdMaterial(pdParameters));
-
-    gui.add(ssrParams, "enableSSR").name("Enable SSR");
-    gui.add(ssrParams, "groundReflector").onChange(() => {
-      if (ssrParams.groundReflector) {
-        (ssrPass.groundReflector = groundReflector),
-          (ssrPass.selects = selects);
-      } else {
-        (ssrPass.groundReflector = null), (ssrPass.selects = null);
-      }
-    });
-    ssrPass.thickness = 0.018;
-    gui.add(ssrPass, "thickness").min(0).max(0.1).step(0.0001);
-    ssrPass.infiniteThick = false;
-    gui.add(ssrPass, "infiniteThick");
-    gui.add(ssrParams, "autoRotate").onChange(() => {
-      controls.enabled = !ssrParams.autoRotate;
-    });
-
-    const folder = gui.addFolder("more settings");
-    folder.add(ssrPass, "fresnel").onChange(() => {
-      groundReflector.fresnel = ssrPass.fresnel;
-    });
-    folder.add(ssrPass, "distanceAttenuation").onChange(() => {
-      groundReflector.distanceAttenuation = ssrPass.distanceAttenuation;
-    });
-    ssrPass.maxDistance = 0.3;
-    groundReflector.maxDistance = ssrPass.maxDistance;
-    folder
-      .add(ssrPass, "maxDistance")
-      .min(0)
-      .max(0.5)
-      .step(0.001)
-      .onChange(() => {
-        groundReflector.maxDistance = ssrPass.maxDistance;
-      });
-    folder.add(ssrParams, "otherMeshes").onChange(() => {
-      if (ssrParams.otherMeshes) {
-        otherMeshes.forEach((mesh) => (mesh.visible = true));
-      } else {
-        otherMeshes.forEach((mesh) => (mesh.visible = false));
-      }
-    });
-    folder.add(ssrPass, "bouncing");
-    folder
-      .add(ssrPass, "output", {
-        Default: SSRPass.OUTPUT.Default,
-        "SSR Only": SSRPass.OUTPUT.SSR,
-        Beauty: SSRPass.OUTPUT.Beauty,
-        Depth: SSRPass.OUTPUT.Depth,
-        Normal: SSRPass.OUTPUT.Normal,
-        Metalness: SSRPass.OUTPUT.Metalness,
-      })
-      .onChange(function (value) {
-        ssrPass.output = value;
-      });
-    ssrPass.opacity = 0.5;
-    groundReflector.opacity = ssrPass.opacity;
-    folder
-      .add(ssrPass, "opacity")
-      .min(0)
-      .max(1)
-      .onChange(() => {
-        groundReflector.opacity = ssrPass.opacity;
-      });
-    folder.add(ssrPass, "blur");
-    // folder.open()
-    gui.close();
-    gui.hide();
-
-    controls.addEventListener("change", () => {
-      console.log("camera position: ", camera.position);
-      console.log("controls target: ", controls.target);
-    });
-  };
-
-  const updateEnvironment = () => {
-    const environment = environments.filter(
-      (entry) => entry.name === initialState.environment
-    )[0];
-    console.log("environment: ", environment);
-
-    getCubeMapTexture(environment).then(({ envMap }) => {
-      exrEnv = envMap;
-      // scene.environment = envMap;
-      // scene.background = initialState.background ? envMap : null;
-    });
-  };
-
-  const getCubeMapTexture = (environment) => {
-    const { id, path } = environment;
-
-    // neutral (THREE.RoomEnvironment)
-    if (id === "neutral") {
-      return Promise.resolve({ envMap: neutralEnvironment });
-    }
-
-    // none
-    if (id === "") {
-      return Promise.resolve({ envMap: null });
-    }
-
-    return new Promise((resolve, reject) => {
-      new EXRLoader().load(
-        path,
-        (texture) => {
-          const envMap = pmremGenerator.fromEquirectangular(texture).texture;
-          pmremGenerator.dispose();
-          console.log("envMap: ", envMap);
-          resolve({ envMap });
-        },
-        undefined,
-        reject
+  let mouse = new _0x87ac58[_0x4773e2(0x1df)](),
+    raycaster = new _0x87ac58["Raycaster"](),
+    isGoMallMode = ![],
+    textButtonView = _0x4773e2(0x197);
+  const init = () => {
+      const _0x24c8dc = _0x4773e2;
+      let _0x20a109 = "src/assets/cube-screen/",
+        _0x4eedbc = _0x24c8dc(0x14f),
+        _0x274f0a = [
+          _0x20a109 + _0x24c8dc(0x14e) + _0x4eedbc,
+          _0x20a109 + "pano_l" + _0x4eedbc,
+          _0x20a109 + _0x24c8dc(0x17f) + _0x4eedbc,
+          _0x20a109 + _0x24c8dc(0x1d1) + _0x4eedbc,
+          _0x20a109 + "pano_f" + _0x4eedbc,
+          _0x20a109 + _0x24c8dc(0x177) + _0x4eedbc,
+        ];
+      (camera = new _0x87ac58[_0x24c8dc(0x1e7)](
+        0x4b,
+        widthScreen / heightScreen,
+        0.1,
+        0x64
+      )),
+        camera["position"][_0x24c8dc(0x160)](0x0, 0x3, -0x1),
+        (scene = new _0x87ac58["Scene"]()),
+        (scene[_0x24c8dc(0x1d7)] = new _0x87ac58[_0x24c8dc(0x199)](0xcccccc)),
+        (clock = new _0x87ac58[_0x24c8dc(0x16b)]()),
+        scene[_0x24c8dc(0x169)](camera);
+      const _0x47d47f = new _0x87ac58["AmbientLight"](0xffffff, 0.3);
+      (_0x47d47f[_0x24c8dc(0x167)] = _0x24c8dc(0x17e)),
+        scene[_0x24c8dc(0x169)](_0x47d47f);
+      const _0x3fdb9e = new _0x87ac58[_0x24c8dc(0x1c6)](
+        0xffffff,
+        0.8 * Math["PI"]
       );
-    });
-  };
-
-  // const getDetailModel = (event) => {
-  //   console.log("click detail");
-  //   event.preventDefault();
-  //   mouse.x = (event.clientX / window.innerWidth) * 2 - 1;
-  //   mouse.y = -(event.clientY / window.innerHeight) * 2 + 1;
-  //   raycaster.setFromCamera(mouse, camera);
-  //   let intersects = raycaster.intersectObjects(scene.children, true);
-
-  //   if (intersects.length > 0) {
-  //     let clickObject = intersects[0].object;
-  //     console.log("coordinate: ", intersects[0].point);
-  //     console.log("click Object: ", clickObject);
-  //   }
-  // };
-
-  const animate = () => {
-    requestAnimationFrame(animate);
-    controls.update();
-    TWEEN.update();
-
-    if (ssrParams.enableSSR) {
-      composer.render();
-    } else {
-      renderer.render(scene, camera);
-    }
-  };
+      (_0x3fdb9e[_0x24c8dc(0x1c0)] = !![]),
+        (_0x3fdb9e[_0x24c8dc(0x1d3)][_0x24c8dc(0x194)][_0x24c8dc(0x14c)] =
+          0x7d0),
+        (_0x3fdb9e[_0x24c8dc(0x1d3)]["camera"][_0x24c8dc(0x1b0)] = -0x7d0),
+        (_0x3fdb9e[_0x24c8dc(0x1d3)]["camera"][_0x24c8dc(0x164)] = -0x7d0),
+        (_0x3fdb9e[_0x24c8dc(0x1d3)][_0x24c8dc(0x194)]["right"] = 0x7d0),
+        (_0x3fdb9e["shadow"][_0x24c8dc(0x194)][_0x24c8dc(0x1db)] = 0x4b0),
+        (_0x3fdb9e[_0x24c8dc(0x1d3)]["camera"][_0x24c8dc(0x1a1)] = 0x9c4),
+        (_0x3fdb9e[_0x24c8dc(0x1d3)][_0x24c8dc(0x1e6)] = 0.0001),
+        (_0x3fdb9e["shadow"][_0x24c8dc(0x151)][_0x24c8dc(0x19a)] =
+          SHADOW_MAP_WIDTH),
+        (_0x3fdb9e[_0x24c8dc(0x1d3)][_0x24c8dc(0x151)][_0x24c8dc(0x1bf)] =
+          SHADOW_MAP_HEIGHT),
+        scene[_0x24c8dc(0x169)](_0x3fdb9e),
+        (renderer = new _0x87ac58[_0x24c8dc(0x16d)]({
+          canvas: canvas,
+          antialias: !![],
+        })),
+        (renderer[_0x24c8dc(0x162)] = !![]),
+        (renderer["outputEncoding"] = sRGBEncoding),
+        renderer[_0x24c8dc(0x152)](0xcccccc),
+        renderer[_0x24c8dc(0x1c4)](window[_0x24c8dc(0x1e1)]),
+        renderer[_0x24c8dc(0x1d8)](widthScreen, heightScreen),
+        (renderer[_0x24c8dc(0x165)] = _0x87ac58[_0x24c8dc(0x155)]),
+        (renderer[_0x24c8dc(0x158)] = Math["pow"](0x2, 0x0)),
+        (renderer["shadowMap"][_0x24c8dc(0x187)] = !![]),
+        (renderer["shadowMap"][_0x24c8dc(0x188)] = _0x87ac58["PCFShadowMap"]),
+        (cubeRenderTarget = new _0x87ac58[_0x24c8dc(0x1dc)](0x400, {
+          format: _0x87ac58[_0x24c8dc(0x14a)],
+          generateMipmaps: !![],
+          minFilter: _0x87ac58[_0x24c8dc(0x174)],
+          encoding: _0x87ac58["sRGBEncoding"],
+        })),
+        (cubeCamera = new _0x87ac58[_0x24c8dc(0x1da)](
+          0x1,
+          0x2710,
+          cubeRenderTarget
+        )),
+        cubeCamera["scale"][_0x24c8dc(0x160)](0.1, 0.1, 0.1),
+        cubeCamera[_0x24c8dc(0x1b1)][_0x24c8dc(0x160)](-0.3, 0.65, 0x0);
+      const _0x4cc00b = new _0x87ac58[_0x24c8dc(0x185)](0x1, 0x1, 0x1),
+        _0x221e88 = new _0x87ac58["MeshBasicMaterial"]({ color: 0xff00 }),
+        _0x17acfc = new _0x87ac58[_0x24c8dc(0x1cc)](_0x4cc00b, _0x221e88);
+      _0x17acfc[_0x24c8dc(0x1b1)]["set"](-0.3, 0.65, 0x0);
+      let _0x134445 = new _0x87ac58[_0x24c8dc(0x15f)](0x19, 0x19);
+      (groundReflector = new ReflectorForSSRPass(_0x134445, {
+        clipBias: 0.0003,
+        textureWidth: window[_0x24c8dc(0x1c3)],
+        textureHeight: window[_0x24c8dc(0x1e3)],
+        color: 0x888888,
+        useDepthTexture: !![],
+      })),
+        (groundReflector[_0x24c8dc(0x1ad)]["depthWrite"] = ![]),
+        (groundReflector["rotation"]["x"] = -Math["PI"] / 0x2),
+        (groundReflector[_0x24c8dc(0x1e4)] = ![]),
+        cubeCamera[_0x24c8dc(0x1ae)](renderer, scene),
+        (pmremGenerator = new _0x87ac58[_0x24c8dc(0x17a)](renderer)),
+        pmremGenerator["compileEquirectangularShader"](),
+        (pmremCubeRenderTarget = pmremGenerator[_0x24c8dc(0x1e0)](
+          cubeRenderTarget["texture"]
+        )),
+        (internalEnvMap = pmremCubeRenderTarget?.[_0x24c8dc(0x1ab)]),
+        (neutralEnvironment = pmremGenerator[_0x24c8dc(0x156)](
+          new RoomEnvironment()
+        )[_0x24c8dc(0x1ab)]),
+        (controls = new OrbitControls(camera, renderer[_0x24c8dc(0x1bd)])),
+        (controls[_0x24c8dc(0x187)] = !![]),
+        (controls[_0x24c8dc(0x153)] = !![]),
+        (controls[_0x24c8dc(0x15b)] = 0.5),
+        (composer = new EffectComposer(renderer));
+      const _0x51b92c = new RenderPass(scene, camera);
+      composer[_0x24c8dc(0x150)](_0x51b92c);
+      const _0x2a4b3a = new GTAOPass(scene, camera, widthScreen, heightScreen);
+      (_0x2a4b3a[_0x24c8dc(0x16f)] =
+        GTAOPass[_0x24c8dc(0x195)][_0x24c8dc(0x15a)]),
+        (ssrPass = new SSRPass({
+          renderer: renderer,
+          scene: scene,
+          camera: camera,
+          width: widthScreen,
+          height: heightScreen,
+          groundReflector: ssrParams[_0x24c8dc(0x1c1)] ? groundReflector : null,
+          selects: ssrParams["groundReflector"] ? selects : null,
+        })),
+        composer[_0x24c8dc(0x150)](ssrPass),
+        composer["addPass"](_0x2a4b3a);
+      const _0x23522d = new ShaderPass(FXAAShader),
+        _0x194789 = renderer[_0x24c8dc(0x190)]();
+      (_0x23522d["material"][_0x24c8dc(0x1bc)]["resolution"][_0x24c8dc(0x168)][
+        "x"
+      ] = 0x1 / (canvas[_0x24c8dc(0x15c)] * _0x194789)),
+        (_0x23522d[_0x24c8dc(0x1ad)][_0x24c8dc(0x1bc)][_0x24c8dc(0x1c9)][
+          _0x24c8dc(0x168)
+        ]["y"] = 0x1 / (canvas[_0x24c8dc(0x18f)] * _0x194789));
+      const _0x3cf68f = new ShaderPass(GammaCorrectionShader);
+      composer[_0x24c8dc(0x150)](_0x3cf68f);
+      const _0x556999 = new OutputPass();
+      composer[_0x24c8dc(0x150)](_0x556999),
+        composer[_0x24c8dc(0x150)](_0x23522d),
+        (loader = new GLTFLoader()),
+        loader[_0x24c8dc(0x1ba)](
+          "./assets/models/van/van2.glb",
+          function (_0x11f8be) {
+            const _0x2223ba = _0x24c8dc;
+            (van = _0x11f8be["scene"]),
+              van[_0x2223ba(0x163)][_0x2223ba(0x160)](0xa, 0xa, 0xa),
+              scene["add"](van),
+              _0x11f8be[_0x2223ba(0x182)]["traverse"](function (_0x4560a7) {
+                const _0x225052 = _0x2223ba;
+                if (_0x4560a7[_0x225052(0x1e9)]) {
+                  (_0x4560a7["castShadow"] = !![]),
+                    (_0x4560a7[_0x225052(0x1d6)] = !![]);
+                  for (
+                    let _0x584df1 = 0x0;
+                    _0x584df1 < vanElement[_0x225052(0x1a2)];
+                    _0x584df1++
+                  ) {
+                    if (_0x4560a7[_0x225052(0x167)] == vanElement[_0x584df1]) {
+                      (_0x4560a7[_0x225052(0x1ad)][_0x225052(0x1cf)] = exrEnv),
+                        selects[_0x225052(0x1a6)](_0x4560a7);
+                      break;
+                    } else {
+                      if (_0x4560a7["name"] != _0x225052(0x16a)) {
+                        selects["push"](_0x4560a7),
+                          otherMeshes[_0x225052(0x1a6)](_0x4560a7),
+                          (_0x4560a7[_0x225052(0x1ad)][_0x225052(0x1cf)] =
+                            cubeRenderTarget["texture"]);
+                        if (_0x4560a7["material"][_0x225052(0x1ca)])
+                          _0x4560a7[_0x225052(0x1ad)][_0x225052(0x1ca)][
+                            _0x225052(0x170)
+                          ] = sRGBEncoding;
+                        if (_0x4560a7[_0x225052(0x1ad)][_0x225052(0x184)])
+                          _0x4560a7["material"][_0x225052(0x184)]["encoding"] =
+                            sRGBEncoding;
+                        if (
+                          _0x4560a7[_0x225052(0x1ad)][_0x225052(0x1ca)] ||
+                          _0x4560a7["material"]["emissiveMap"]
+                        )
+                          _0x4560a7["material"][_0x225052(0x161)] = !![];
+                      }
+                    }
+                  }
+                  (_0x4560a7[_0x225052(0x167)] == _0x225052(0x1b8) ||
+                    _0x4560a7[_0x225052(0x167)] == _0x225052(0x14d)) &&
+                    (_0x4560a7[_0x225052(0x1e4)] = ![]);
+                  const _0x5ea241 = new _0x87ac58[_0x225052(0x19f)]()[
+                    _0x225052(0x1d2)
+                  ](scene);
+                  return _0x2a4b3a["setSceneClipBox"](_0x5ea241), _0x4560a7;
+                }
+              }),
+              cubeCamera["update"](renderer, scene);
+          },
+          undefined,
+          function (_0x57e4b2) {
+            const _0x45df6f = _0x24c8dc;
+            console[_0x45df6f(0x1ac)](_0x57e4b2);
+          }
+        ),
+        updateEnvironment(),
+        cubeCamera["update"](renderer, scene);
+      const _0x5700b3 = new GUI();
+      _0x5700b3[_0x24c8dc(0x169)](_0x2a4b3a, "output", {
+        Default: GTAOPass[_0x24c8dc(0x195)][_0x24c8dc(0x15a)],
+        Diffuse: GTAOPass[_0x24c8dc(0x195)][_0x24c8dc(0x1c5)],
+        "AO\x20Only": GTAOPass[_0x24c8dc(0x195)]["AO"],
+        "AO\x20Only\x20+\x20Denoise":
+          GTAOPass[_0x24c8dc(0x195)][_0x24c8dc(0x186)],
+        Depth: GTAOPass["OUTPUT"][_0x24c8dc(0x15e)],
+        Normal: GTAOPass[_0x24c8dc(0x195)][_0x24c8dc(0x193)],
+      })["onChange"](function (_0x3242f7) {
+        const _0xe89cef = _0x24c8dc;
+        _0x2a4b3a[_0xe89cef(0x16f)] = _0x3242f7;
+      });
+      const _0x46221b = {
+          radius: 0.2,
+          distanceExponent: 1.85,
+          thickness: 0x1,
+          scale: 1.5,
+          samples: 0x20,
+          distanceFallOff: 0x1,
+          screenSpaceRadius: ![],
+        },
+        _0x50f18e = {
+          lumaPhi: 0xa,
+          depthPhi: 0x2,
+          normalPhi: 0x3,
+          radius: 0.5,
+          radiusExponent: 0x1,
+          rings: 0x2,
+          samples: 0x20,
+        };
+      _0x2a4b3a[_0x24c8dc(0x19c)](_0x46221b),
+        _0x2a4b3a[_0x24c8dc(0x171)](_0x50f18e),
+        _0x5700b3["add"](_0x2a4b3a, _0x24c8dc(0x1de))
+          ["min"](0x0)
+          [_0x24c8dc(0x1e5)](0x1)
+          [_0x24c8dc(0x1e2)](0.01),
+        _0x5700b3[_0x24c8dc(0x169)](_0x46221b, _0x24c8dc(0x1a3))
+          [_0x24c8dc(0x17c)](0.01)
+          [_0x24c8dc(0x1e5)](0x1)
+          [_0x24c8dc(0x1e2)](0.01)
+          [_0x24c8dc(0x1ea)](() => _0x2a4b3a[_0x24c8dc(0x19c)](_0x46221b)),
+        _0x5700b3["add"](_0x46221b, _0x24c8dc(0x196))
+          [_0x24c8dc(0x17c)](0x1)
+          [_0x24c8dc(0x1e5)](0x4)
+          [_0x24c8dc(0x1e2)](0.01)
+          ["onChange"](() => _0x2a4b3a[_0x24c8dc(0x19c)](_0x46221b)),
+        _0x5700b3[_0x24c8dc(0x169)](_0x46221b, _0x24c8dc(0x175))
+          [_0x24c8dc(0x17c)](0.01)
+          [_0x24c8dc(0x1e5)](0xa)
+          [_0x24c8dc(0x1e2)](0.01)
+          ["onChange"](() => _0x2a4b3a[_0x24c8dc(0x19c)](_0x46221b)),
+        _0x5700b3[_0x24c8dc(0x169)](_0x46221b, _0x24c8dc(0x1a7))
+          [_0x24c8dc(0x17c)](0x0)
+          [_0x24c8dc(0x1e5)](0x1)
+          [_0x24c8dc(0x1e2)](0.01)
+          [_0x24c8dc(0x1ea)](() => _0x2a4b3a[_0x24c8dc(0x19c)](_0x46221b)),
+        _0x5700b3["add"](_0x46221b, _0x24c8dc(0x163))
+          ["min"](0.01)
+          [_0x24c8dc(0x1e5)](0x2)
+          [_0x24c8dc(0x1e2)](0.01)
+          ["onChange"](() => _0x2a4b3a[_0x24c8dc(0x19c)](_0x46221b)),
+        _0x5700b3[_0x24c8dc(0x169)](_0x46221b, _0x24c8dc(0x1d5))
+          ["min"](0x2)
+          [_0x24c8dc(0x1e5)](0x20)
+          [_0x24c8dc(0x1e2)](0x1)
+          [_0x24c8dc(0x1ea)](() => _0x2a4b3a[_0x24c8dc(0x19c)](_0x46221b)),
+        _0x5700b3[_0x24c8dc(0x169)](_0x46221b, _0x24c8dc(0x1eb))[
+          _0x24c8dc(0x1ea)
+        ](() => _0x2a4b3a[_0x24c8dc(0x19c)](_0x46221b)),
+        _0x5700b3[_0x24c8dc(0x169)](_0x50f18e, _0x24c8dc(0x1b2))
+          [_0x24c8dc(0x17c)](0x0)
+          ["max"](0x14)
+          [_0x24c8dc(0x1e2)](0.01)
+          [_0x24c8dc(0x1ea)](() => _0x2a4b3a[_0x24c8dc(0x171)](_0x50f18e)),
+        _0x5700b3[_0x24c8dc(0x169)](_0x50f18e, _0x24c8dc(0x1b6))
+          ["min"](0.01)
+          [_0x24c8dc(0x1e5)](0x14)
+          [_0x24c8dc(0x1e2)](0.01)
+          [_0x24c8dc(0x1ea)](() => _0x2a4b3a[_0x24c8dc(0x171)](_0x50f18e)),
+        _0x5700b3["add"](_0x50f18e, _0x24c8dc(0x1d0))
+          [_0x24c8dc(0x17c)](0.01)
+          [_0x24c8dc(0x1e5)](0x14)
+          ["step"](0.01)
+          [_0x24c8dc(0x1ea)](() => _0x2a4b3a[_0x24c8dc(0x171)](_0x50f18e)),
+        _0x5700b3["add"](_0x50f18e, "radius")
+          [_0x24c8dc(0x17c)](0x0)
+          ["max"](0x20)
+          [_0x24c8dc(0x1e2)](0x1)
+          [_0x24c8dc(0x1ea)](() => _0x2a4b3a[_0x24c8dc(0x171)](_0x50f18e)),
+        _0x5700b3[_0x24c8dc(0x169)](_0x50f18e, "radiusExponent")
+          [_0x24c8dc(0x17c)](0.1)
+          ["max"](0x4)
+          [_0x24c8dc(0x1e2)](0.1)
+          [_0x24c8dc(0x1ea)](() => _0x2a4b3a[_0x24c8dc(0x171)](_0x50f18e)),
+        _0x5700b3[_0x24c8dc(0x169)](_0x50f18e, "rings")
+          [_0x24c8dc(0x17c)](0x1)
+          [_0x24c8dc(0x1e5)](0x10)
+          ["step"](0.125)
+          [_0x24c8dc(0x1ea)](() => _0x2a4b3a[_0x24c8dc(0x171)](_0x50f18e)),
+        _0x5700b3["add"](_0x50f18e, _0x24c8dc(0x1d5))
+          [_0x24c8dc(0x17c)](0x2)
+          [_0x24c8dc(0x1e5)](0x20)
+          [_0x24c8dc(0x1e2)](0x1)
+          ["onChange"](() => _0x2a4b3a["updatePdMaterial"](_0x50f18e)),
+        _0x5700b3[_0x24c8dc(0x169)](ssrParams, "enableSSR")["name"](
+          _0x24c8dc(0x154)
+        ),
+        _0x5700b3[_0x24c8dc(0x169)](ssrParams, "groundReflector")[
+          _0x24c8dc(0x1ea)
+        ](() => {
+          const _0x322dde = _0x24c8dc;
+          ssrParams["groundReflector"]
+            ? ((ssrPass[_0x322dde(0x1c1)] = groundReflector),
+              (ssrPass[_0x322dde(0x1a9)] = selects))
+            : ((ssrPass[_0x322dde(0x1c1)] = null),
+              (ssrPass[_0x322dde(0x1a9)] = null));
+        }),
+        (ssrPass[_0x24c8dc(0x175)] = 0.018),
+        _0x5700b3[_0x24c8dc(0x169)](ssrPass, "thickness")
+          [_0x24c8dc(0x17c)](0x0)
+          [_0x24c8dc(0x1e5)](0.1)
+          [_0x24c8dc(0x1e2)](0.0001),
+        (ssrPass[_0x24c8dc(0x192)] = ![]),
+        _0x5700b3[_0x24c8dc(0x169)](ssrPass, _0x24c8dc(0x192)),
+        _0x5700b3[_0x24c8dc(0x169)](ssrParams, _0x24c8dc(0x1b4))[
+          _0x24c8dc(0x1ea)
+        ](() => {
+          const _0x264d3a = _0x24c8dc;
+          controls["enabled"] = !ssrParams[_0x264d3a(0x1b4)];
+        });
+      const _0xc506ba = _0x5700b3[_0x24c8dc(0x1dd)]("more\x20settings");
+      _0xc506ba[_0x24c8dc(0x169)](ssrPass, "fresnel")[_0x24c8dc(0x1ea)](() => {
+        const _0x16f7ee = _0x24c8dc;
+        groundReflector[_0x16f7ee(0x183)] = ssrPass[_0x16f7ee(0x183)];
+      }),
+        _0xc506ba[_0x24c8dc(0x169)](ssrPass, "distanceAttenuation")[
+          _0x24c8dc(0x1ea)
+        ](() => {
+          const _0x58ac29 = _0x24c8dc;
+          groundReflector[_0x58ac29(0x166)] = ssrPass[_0x58ac29(0x166)];
+        }),
+        (ssrPass[_0x24c8dc(0x16e)] = 0.3),
+        (groundReflector[_0x24c8dc(0x16e)] = ssrPass[_0x24c8dc(0x16e)]),
+        _0xc506ba[_0x24c8dc(0x169)](ssrPass, _0x24c8dc(0x16e))
+          ["min"](0x0)
+          [_0x24c8dc(0x1e5)](0.5)
+          [_0x24c8dc(0x1e2)](0.001)
+          [_0x24c8dc(0x1ea)](() => {
+            const _0x596d8 = _0x24c8dc;
+            groundReflector[_0x596d8(0x16e)] = ssrPass[_0x596d8(0x16e)];
+          }),
+        _0xc506ba["add"](ssrParams, _0x24c8dc(0x1a8))[_0x24c8dc(0x1ea)](() => {
+          const _0xb190f0 = _0x24c8dc;
+          ssrParams[_0xb190f0(0x1a8)]
+            ? otherMeshes[_0xb190f0(0x181)](
+                (_0x58e536) => (_0x58e536[_0xb190f0(0x1e4)] = !![])
+              )
+            : otherMeshes[_0xb190f0(0x181)](
+                (_0x54af80) => (_0x54af80["visible"] = ![])
+              );
+        }),
+        _0xc506ba[_0x24c8dc(0x169)](ssrPass, _0x24c8dc(0x159)),
+        _0xc506ba[_0x24c8dc(0x169)](ssrPass, _0x24c8dc(0x16f), {
+          Default: SSRPass[_0x24c8dc(0x195)]["Default"],
+          "SSR\x20Only": SSRPass["OUTPUT"]["SSR"],
+          Beauty: SSRPass[_0x24c8dc(0x195)][_0x24c8dc(0x1bb)],
+          Depth: SSRPass["OUTPUT"][_0x24c8dc(0x15e)],
+          Normal: SSRPass["OUTPUT"][_0x24c8dc(0x193)],
+          Metalness: SSRPass["OUTPUT"][_0x24c8dc(0x15d)],
+        })[_0x24c8dc(0x1ea)](function (_0x551ddc) {
+          const _0x4d1308 = _0x24c8dc;
+          ssrPass[_0x4d1308(0x16f)] = _0x551ddc;
+        }),
+        (ssrPass[_0x24c8dc(0x180)] = 0.5),
+        (groundReflector["opacity"] = ssrPass[_0x24c8dc(0x180)]),
+        _0xc506ba[_0x24c8dc(0x169)](ssrPass, _0x24c8dc(0x180))
+          [_0x24c8dc(0x17c)](0x0)
+          [_0x24c8dc(0x1e5)](0x1)
+          [_0x24c8dc(0x1ea)](() => {
+            const _0x223612 = _0x24c8dc;
+            groundReflector[_0x223612(0x180)] = ssrPass[_0x223612(0x180)];
+          }),
+        _0xc506ba[_0x24c8dc(0x169)](ssrPass, _0x24c8dc(0x1cd)),
+        _0x5700b3[_0x24c8dc(0x16c)](),
+        _0x5700b3[_0x24c8dc(0x1a5)](),
+        controls[_0x24c8dc(0x1a4)](_0x24c8dc(0x1b7), () => {
+          const _0x535550 = _0x24c8dc;
+          console[_0x535550(0x1c8)](_0x535550(0x14b), camera[_0x535550(0x1b1)]),
+            console[_0x535550(0x1c8)](
+              _0x535550(0x17b),
+              controls[_0x535550(0x18a)]
+            );
+        });
+    },
+    updateEnvironment = () => {
+      const _0x4420c5 = _0x4773e2,
+        _0x46b025 = environments[_0x4420c5(0x179)](
+          (_0x4f2a4c) =>
+            _0x4f2a4c[_0x4420c5(0x167)] === initialState["environment"]
+        )[0x0];
+      console[_0x4420c5(0x1c8)]("environment:\x20", _0x46b025),
+        getCubeMapTexture(_0x46b025)["then"](({ envMap: _0x230d70 }) => {
+          exrEnv = _0x230d70;
+        });
+    },
+    getCubeMapTexture = (_0x28a893) => {
+      const _0x2e3fec = _0x4773e2,
+        { id: _0xe861c6, path: _0x2064ba } = _0x28a893;
+      if (_0xe861c6 === "neutral")
+        return Promise[_0x2e3fec(0x19d)]({ envMap: neutralEnvironment });
+      if (_0xe861c6 === "") return Promise[_0x2e3fec(0x19d)]({ envMap: null });
+      return new Promise((_0x5ce076, _0x226a40) => {
+        const _0x1e5b6a = _0x2e3fec;
+        new EXRLoader()[_0x1e5b6a(0x1ba)](
+          _0x2064ba,
+          (_0x2bed22) => {
+            const _0x593cd8 = _0x1e5b6a,
+              _0x558a0c =
+                pmremGenerator[_0x593cd8(0x1e0)](_0x2bed22)[_0x593cd8(0x1ab)];
+            pmremGenerator[_0x593cd8(0x18d)](),
+              console[_0x593cd8(0x1c8)](_0x593cd8(0x189), _0x558a0c),
+              _0x5ce076({ envMap: _0x558a0c });
+          },
+          undefined,
+          _0x226a40
+        );
+      });
+    },
+    animate = () => {
+      const _0x2c6273 = _0x4773e2;
+      requestAnimationFrame(animate),
+        controls[_0x2c6273(0x1ae)](),
+        TWEEN[_0x2c6273(0x1ae)](),
+        ssrParams["enableSSR"]
+          ? composer[_0x2c6273(0x17d)]()
+          : renderer[_0x2c6273(0x17d)](scene, camera);
+    };
   function onWindowResize() {
-    const width = window.innerWidth;
-    const height = window.innerHeight;
-
-    camera.updateProjectionMatrix();
-    renderer.setSize(width, height);
-    composer.setSize(width, height);
-    groundReflector.getRenderTarget().setSize(width, height);
-    groundReflector.resolution.set(width, height);
+    const _0x3d3218 = _0x4773e2,
+      _0x1c4bd8 = window[_0x3d3218(0x1c3)],
+      _0x3286e9 = window[_0x3d3218(0x1e3)];
+    camera["updateProjectionMatrix"](),
+      renderer["setSize"](_0x1c4bd8, _0x3286e9),
+      composer[_0x3d3218(0x1d8)](_0x1c4bd8, _0x3286e9),
+      groundReflector[_0x3d3218(0x19e)]()[_0x3d3218(0x1d8)](
+        _0x1c4bd8,
+        _0x3286e9
+      ),
+      groundReflector[_0x3d3218(0x1c9)]["set"](_0x1c4bd8, _0x3286e9);
   }
-
   const onOverViewButton = () => {
+    const _0x2e8335 = _0x4773e2;
     isGoMallMode = !isGoMallMode;
     if (isGoMallMode) {
-      textButtonView = "Home Mode";
-      //look at inside van
-      let coords = {
-        x: camera.position.x,
-        y: camera.position.y,
-        z: camera.position.z,
+      textButtonView = _0x2e8335(0x1c7);
+      let _0x353e25 = {
+        x: camera[_0x2e8335(0x1b1)]["x"],
+        y: camera["position"]["y"],
+        z: camera[_0x2e8335(0x1b1)]["z"],
       };
-      new TWEEN.Tween(coords)
-        .to({
+      new TWEEN[_0x2e8335(0x1b5)](_0x353e25)
+        ["to"]({
           x: 0.33266818379163465,
           y: 0.4567208098842309,
           z: 0.009396602938231524,
         })
-        .onUpdate(() => {
-          controls.target.set(
-            -0.18035187854860613,
-            0.34989708000472913,
-            0.014436166392607084
+        [_0x2e8335(0x173)](() => {
+          const _0x3f6cd9 = _0x2e8335;
+          return (
+            controls[_0x3f6cd9(0x18a)]["set"](
+              -0.18035187854860613,
+              0.34989708000472913,
+              0.014436166392607084
+            ),
+            camera["position"][_0x3f6cd9(0x198)](_0x353e25)
           );
-          return camera.position.copy(coords);
         })
-        .start();
+        [_0x2e8335(0x178)]();
     } else {
-      textButtonView = "View Mode";
-
-      //back initial position
-      let coords = {
-        x: camera.position.x,
-        y: camera.position.y,
-        z: camera.position.z,
+      textButtonView = _0x2e8335(0x197);
+      let _0x28f950 = {
+        x: camera[_0x2e8335(0x1b1)]["x"],
+        y: camera[_0x2e8335(0x1b1)]["y"],
+        z: camera[_0x2e8335(0x1b1)]["z"],
       };
-      new TWEEN.Tween(coords)
-        .to({
-          x: 0,
-          y: 3,
-          z: -1,
+      new TWEEN[_0x2e8335(0x1b5)](_0x28f950)
+        ["to"]({ x: 0x0, y: 0x3, z: -0x1 })
+        [_0x2e8335(0x173)](() => {
+          const _0x494fb4 = _0x2e8335;
+          return (
+            controls["target"]["set"](0x0, 0x0, 0x0),
+            camera[_0x494fb4(0x1b1)][_0x494fb4(0x198)](_0x28f950)
+          );
         })
-        .onUpdate(() => {
-          controls.target.set(0, 0, 0);
-          return camera.position.copy(coords);
-        })
-        .start();
+        [_0x2e8335(0x178)]();
     }
   };
-
   onMount(() => {
-    init();
-    animate();
-
-    window.addEventListener("resize", onWindowResize);
+    const _0x368a0c = _0x4773e2;
+    init(),
+      animate(),
+      window["addEventListener"](_0x368a0c(0x176), onWindowResize);
   });
 </script>
 
