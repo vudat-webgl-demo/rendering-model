@@ -1,226 +1,50 @@
 <script>
-  const _0x2a118b = _0x45d1;
-  (function (_0x47ee0a, _0xeefa16) {
-    const _0x383719 = _0x45d1,
-      _0x512199 = _0x47ee0a();
+  const _0x17dd9c = _0x165e;
+  (function (_0x28e0e6, _0x5f461b) {
+    const _0x212284 = _0x165e,
+      _0x190a46 = _0x28e0e6();
     while (!![]) {
       try {
-        const _0x3e8842 =
-          parseInt(_0x383719(0xae)) / 0x1 +
-          (parseInt(_0x383719(0xda)) / 0x2) *
-            (-parseInt(_0x383719(0x104)) / 0x3) +
-          (parseInt(_0x383719(0xe5)) / 0x4) *
-            (parseInt(_0x383719(0x9d)) / 0x5) +
-          (-parseInt(_0x383719(0xd9)) / 0x6) *
-            (parseInt(_0x383719(0xb5)) / 0x7) +
-          (parseInt(_0x383719(0xee)) / 0x8) *
-            (parseInt(_0x383719(0xa4)) / 0x9) +
-          -parseInt(_0x383719(0xff)) / 0xa +
-          (-parseInt(_0x383719(0x98)) / 0xb) *
-            (parseInt(_0x383719(0xa6)) / 0xc);
-        if (_0x3e8842 === _0xeefa16) break;
-        else _0x512199["push"](_0x512199["shift"]());
-      } catch (_0x32b7fe) {
-        _0x512199["push"](_0x512199["shift"]());
+        const _0x5c8fa1 =
+          (-parseInt(_0x212284(0xb5)) / 0x1) *
+            (-parseInt(_0x212284(0x98)) / 0x2) +
+          -parseInt(_0x212284(0x8c)) / 0x3 +
+          (-parseInt(_0x212284(0x8d)) / 0x4) *
+            (-parseInt(_0x212284(0xa0)) / 0x5) +
+          parseInt(_0x212284(0x9e)) / 0x6 +
+          -parseInt(_0x212284(0x123)) / 0x7 +
+          (-parseInt(_0x212284(0xb2)) / 0x8) *
+            (-parseInt(_0x212284(0x128)) / 0x9) +
+          (parseInt(_0x212284(0x131)) / 0xa) *
+            (parseInt(_0x212284(0x12b)) / 0xb);
+        if (_0x5c8fa1 === _0x5f461b) break;
+        else _0x190a46["push"](_0x190a46["shift"]());
+      } catch (_0x290502) {
+        _0x190a46["push"](_0x190a46["shift"]());
       }
     }
-  })(_0x1e9e, 0xb1e54);
-  import * as _0x4c04ec from "../build/three.module";
+  })(_0x4d0e, 0xda82a);
+  function _0x165e(_0x226909, _0x480118) {
+    const _0x4d0e2e = _0x4d0e();
+    return (
+      (_0x165e = function (_0x165e64, _0x47f840) {
+        _0x165e64 = _0x165e64 - 0x84;
+        let _0x4a69a8 = _0x4d0e2e[_0x165e64];
+        return _0x4a69a8;
+      }),
+      _0x165e(_0x226909, _0x480118)
+    );
+  }
+  import * as _0x1fb42a from "../build/three.module";
   import { onMount, tick } from "svelte";
   import { GLTFLoader } from "../js/GLTFLoader";
   import { OrbitControls } from "../js/OrbitControls";
   import { TWEEN } from "../js/tween.module.min.js";
   import { EXRLoader } from "../js/EXRLoader.js";
-  function _0x1e9e() {
-    const _0x4fd420 = [
-      "toneMapping",
-      "Normal",
-      "near",
-      "type",
-      "MeshBasicMaterial",
-      "envMap",
-      "8pIqbsS",
-      "Color_M00158",
-      "value",
-      "push",
-      "PerspectiveCamera",
-      "Color_M00169",
-      "Color_M00381",
-      "getRenderTarget",
-      "WebGLRenderer",
-      "neutral",
-      "Color_M00135",
-      "name",
-      "physicallyCorrectLights",
-      "bouncing",
-      "OUTPUT",
-      "environment",
-      "map",
-      "5599930GxCDEZ",
-      "offsetHeight",
-      "screenSpaceRadius",
-      "radiusExponent",
-      "top",
-      "15NxvgVe",
-      "LinearMipmapLinearFilter",
-      "material",
-      "Color_M00127",
-      "Color_M00426",
-      "camera\x20position:\x20",
-      "updatePdMaterial",
-      "length",
-      "Depth",
-      "getPixelRatio",
-      "innerWidth",
-      "depthPhi",
-      "otherMeshes",
-      "resolution",
-      "Color_M00197",
-      "camera",
-      "resolve",
-      "ACESFilmicToneMapping",
-      "Beauty",
-      "resize",
-      "pano_u",
-      "error",
-      "Home\x20Mode",
-      "normalPhi",
-      "render",
-      "CubeCamera",
-      "opacity",
-      "background",
-      "step",
-      "output",
-      "dampingFactor",
-      "texture",
-      "width",
-      "PCFShadowMap",
-      "log",
-      "./assets/models/van/van2.glb",
-      "infiniteThick",
-      "castShadow",
-      "Color_M00176",
-      "close",
-      "hide",
-      "pano_r",
-      "Tween",
-      "mapSize",
-      "compileEquirectangularShader",
-      "Color_M00210",
-      "Color_M00185",
-      "rings",
-      "outputEncoding",
-      "selects",
-      "min",
-      "AmbientLight",
-      "domElement",
-      "PMREMGenerator",
-      "add",
-      "fresnel",
-      "scale",
-      "setPixelRatio",
-      "uniforms",
-      "70026druixp",
-      "innerHeight",
-      "addEventListener",
-      "bias",
-      "thickness",
-      "7188605AQFdqg",
-      "onUpdate",
-      "Color",
-      "Color_M00136",
-      "addPass",
-      "pano_b",
-      "set",
-      "1833525fYMcOV",
-      "Enable\x20SSR",
-      "1092psbNlk",
-      "BoxGeometry",
-      "forEach",
-      "target",
-      "copy",
-      "DirectionalLight",
-      "toneMappingExposure",
-      "controls\x20target:\x20",
-      "1160661JjNErg",
-      ".jpg",
-      "change",
-      "sRGBEncoding",
-      "Color_M00149",
-      "shadow",
-      "filter",
-      "7KsBDtC",
-      "position",
-      "Raycaster",
-      "visible",
-      "distanceExponent",
-      "scene",
-      "groundReflector",
-      "Default_150150150004",
-      "max",
-      "addFolder",
-      "Box3",
-      "pano_f",
-      "setClearColor",
-      "environment:\x20",
-      "autoRotate",
-      "rotation",
-      "Color_M00173",
-      "shadowMap",
-      "encoding",
-      "RGBAFormat",
-      "enableSSR",
-      "updateGtaoMaterial",
-      "envMap:\x20",
-      "pano_l",
-      "onChange",
-      "Default",
-      "enabled",
-      "fromScene",
-      "pano_d",
-      "left",
-      "samples",
-      "Scene",
-      "Forest",
-      "then",
-      "radius",
-      "updateProjectionMatrix",
-      "4344498xdqhaJ",
-      "84026LoAFKq",
-      "distanceAttenuation",
-      "load",
-      "fromEquirectangular",
-      "height",
-      "update",
-      "Color_M00181",
-      "maxDistance",
-      "isMesh",
-      "distanceFallOff",
-      "receiveShadow",
-      "4QKiRwV",
-      "depthWrite",
-      "setSize",
-    ];
-    _0x1e9e = function () {
-      return _0x4fd420;
-    };
-    return _0x1e9e();
-  }
-  import { environments } from "@public/assets/environment/index.js";
+  import { environments } from "../public/assets/environment/index.js";
   import { RoomEnvironment } from "../js/RoomEnvironment.js";
   import { sRGBEncoding } from "../build/three.module";
   import { EffectComposer } from "../js/post-processing/EffectComposer.js";
-  function _0x45d1(_0x42068f, _0x1fdf38) {
-    const _0x1e9e18 = _0x1e9e();
-    return (
-      (_0x45d1 = function (_0x45d172, _0x143339) {
-        _0x45d172 = _0x45d172 - 0x92;
-        let _0x48f81d = _0x1e9e18[_0x45d172];
-        return _0x48f81d;
-      }),
-      _0x45d1(_0x42068f, _0x1fdf38)
-    );
-  }
   import { RenderPass } from "../js/RenderPass.js";
   import { GTAOPass } from "../js/post-processing/GTAOPass.js";
   import { OutputPass } from "../js/post-processing/OutputPass.js";
@@ -254,254 +78,433 @@
   let ssrPass;
   const otherMeshes = [];
   let groundReflector;
+  function _0x4d0e() {
+    const _0x2527a8 = [
+      "WebGLCubeRenderTarget",
+      "RGBAFormat",
+      "resolve",
+      "Denoise",
+      "MeshBasicMaterial",
+      "click\x20detail",
+      "enableSSR",
+      "Color_M00185",
+      "./assets/models/van/van2.glb",
+      "resolution",
+      "then",
+      "Color_M00136",
+      "radiusExponent",
+      "Default_150150150008",
+      "Color_M00158",
+      "updateProjectionMatrix",
+      "addFolder",
+      "forEach",
+      "castShadow",
+      "getRenderTarget",
+      "includes",
+      "PerspectiveCamera",
+      "scale",
+      "dispose",
+      "blendIntensity",
+      "step",
+      "depthPhi",
+      "pano_d",
+      "View\x20Mode",
+      "envMap:\x20",
+      "log",
+      "Default_150150150004",
+      "cos",
+      "uniforms",
+      "Raycaster",
+      "Color_M00181",
+      "lumaPhi",
+      "Beauty",
+      "Home\x20Mode",
+      "click\x20Object:\x20",
+      "Default",
+      "thickness",
+      "PointLight",
+      "near",
+      "environ:\x20",
+      "Color_M00426",
+      "traverse",
+      "physicallyCorrectLights",
+      "copy",
+      "SSR",
+      "OUTPUT",
+      "bias",
+      "Scene",
+      "receiveShadow",
+      "resize",
+      "Color_M00169",
+      "Color",
+      "distanceAttenuation",
+      "set",
+      "opacity",
+      "pano_l",
+      "clientX",
+      "setFromObject",
+      "setClearColor",
+      "maxDistance",
+      "ambient_light",
+      "fromScene",
+      "push",
+      "offsetWidth",
+      "innerWidth",
+      "PlaneGeometry",
+      "compileEquirectangularShader",
+      "Metalness",
+      "right",
+      "shadowMap",
+      "envMap",
+      "sin",
+      "Enable\x20SSR",
+      "name",
+      "setSize",
+      "update",
+      "onUpdate",
+      "Color_M00176",
+      "error",
+      "start",
+      "texture",
+      "add",
+      "LinearMipmapLinearFilter",
+      "intersectObjects",
+      "Color_M00170",
+      "shadow",
+      "max",
+      "selects",
+      "camera",
+      "DirectionalLight",
+      "390187rhnMJj",
+      "addPass",
+      "otherMeshes",
+      "infiniteThick",
+      "enabled",
+      "88848OtthHv",
+      "change",
+      "Forest",
+      "11iUWumj",
+      "onChange",
+      "pano_f",
+      "more\x20settings",
+      "depthWrite",
+      "filter",
+      "1077170ubBoIo",
+      "updatePdMaterial",
+      "position",
+      "ACESFilmicToneMapping",
+      "output",
+      "rotation",
+      "rings",
+      "BoxGeometry",
+      "close",
+      "innerHeight",
+      "width",
+      "fromEquirectangular",
+      "updateGtaoMaterial",
+      "samples",
+      "top",
+      "mapSize",
+      "neutral",
+      "5225280NndPVo",
+      "2868hTIMOu",
+      "Color_M00127",
+      "Color_M00173",
+      "setFromCamera",
+      "addEventListener",
+      "distanceExponent",
+      "offsetHeight",
+      "groundReflector",
+      "Color_M00381",
+      "Vector2",
+      "Depth",
+      "62CNAntm",
+      "type",
+      "Color_M00210",
+      "clientY",
+      "AmbientLight",
+      "min",
+      "8999208ByGVjH",
+      "toneMapping",
+      "2605xGjonR",
+      ".jpg",
+      "enableDamping",
+      "point",
+      "PCFShadowMap",
+      "visible",
+      "fresnel",
+      "material",
+      "Color_M00149",
+      "screenSpaceRadius",
+      "Normal",
+      "WebGLRenderer",
+      "normalPhi",
+      "target",
+      "autoRotate",
+      "Mesh",
+      "domElement",
+      "render",
+      "472gSksQH",
+      "bouncing",
+      "Color_M00135",
+      "4159RuSRTw",
+      "value",
+      "Tween",
+      "pano_r",
+      "coordinate:\x20",
+      "CubeCamera",
+      "radius",
+      "object",
+      "Color_M00269",
+      "children",
+      "envMapIntensity",
+      "setPixelRatio",
+      "isMesh",
+      "pano_b",
+      "length",
+    ];
+    _0x4d0e = function () {
+      return _0x2527a8;
+    };
+    return _0x4d0e();
+  }
   const selects = [];
-  let initialState = { environment: _0x2a118b(0xd5), background: ![] },
+  let initialState = { environment: _0x17dd9c(0x12a), background: ![] },
     pmremCubeRenderTarget,
     internalEnvMap;
-  const widthScreen = window[_0x2a118b(0x10e)],
-    heightScreen = window["innerHeight"],
+  const widthScreen = window["innerWidth"],
+    heightScreen = window[_0x17dd9c(0x84)],
     SHADOW_MAP_WIDTH = 0x800,
     SHADOW_MAP_HEIGHT = 0x400,
-    vanElement = [
+    outSideVanElement = [
       "Color_M00168",
-      _0x2a118b(0xef),
-      _0x2a118b(0xa0),
-      _0x2a118b(0xe0),
-      _0x2a118b(0x112),
-      "Default_150150150008",
-      _0x2a118b(0x131),
-      _0x2a118b(0xc5),
-      _0x2a118b(0x12a),
-      _0x2a118b(0x107),
-      _0x2a118b(0x108),
-      _0x2a118b(0xbc),
-      _0x2a118b(0xf3),
-      "Color_M00170",
-      _0x2a118b(0xb2),
-      _0x2a118b(0xf8),
+      _0x17dd9c(0xd2),
+      _0x17dd9c(0xcf),
+      _0x17dd9c(0xe7),
+      "Color_M00197",
+      _0x17dd9c(0xd1),
+      _0x17dd9c(0x9a),
+      _0x17dd9c(0x8f),
+      _0x17dd9c(0x116),
+      _0x17dd9c(0x8e),
+      _0x17dd9c(0xf1),
+      _0x17dd9c(0xe3),
+      _0x17dd9c(0xfb),
+      _0x17dd9c(0x11d),
+      _0x17dd9c(0xa8),
+      "Color_M00135",
       "Color_M00426",
-      _0x2a118b(0xf4),
+      _0x17dd9c(0x95),
+    ],
+    noSelectSSR = [
+      _0x17dd9c(0xcb),
+      "Color_M00264",
+      "Color_M00066",
+      _0x17dd9c(0xbd),
+      "Color_M00265",
     ];
-  let mouse = new _0x4c04ec["Vector2"](),
-    raycaster = new _0x4c04ec[_0x2a118b(0xb7)](),
+  let mouse = new _0x1fb42a[_0x17dd9c(0x96)](),
+    raycaster = new _0x1fb42a[_0x17dd9c(0xe6)](),
     isGoMallMode = ![],
-    textButtonView = "View\x20Mode";
+    textButtonView = _0x17dd9c(0xe0);
   const init = () => {
-      const _0x21c06c = _0x2a118b;
-      let _0x2931ed = "src/assets/cube-screen/",
-        _0x56fcb0 = _0x21c06c(0xaf),
-        _0x2785f1 = [
-          _0x2931ed + _0x21c06c(0x12d) + _0x56fcb0,
-          _0x2931ed + _0x21c06c(0xcc) + _0x56fcb0,
-          _0x2931ed + _0x21c06c(0x118) + _0x56fcb0,
-          _0x2931ed + _0x21c06c(0xd1) + _0x56fcb0,
-          _0x2931ed + _0x21c06c(0xc0) + _0x56fcb0,
-          _0x2931ed + _0x21c06c(0xa2) + _0x56fcb0,
+      const _0x430ce4 = _0x17dd9c;
+      let _0x2243fc = "src/assets/cube-screen/",
+        _0x18fa67 = _0x430ce4(0xa1),
+        _0x537ceb = [
+          _0x2243fc + _0x430ce4(0xb8) + _0x18fa67,
+          _0x2243fc + _0x430ce4(0x100) + _0x18fa67,
+          _0x2243fc + "pano_u" + _0x18fa67,
+          _0x2243fc + _0x430ce4(0xdf) + _0x18fa67,
+          _0x2243fc + _0x430ce4(0x12d) + _0x18fa67,
+          _0x2243fc + _0x430ce4(0xc2) + _0x18fa67,
         ];
-      (camera = new _0x4c04ec[_0x21c06c(0xf2)](
+      (camera = new _0x1fb42a[_0x430ce4(0xd9)](
         0x4b,
         widthScreen / heightScreen,
         0.1,
         0x64
       )),
-        camera["position"][_0x21c06c(0xa3)](0x0, 0x3, -0x1),
-        (scene = new _0x4c04ec[_0x21c06c(0xd4)]()),
-        (scene[_0x21c06c(0x11f)] = new _0x4c04ec[_0x21c06c(0x9f)](0xcccccc)),
-        (clock = new _0x4c04ec["Clock"]()),
-        scene[_0x21c06c(0x93)](camera);
-      const _0x280f6d = new _0x4c04ec[_0x21c06c(0x137)](0xffffff, 0.3);
-      (_0x280f6d[_0x21c06c(0xf9)] = "ambient_light"),
-        scene[_0x21c06c(0x93)](_0x280f6d);
-      const _0x5380be = new _0x4c04ec[_0x21c06c(0xab)](
+        camera["position"][_0x430ce4(0xfe)](0x0, 0x3, -0x1),
+        (scene = new _0x1fb42a[_0x430ce4(0xf8)]()),
+        (scene["background"] = new _0x1fb42a[_0x430ce4(0xfc)](0xcccccc)),
+        (clock = new _0x1fb42a["Clock"]()),
+        scene[_0x430ce4(0x11a)](camera);
+      const _0x5a76e1 = new _0x1fb42a[_0x430ce4(0x9c)](0xffffff, 0.5);
+      (_0x5a76e1[_0x430ce4(0x112)] = _0x430ce4(0x105)),
+        scene[_0x430ce4(0x11a)](_0x5a76e1);
+      const _0x139772 = new _0x1fb42a[_0x430ce4(0x122)](
         0xffffff,
         0.8 * Math["PI"]
       );
-      (_0x5380be[_0x21c06c(0x129)] = !![]),
-        (_0x5380be[_0x21c06c(0xb3)][_0x21c06c(0x113)][_0x21c06c(0x103)] =
+      (_0x139772[_0x430ce4(0xd6)] = !![]),
+        (_0x139772[_0x430ce4(0x11e)][_0x430ce4(0x121)][_0x430ce4(0x89)] =
           0x7d0),
-        (_0x5380be["shadow"][_0x21c06c(0x113)]["bottom"] = -0x7d0),
-        (_0x5380be[_0x21c06c(0xb3)][_0x21c06c(0x113)][_0x21c06c(0xd2)] =
-          -0x7d0),
-        (_0x5380be[_0x21c06c(0xb3)][_0x21c06c(0x113)]["right"] = 0x7d0),
-        (_0x5380be[_0x21c06c(0xb3)]["camera"][_0x21c06c(0xea)] = 0x4b0),
-        (_0x5380be["shadow"][_0x21c06c(0x113)]["far"] = 0x9c4),
-        (_0x5380be[_0x21c06c(0xb3)][_0x21c06c(0x9b)] = 0.0001),
-        (_0x5380be[_0x21c06c(0xb3)][_0x21c06c(0x12f)][_0x21c06c(0x124)] =
+        (_0x139772[_0x430ce4(0x11e)][_0x430ce4(0x121)]["bottom"] = -0x7d0),
+        (_0x139772[_0x430ce4(0x11e)][_0x430ce4(0x121)]["left"] = -0x7d0),
+        (_0x139772[_0x430ce4(0x11e)][_0x430ce4(0x121)][_0x430ce4(0x10d)] =
+          0x7d0),
+        (_0x139772[_0x430ce4(0x11e)][_0x430ce4(0x121)][_0x430ce4(0xef)] =
+          0x4b0),
+        (_0x139772[_0x430ce4(0x11e)][_0x430ce4(0x121)]["far"] = 0x9c4),
+        (_0x139772[_0x430ce4(0x11e)][_0x430ce4(0xf7)] = 0.0001),
+        (_0x139772[_0x430ce4(0x11e)][_0x430ce4(0x8a)][_0x430ce4(0x85)] =
           SHADOW_MAP_WIDTH),
-        (_0x5380be[_0x21c06c(0xb3)][_0x21c06c(0x12f)][_0x21c06c(0xde)] =
+        (_0x139772[_0x430ce4(0x11e)][_0x430ce4(0x8a)]["height"] =
           SHADOW_MAP_HEIGHT),
-        scene["add"](_0x5380be),
-        (renderer = new _0x4c04ec[_0x21c06c(0xf6)]({
+        scene[_0x430ce4(0x11a)](_0x139772),
+        (renderer = new _0x1fb42a[_0x430ce4(0xab)]({
           canvas: canvas,
           antialias: !![],
         })),
-        (renderer[_0x21c06c(0xfa)] = !![]),
-        (renderer[_0x21c06c(0x134)] = sRGBEncoding),
-        renderer[_0x21c06c(0xc1)](0xcccccc),
-        renderer[_0x21c06c(0x96)](window["devicePixelRatio"]),
-        renderer[_0x21c06c(0xe7)](widthScreen, heightScreen),
-        (renderer[_0x21c06c(0xe8)] = _0x4c04ec[_0x21c06c(0x115)]),
-        (renderer[_0x21c06c(0xac)] = Math["pow"](0x2, 0x0)),
-        (renderer["shadowMap"]["enabled"] = !![]),
-        (renderer[_0x21c06c(0xc6)][_0x21c06c(0xeb)] =
-          _0x4c04ec[_0x21c06c(0x125)]),
-        (cubeRenderTarget = new _0x4c04ec["WebGLCubeRenderTarget"](0x400, {
-          format: _0x4c04ec[_0x21c06c(0xc8)],
+        (renderer[_0x430ce4(0xf3)] = !![]),
+        (renderer["outputEncoding"] = sRGBEncoding),
+        renderer[_0x430ce4(0x103)](0xcccccc),
+        renderer[_0x430ce4(0xc0)](window["devicePixelRatio"]),
+        renderer["setSize"](widthScreen, heightScreen),
+        (renderer[_0x430ce4(0x9f)] = _0x1fb42a[_0x430ce4(0x134)]),
+        (renderer["toneMappingExposure"] = 1.2),
+        (renderer[_0x430ce4(0x10e)][_0x430ce4(0x127)] = !![]),
+        (renderer[_0x430ce4(0x10e)][_0x430ce4(0x99)] =
+          _0x1fb42a[_0x430ce4(0xa4)]),
+        (cubeRenderTarget = new _0x1fb42a[_0x430ce4(0xc4)](0x800, {
+          format: _0x1fb42a[_0x430ce4(0xc5)],
           generateMipmaps: !![],
-          minFilter: _0x4c04ec[_0x21c06c(0x105)],
-          encoding: _0x4c04ec[_0x21c06c(0xb1)],
+          minFilter: _0x1fb42a[_0x430ce4(0x11b)],
+          encoding: _0x1fb42a["sRGBEncoding"],
         })),
-        (cubeCamera = new _0x4c04ec[_0x21c06c(0x11d)](
+        (cubeCamera = new _0x1fb42a[_0x430ce4(0xba)](
           0x1,
           0x2710,
           cubeRenderTarget
         )),
-        cubeCamera[_0x21c06c(0x95)][_0x21c06c(0xa3)](0.1, 0.1, 0.1),
-        cubeCamera[_0x21c06c(0xb6)][_0x21c06c(0xa3)](-0.3, 0.65, 0x0);
-      const _0x2f13aa = new _0x4c04ec[_0x21c06c(0xa7)](0x1, 0x1, 0x1),
-        _0x19471f = new _0x4c04ec[_0x21c06c(0xec)]({ color: 0xff00 }),
-        _0x40a7a4 = new _0x4c04ec["Mesh"](_0x2f13aa, _0x19471f);
-      _0x40a7a4[_0x21c06c(0xb6)][_0x21c06c(0xa3)](-0.3, 0.65, 0x0);
-      let _0x327bec = new _0x4c04ec["PlaneGeometry"](0x19, 0x19);
-      (groundReflector = new ReflectorForSSRPass(_0x327bec, {
+        cubeCamera[_0x430ce4(0xda)]["set"](0.1, 0.1, 0.1),
+        cubeCamera[_0x430ce4(0x133)][_0x430ce4(0xfe)](-0.3, 0.65, 0x0);
+      const _0x216f95 = new _0x1fb42a[_0x430ce4(0x138)](0x1, 0x1, 0x1),
+        _0xae0711 = new _0x1fb42a[_0x430ce4(0xc8)]({ color: 0xff00 }),
+        _0x244443 = new _0x1fb42a[_0x430ce4(0xaf)](_0x216f95, _0xae0711);
+      _0x244443[_0x430ce4(0x133)][_0x430ce4(0xfe)](-0.3, 0.65, 0x0);
+      let _0x32e449 = new _0x1fb42a[_0x430ce4(0x10a)](0x19, 0x19);
+      (groundReflector = new ReflectorForSSRPass(_0x32e449, {
         clipBias: 0.0003,
-        textureWidth: window[_0x21c06c(0x10e)],
-        textureHeight: window[_0x21c06c(0x99)],
+        textureWidth: window[_0x430ce4(0x109)],
+        textureHeight: window["innerHeight"],
         color: 0x888888,
         useDepthTexture: !![],
       })),
-        (groundReflector[_0x21c06c(0x106)][_0x21c06c(0xe6)] = ![]),
-        (groundReflector[_0x21c06c(0xc4)]["x"] = -Math["PI"] / 0x2),
-        (groundReflector[_0x21c06c(0xb8)] = ![]),
-        cubeCamera["update"](renderer, scene),
-        (pmremGenerator = new _0x4c04ec[_0x21c06c(0x92)](renderer)),
-        pmremGenerator[_0x21c06c(0x130)](),
-        (pmremCubeRenderTarget = pmremGenerator[_0x21c06c(0xdd)](
-          cubeRenderTarget[_0x21c06c(0x123)]
+        (groundReflector["material"][_0x430ce4(0x12f)] = ![]),
+        (groundReflector[_0x430ce4(0x136)]["x"] = -Math["PI"] / 0x2),
+        (groundReflector[_0x430ce4(0xa5)] = ![]),
+        cubeCamera[_0x430ce4(0x114)](renderer, scene),
+        (pmremGenerator = new _0x1fb42a["PMREMGenerator"](renderer)),
+        pmremGenerator[_0x430ce4(0x10b)](),
+        (pmremCubeRenderTarget = pmremGenerator["fromEquirectangular"](
+          cubeRenderTarget[_0x430ce4(0x119)]
         )),
-        (internalEnvMap = pmremCubeRenderTarget?.["texture"]),
-        (neutralEnvironment = pmremGenerator[_0x21c06c(0xd0)](
+        (internalEnvMap = pmremCubeRenderTarget?.[_0x430ce4(0x119)]),
+        (neutralEnvironment = pmremGenerator[_0x430ce4(0x106)](
           new RoomEnvironment()
-        )[_0x21c06c(0x123)]),
-        (controls = new OrbitControls(camera, renderer[_0x21c06c(0x138)])),
-        (controls[_0x21c06c(0xcf)] = !![]),
-        (controls["enableDamping"] = !![]),
-        (controls[_0x21c06c(0x122)] = 0.5),
+        )[_0x430ce4(0x119)]),
+        (controls = new OrbitControls(camera, renderer[_0x430ce4(0xb0)])),
+        (controls[_0x430ce4(0x127)] = !![]),
+        (controls[_0x430ce4(0xa2)] = !![]),
+        (controls["dampingFactor"] = 0.5),
         (composer = new EffectComposer(renderer));
-      const _0xd41b2a = new RenderPass(scene, camera);
-      composer["addPass"](_0xd41b2a);
-      const _0x557a54 = new GTAOPass(scene, camera, widthScreen, heightScreen);
-      (_0x557a54[_0x21c06c(0x121)] =
-        GTAOPass[_0x21c06c(0xfc)][_0x21c06c(0xce)]),
+      const _0xe3e16e = new RenderPass(scene, camera);
+      composer[_0x430ce4(0x124)](_0xe3e16e);
+      const _0xbd48e = new GTAOPass(scene, camera, widthScreen, heightScreen);
+      (_0xbd48e[_0x430ce4(0x135)] = GTAOPass["OUTPUT"][_0x430ce4(0xec)]),
         (ssrPass = new SSRPass({
           renderer: renderer,
           scene: scene,
           camera: camera,
           width: widthScreen,
           height: heightScreen,
-          groundReflector: ssrParams[_0x21c06c(0xbb)] ? groundReflector : null,
-          selects: ssrParams["groundReflector"] ? selects : null,
+          groundReflector: ssrParams[_0x430ce4(0x94)] ? groundReflector : null,
+          selects: ssrParams[_0x430ce4(0x94)] ? selects : null,
         })),
-        composer["addPass"](ssrPass),
-        composer[_0x21c06c(0xa1)](_0x557a54);
-      const _0x135c8c = new ShaderPass(FXAAShader),
-        _0x591492 = renderer[_0x21c06c(0x10d)]();
-      (_0x135c8c[_0x21c06c(0x106)][_0x21c06c(0x97)][_0x21c06c(0x111)][
-        _0x21c06c(0xf0)
-      ]["x"] = 0x1 / (canvas["offsetWidth"] * _0x591492)),
-        (_0x135c8c[_0x21c06c(0x106)][_0x21c06c(0x97)][_0x21c06c(0x111)][
-          _0x21c06c(0xf0)
-        ]["y"] = 0x1 / (canvas[_0x21c06c(0x100)] * _0x591492));
-      const _0x3f8774 = new ShaderPass(GammaCorrectionShader);
-      composer["addPass"](_0x3f8774);
-      const _0x238c13 = new OutputPass();
-      composer[_0x21c06c(0xa1)](_0x238c13),
-        composer["addPass"](_0x135c8c),
+        composer[_0x430ce4(0x124)](ssrPass),
+        composer["addPass"](_0xbd48e);
+      const _0x16a78f = new ShaderPass(FXAAShader),
+        _0x53a701 = renderer["getPixelRatio"]();
+      (_0x16a78f[_0x430ce4(0xa7)][_0x430ce4(0xe5)][_0x430ce4(0xcd)][
+        _0x430ce4(0xb6)
+      ]["x"] = 0x1 / (canvas[_0x430ce4(0x108)] * _0x53a701)),
+        (_0x16a78f[_0x430ce4(0xa7)]["uniforms"][_0x430ce4(0xcd)][
+          _0x430ce4(0xb6)
+        ]["y"] = 0x1 / (canvas[_0x430ce4(0x93)] * _0x53a701));
+      const _0x1c21bf = new ShaderPass(GammaCorrectionShader);
+      composer[_0x430ce4(0x124)](_0x1c21bf);
+      const _0x3c0aa9 = new OutputPass();
+      composer[_0x430ce4(0x124)](_0x3c0aa9),
+        composer["addPass"](_0x16a78f),
         (loader = new GLTFLoader()),
         loader["load"](
-          _0x21c06c(0x127),
-          function (_0x46d9a4) {
-            const _0x3d4ccf = _0x21c06c;
-            (van = _0x46d9a4[_0x3d4ccf(0xba)]),
-              van[_0x3d4ccf(0x95)][_0x3d4ccf(0xa3)](0xa, 0xa, 0xa),
-              scene["add"](van),
-              _0x46d9a4[_0x3d4ccf(0xba)]["traverse"](function (_0x46253b) {
-                const _0x49afe7 = _0x3d4ccf;
-                if (_0x46253b[_0x49afe7(0xe2)]) {
-                  (_0x46253b[_0x49afe7(0x129)] = !![]),
-                    (_0x46253b[_0x49afe7(0xe4)] = !![]);
-                  for (
-                    let _0x40f568 = 0x0;
-                    _0x40f568 < vanElement[_0x49afe7(0x10b)];
-                    _0x40f568++
+          _0x430ce4(0xcc),
+          function (_0x10c0ac) {
+            const _0xb8e6ab = _0x430ce4;
+            (van = _0x10c0ac["scene"]),
+              van[_0xb8e6ab(0xda)][_0xb8e6ab(0xfe)](0xa, 0xa, 0xa),
+              scene[_0xb8e6ab(0x11a)](van),
+              _0x10c0ac["scene"][_0xb8e6ab(0xf2)](function (_0x432940) {
+                const _0x125e5e = _0xb8e6ab;
+                if (_0x432940[_0x125e5e(0xc1)]) {
+                  (_0x432940["castShadow"] = !![]),
+                    (_0x432940[_0x125e5e(0xf9)] = !![]);
+                  if (
+                    noSelectSSR[_0x125e5e(0xd8)](_0x432940[_0x125e5e(0x112)])
                   ) {
-                    if (_0x46253b["name"] == vanElement[_0x40f568]) {
-                      (_0x46253b["material"]["envMap"] = exrEnv),
-                        selects[_0x49afe7(0xf1)](_0x46253b);
-                      break;
-                    } else {
-                      if (_0x46253b["name"] != _0x49afe7(0x132)) {
-                        selects[_0x49afe7(0xf1)](_0x46253b),
-                          otherMeshes[_0x49afe7(0xf1)](_0x46253b),
-                          (_0x46253b[_0x49afe7(0x106)][_0x49afe7(0xed)] =
-                            cubeRenderTarget["texture"]);
-                        if (_0x46253b[_0x49afe7(0x106)][_0x49afe7(0xfe)])
-                          _0x46253b[_0x49afe7(0x106)][_0x49afe7(0xfe)][
-                            "encoding"
-                          ] = sRGBEncoding;
-                        if (_0x46253b["material"]["emissiveMap"])
-                          _0x46253b[_0x49afe7(0x106)]["emissiveMap"][
-                            _0x49afe7(0xc7)
-                          ] = sRGBEncoding;
-                        if (
-                          _0x46253b[_0x49afe7(0x106)][_0x49afe7(0xfe)] ||
-                          _0x46253b[_0x49afe7(0x106)]["emissiveMap"]
-                        )
-                          _0x46253b[_0x49afe7(0x106)]["needsUpdate"] = !![];
-                      }
-                    }
-                  }
-                  (_0x46253b[_0x49afe7(0xf9)] == _0x49afe7(0xf8) ||
-                    _0x46253b[_0x49afe7(0xf9)] == _0x49afe7(0x108)) &&
-                    (_0x46253b[_0x49afe7(0xb8)] = ![]);
-                  const _0x56c943 = new _0x4c04ec[_0x49afe7(0xbf)]()[
-                    "setFromObject"
-                  ](scene);
-                  return _0x557a54["setSceneClipBox"](_0x56c943), _0x46253b;
+                  } else
+                    outSideVanElement["includes"](_0x432940[_0x125e5e(0x112)])
+                      ? ((_0x432940[_0x125e5e(0xa7)]["envMap"] = exrEnv),
+                        selects[_0x125e5e(0x107)](_0x432940))
+                      : ((_0x432940[_0x125e5e(0xa7)][_0x125e5e(0x10f)] =
+                          cubeRenderTarget[_0x125e5e(0x119)]),
+                        (_0x432940["material"][_0x125e5e(0xbf)] = 0.35),
+                        (_0x432940["material"]["needsUpdate"] = !![]),
+                        selects[_0x125e5e(0x107)](_0x432940));
+                  (_0x432940[_0x125e5e(0x112)] == _0x125e5e(0xb4) ||
+                    _0x432940[_0x125e5e(0x112)] == "Color_M00426") &&
+                    (_0x432940[_0x125e5e(0xa5)] = ![]);
+                  const _0x4541c4 = new _0x1fb42a["Box3"]()[_0x125e5e(0x102)](
+                    scene
+                  );
+                  _0xbd48e["setSceneClipBox"](_0x4541c4);
                 }
               }),
-              cubeCamera[_0x3d4ccf(0xdf)](renderer, scene);
+              cubeCamera[_0xb8e6ab(0x114)](renderer, scene);
           },
           undefined,
-          function (_0xa606f2) {
-            const _0x2e888c = _0x21c06c;
-            console[_0x2e888c(0x119)](_0xa606f2);
+          function (_0x4f5e61) {
+            const _0x2e08c7 = _0x430ce4;
+            console[_0x2e08c7(0x117)](_0x4f5e61);
           }
         ),
         updateEnvironment(),
-        cubeCamera[_0x21c06c(0xdf)](renderer, scene);
-      const _0x586303 = new GUI();
-      _0x586303[_0x21c06c(0x93)](_0x557a54, _0x21c06c(0x121), {
-        Default: GTAOPass[_0x21c06c(0xfc)][_0x21c06c(0xce)],
-        Diffuse: GTAOPass["OUTPUT"]["Diffuse"],
-        "AO\x20Only": GTAOPass[_0x21c06c(0xfc)]["AO"],
-        "AO\x20Only\x20+\x20Denoise": GTAOPass["OUTPUT"]["Denoise"],
-        Depth: GTAOPass[_0x21c06c(0xfc)][_0x21c06c(0x10c)],
-        Normal: GTAOPass[_0x21c06c(0xfc)][_0x21c06c(0xe9)],
-      })[_0x21c06c(0xcd)](function (_0x54e03d) {
-        const _0x561c10 = _0x21c06c;
-        _0x557a54[_0x561c10(0x121)] = _0x54e03d;
+        cubeCamera[_0x430ce4(0x114)](renderer, scene);
+      const _0x5919e7 = new GUI();
+      _0x5919e7[_0x430ce4(0x11a)](_0xbd48e, _0x430ce4(0x135), {
+        Default: GTAOPass[_0x430ce4(0xf6)][_0x430ce4(0xec)],
+        Diffuse: GTAOPass[_0x430ce4(0xf6)]["Diffuse"],
+        "AO\x20Only": GTAOPass[_0x430ce4(0xf6)]["AO"],
+        "AO\x20Only\x20+\x20Denoise":
+          GTAOPass[_0x430ce4(0xf6)][_0x430ce4(0xc7)],
+        Depth: GTAOPass[_0x430ce4(0xf6)][_0x430ce4(0x97)],
+        Normal: GTAOPass[_0x430ce4(0xf6)]["Normal"],
+      })[_0x430ce4(0x12c)](function (_0x36e530) {
+        const _0x2a2bb0 = _0x430ce4;
+        _0xbd48e[_0x2a2bb0(0x135)] = _0x36e530;
       });
-      const _0x339468 = {
+      const _0x25a457 = {
           radius: 0.2,
           distanceExponent: 1.85,
-          thickness: 0x1,
+          thickness: 0.5,
           scale: 1.5,
           samples: 0x20,
           distanceFallOff: 0x1,
           screenSpaceRadius: ![],
         },
-        _0x35cd0d = {
+        _0x474a4d = {
           lumaPhi: 0xa,
           depthPhi: 0x2,
           normalPhi: 0x3,
@@ -510,272 +513,313 @@
           rings: 0x2,
           samples: 0x20,
         };
-      _0x557a54["updateGtaoMaterial"](_0x339468),
-        _0x557a54[_0x21c06c(0x10a)](_0x35cd0d),
-        _0x586303[_0x21c06c(0x93)](_0x557a54, "blendIntensity")
-          [_0x21c06c(0x136)](0x0)
-          [_0x21c06c(0xbd)](0x1)
-          [_0x21c06c(0x120)](0.01),
-        _0x586303[_0x21c06c(0x93)](_0x339468, _0x21c06c(0xd7))
-          [_0x21c06c(0x136)](0.01)
+      _0xbd48e[_0x430ce4(0x87)](_0x25a457),
+        _0xbd48e["updatePdMaterial"](_0x474a4d),
+        _0x5919e7[_0x430ce4(0x11a)](_0xbd48e, _0x430ce4(0xdc))
+          [_0x430ce4(0x9d)](0x0)
           ["max"](0x1)
-          [_0x21c06c(0x120)](0.01)
-          [_0x21c06c(0xcd)](() => _0x557a54[_0x21c06c(0xca)](_0x339468)),
-        _0x586303[_0x21c06c(0x93)](_0x339468, _0x21c06c(0xb9))
-          [_0x21c06c(0x136)](0x1)
-          [_0x21c06c(0xbd)](0x4)
-          [_0x21c06c(0x120)](0.01)
-          [_0x21c06c(0xcd)](() => _0x557a54[_0x21c06c(0xca)](_0x339468)),
-        _0x586303[_0x21c06c(0x93)](_0x339468, _0x21c06c(0x9c))
-          [_0x21c06c(0x136)](0.01)
-          [_0x21c06c(0xbd)](0xa)
-          ["step"](0.01)
-          [_0x21c06c(0xcd)](() => _0x557a54["updateGtaoMaterial"](_0x339468)),
-        _0x586303[_0x21c06c(0x93)](_0x339468, _0x21c06c(0xe3))
-          [_0x21c06c(0x136)](0x0)
-          [_0x21c06c(0xbd)](0x1)
-          [_0x21c06c(0x120)](0.01)
-          [_0x21c06c(0xcd)](() => _0x557a54[_0x21c06c(0xca)](_0x339468)),
-        _0x586303[_0x21c06c(0x93)](_0x339468, _0x21c06c(0x95))
+          [_0x430ce4(0xdd)](0.01),
+        _0x5919e7["add"](_0x25a457, _0x430ce4(0xbb))
+          [_0x430ce4(0x9d)](0.01)
+          [_0x430ce4(0x11f)](0x1)
+          [_0x430ce4(0xdd)](0.01)
+          [_0x430ce4(0x12c)](() => _0xbd48e[_0x430ce4(0x87)](_0x25a457)),
+        _0x5919e7["add"](_0x25a457, _0x430ce4(0x92))
+          [_0x430ce4(0x9d)](0x1)
+          ["max"](0x4)
+          [_0x430ce4(0xdd)](0.01)
+          [_0x430ce4(0x12c)](() => _0xbd48e[_0x430ce4(0x87)](_0x25a457)),
+        _0x5919e7["add"](_0x25a457, _0x430ce4(0xed))
+          [_0x430ce4(0x9d)](0.01)
+          [_0x430ce4(0x11f)](0xa)
+          [_0x430ce4(0xdd)](0.01)
+          [_0x430ce4(0x12c)](() => _0xbd48e[_0x430ce4(0x87)](_0x25a457)),
+        _0x5919e7[_0x430ce4(0x11a)](_0x25a457, "distanceFallOff")
+          [_0x430ce4(0x9d)](0x0)
+          [_0x430ce4(0x11f)](0x1)
+          [_0x430ce4(0xdd)](0.01)
+          ["onChange"](() => _0xbd48e["updateGtaoMaterial"](_0x25a457)),
+        _0x5919e7[_0x430ce4(0x11a)](_0x25a457, _0x430ce4(0xda))
           ["min"](0.01)
-          [_0x21c06c(0xbd)](0x2)
+          ["max"](0x2)
+          [_0x430ce4(0xdd)](0.01)
+          [_0x430ce4(0x12c)](() => _0xbd48e[_0x430ce4(0x87)](_0x25a457)),
+        _0x5919e7["add"](_0x25a457, _0x430ce4(0x88))
+          [_0x430ce4(0x9d)](0x2)
+          [_0x430ce4(0x11f)](0x20)
+          [_0x430ce4(0xdd)](0x1)
+          [_0x430ce4(0x12c)](() => _0xbd48e[_0x430ce4(0x87)](_0x25a457)),
+        _0x5919e7[_0x430ce4(0x11a)](_0x25a457, _0x430ce4(0xa9))[
+          _0x430ce4(0x12c)
+        ](() => _0xbd48e[_0x430ce4(0x87)](_0x25a457)),
+        _0x5919e7["add"](_0x474a4d, _0x430ce4(0xe8))
+          [_0x430ce4(0x9d)](0x0)
+          [_0x430ce4(0x11f)](0x14)
           ["step"](0.01)
-          [_0x21c06c(0xcd)](() => _0x557a54["updateGtaoMaterial"](_0x339468)),
-        _0x586303["add"](_0x339468, _0x21c06c(0xd3))
-          [_0x21c06c(0x136)](0x2)
-          [_0x21c06c(0xbd)](0x20)
-          ["step"](0x1)
-          [_0x21c06c(0xcd)](() => _0x557a54["updateGtaoMaterial"](_0x339468)),
-        _0x586303[_0x21c06c(0x93)](_0x339468, _0x21c06c(0x101))[
-          _0x21c06c(0xcd)
-        ](() => _0x557a54[_0x21c06c(0xca)](_0x339468)),
-        _0x586303[_0x21c06c(0x93)](_0x35cd0d, "lumaPhi")
-          [_0x21c06c(0x136)](0x0)
-          [_0x21c06c(0xbd)](0x14)
-          [_0x21c06c(0x120)](0.01)
-          [_0x21c06c(0xcd)](() => _0x557a54[_0x21c06c(0x10a)](_0x35cd0d)),
-        _0x586303["add"](_0x35cd0d, _0x21c06c(0x10f))
-          [_0x21c06c(0x136)](0.01)
-          [_0x21c06c(0xbd)](0x14)
-          [_0x21c06c(0x120)](0.01)
-          [_0x21c06c(0xcd)](() => _0x557a54["updatePdMaterial"](_0x35cd0d)),
-        _0x586303["add"](_0x35cd0d, _0x21c06c(0x11b))
-          [_0x21c06c(0x136)](0.01)
-          [_0x21c06c(0xbd)](0x14)
-          ["step"](0.01)
-          [_0x21c06c(0xcd)](() => _0x557a54[_0x21c06c(0x10a)](_0x35cd0d)),
-        _0x586303["add"](_0x35cd0d, _0x21c06c(0xd7))
-          [_0x21c06c(0x136)](0x0)
-          [_0x21c06c(0xbd)](0x20)
-          [_0x21c06c(0x120)](0x1)
-          ["onChange"](() => _0x557a54[_0x21c06c(0x10a)](_0x35cd0d)),
-        _0x586303[_0x21c06c(0x93)](_0x35cd0d, _0x21c06c(0x102))
-          ["min"](0.1)
-          [_0x21c06c(0xbd)](0x4)
-          [_0x21c06c(0x120)](0.1)
-          [_0x21c06c(0xcd)](() => _0x557a54[_0x21c06c(0x10a)](_0x35cd0d)),
-        _0x586303[_0x21c06c(0x93)](_0x35cd0d, _0x21c06c(0x133))
-          [_0x21c06c(0x136)](0x1)
-          [_0x21c06c(0xbd)](0x10)
-          ["step"](0.125)
-          ["onChange"](() => _0x557a54[_0x21c06c(0x10a)](_0x35cd0d)),
-        _0x586303["add"](_0x35cd0d, _0x21c06c(0xd3))
-          [_0x21c06c(0x136)](0x2)
-          [_0x21c06c(0xbd)](0x20)
-          [_0x21c06c(0x120)](0x1)
-          [_0x21c06c(0xcd)](() => _0x557a54[_0x21c06c(0x10a)](_0x35cd0d)),
-        _0x586303[_0x21c06c(0x93)](ssrParams, "enableSSR")[_0x21c06c(0xf9)](
-          _0x21c06c(0xa5)
+          [_0x430ce4(0x12c)](() => _0xbd48e["updatePdMaterial"](_0x474a4d)),
+        _0x5919e7["add"](_0x474a4d, _0x430ce4(0xde))
+          [_0x430ce4(0x9d)](0.01)
+          [_0x430ce4(0x11f)](0x14)
+          [_0x430ce4(0xdd)](0.01)
+          ["onChange"](() => _0xbd48e["updatePdMaterial"](_0x474a4d)),
+        _0x5919e7["add"](_0x474a4d, _0x430ce4(0xac))
+          [_0x430ce4(0x9d)](0.01)
+          [_0x430ce4(0x11f)](0x14)
+          [_0x430ce4(0xdd)](0.01)
+          [_0x430ce4(0x12c)](() => _0xbd48e["updatePdMaterial"](_0x474a4d)),
+        _0x5919e7["add"](_0x474a4d, _0x430ce4(0xbb))
+          [_0x430ce4(0x9d)](0x0)
+          [_0x430ce4(0x11f)](0x20)
+          [_0x430ce4(0xdd)](0x1)
+          [_0x430ce4(0x12c)](() => _0xbd48e["updatePdMaterial"](_0x474a4d)),
+        _0x5919e7[_0x430ce4(0x11a)](_0x474a4d, _0x430ce4(0xd0))
+          [_0x430ce4(0x9d)](0.1)
+          ["max"](0x4)
+          ["step"](0.1)
+          [_0x430ce4(0x12c)](() => _0xbd48e[_0x430ce4(0x132)](_0x474a4d)),
+        _0x5919e7[_0x430ce4(0x11a)](_0x474a4d, _0x430ce4(0x137))
+          [_0x430ce4(0x9d)](0x1)
+          [_0x430ce4(0x11f)](0x10)
+          [_0x430ce4(0xdd)](0.125)
+          [_0x430ce4(0x12c)](() => _0xbd48e["updatePdMaterial"](_0x474a4d)),
+        _0x5919e7[_0x430ce4(0x11a)](_0x474a4d, "samples")
+          ["min"](0x2)
+          [_0x430ce4(0x11f)](0x20)
+          [_0x430ce4(0xdd)](0x1)
+          [_0x430ce4(0x12c)](() => _0xbd48e[_0x430ce4(0x132)](_0x474a4d)),
+        _0x5919e7[_0x430ce4(0x11a)](ssrParams, "enableSSR")[_0x430ce4(0x112)](
+          _0x430ce4(0x111)
         ),
-        _0x586303[_0x21c06c(0x93)](ssrParams, _0x21c06c(0xbb))[_0x21c06c(0xcd)](
+        _0x5919e7["add"](ssrParams, _0x430ce4(0x94))[_0x430ce4(0x12c)](() => {
+          const _0x503f3f = _0x430ce4;
+          ssrParams[_0x503f3f(0x94)]
+            ? ((ssrPass[_0x503f3f(0x94)] = groundReflector),
+              (ssrPass[_0x503f3f(0x120)] = selects))
+            : ((ssrPass[_0x503f3f(0x94)] = null),
+              (ssrPass[_0x503f3f(0x120)] = null));
+        }),
+        (ssrPass[_0x430ce4(0xed)] = 0.018),
+        _0x5919e7[_0x430ce4(0x11a)](ssrPass, _0x430ce4(0xed))
+          [_0x430ce4(0x9d)](0x0)
+          [_0x430ce4(0x11f)](0.1)
+          [_0x430ce4(0xdd)](0.0001),
+        (ssrPass["infiniteThick"] = ![]),
+        _0x5919e7["add"](ssrPass, _0x430ce4(0x126)),
+        _0x5919e7["add"](ssrParams, _0x430ce4(0xae))[_0x430ce4(0x12c)](() => {
+          const _0x23c63f = _0x430ce4;
+          controls[_0x23c63f(0x127)] = !ssrParams[_0x23c63f(0xae)];
+        });
+      const _0x339732 = _0x5919e7[_0x430ce4(0xd4)](_0x430ce4(0x12e));
+      _0x339732[_0x430ce4(0x11a)](ssrPass, _0x430ce4(0xa6))[_0x430ce4(0x12c)](
+        () => {
+          const _0xdc1470 = _0x430ce4;
+          groundReflector[_0xdc1470(0xa6)] = ssrPass[_0xdc1470(0xa6)];
+        }
+      ),
+        _0x339732[_0x430ce4(0x11a)](ssrPass, _0x430ce4(0xfd))[_0x430ce4(0x12c)](
           () => {
-            const _0x2aa6fd = _0x21c06c;
-            ssrParams["groundReflector"]
-              ? ((ssrPass[_0x2aa6fd(0xbb)] = groundReflector),
-                (ssrPass[_0x2aa6fd(0x135)] = selects))
-              : ((ssrPass[_0x2aa6fd(0xbb)] = null),
-                (ssrPass[_0x2aa6fd(0x135)] = null));
+            const _0x56d889 = _0x430ce4;
+            groundReflector[_0x56d889(0xfd)] = ssrPass[_0x56d889(0xfd)];
           }
         ),
-        (ssrPass["thickness"] = 0.018),
-        _0x586303["add"](ssrPass, _0x21c06c(0x9c))
-          ["min"](0x0)
-          [_0x21c06c(0xbd)](0.1)
-          [_0x21c06c(0x120)](0.0001),
-        (ssrPass[_0x21c06c(0x128)] = ![]),
-        _0x586303[_0x21c06c(0x93)](ssrPass, _0x21c06c(0x128)),
-        _0x586303["add"](ssrParams, _0x21c06c(0xc3))[_0x21c06c(0xcd)](() => {
-          const _0x31879a = _0x21c06c;
-          controls[_0x31879a(0xcf)] = !ssrParams["autoRotate"];
-        });
-      const _0x3e355f = _0x586303[_0x21c06c(0xbe)]("more\x20settings");
-      _0x3e355f["add"](ssrPass, _0x21c06c(0x94))[_0x21c06c(0xcd)](() => {
-        const _0x260b9c = _0x21c06c;
-        groundReflector[_0x260b9c(0x94)] = ssrPass["fresnel"];
-      }),
-        _0x3e355f[_0x21c06c(0x93)](ssrPass, "distanceAttenuation")[
-          _0x21c06c(0xcd)
-        ](() => {
-          const _0x3ea222 = _0x21c06c;
-          groundReflector["distanceAttenuation"] = ssrPass[_0x3ea222(0xdb)];
-        }),
-        (ssrPass[_0x21c06c(0xe1)] = 0.3),
-        (groundReflector["maxDistance"] = ssrPass["maxDistance"]),
-        _0x3e355f[_0x21c06c(0x93)](ssrPass, _0x21c06c(0xe1))
-          [_0x21c06c(0x136)](0x0)
-          [_0x21c06c(0xbd)](0.5)
-          ["step"](0.001)
-          [_0x21c06c(0xcd)](() => {
-            const _0x489081 = _0x21c06c;
-            groundReflector[_0x489081(0xe1)] = ssrPass[_0x489081(0xe1)];
+        (ssrPass["maxDistance"] = 0.22),
+        (groundReflector[_0x430ce4(0x104)] = ssrPass["maxDistance"]),
+        _0x339732[_0x430ce4(0x11a)](ssrPass, _0x430ce4(0x104))
+          [_0x430ce4(0x9d)](0x0)
+          [_0x430ce4(0x11f)](0.5)
+          [_0x430ce4(0xdd)](0.001)
+          [_0x430ce4(0x12c)](() => {
+            const _0x2023c8 = _0x430ce4;
+            groundReflector[_0x2023c8(0x104)] = ssrPass["maxDistance"];
           }),
-        _0x3e355f["add"](ssrParams, "otherMeshes")[_0x21c06c(0xcd)](() => {
-          const _0x39b0d2 = _0x21c06c;
-          ssrParams[_0x39b0d2(0x110)]
-            ? otherMeshes[_0x39b0d2(0xa8)](
-                (_0x1e6700) => (_0x1e6700[_0x39b0d2(0xb8)] = !![])
-              )
-            : otherMeshes[_0x39b0d2(0xa8)](
-                (_0x3427a7) => (_0x3427a7[_0x39b0d2(0xb8)] = ![])
-              );
+        _0x339732[_0x430ce4(0x11a)](ssrParams, "otherMeshes")["onChange"](
+          () => {
+            const _0x16e821 = _0x430ce4;
+            ssrParams[_0x16e821(0x125)]
+              ? otherMeshes[_0x16e821(0xd5)](
+                  (_0x36712d) => (_0x36712d[_0x16e821(0xa5)] = !![])
+                )
+              : otherMeshes["forEach"](
+                  (_0x523d40) => (_0x523d40["visible"] = ![])
+                );
+          }
+        ),
+        _0x339732[_0x430ce4(0x11a)](ssrPass, _0x430ce4(0xb3)),
+        _0x339732["add"](ssrPass, _0x430ce4(0x135), {
+          Default: SSRPass["OUTPUT"]["Default"],
+          "SSR\x20Only": SSRPass[_0x430ce4(0xf6)][_0x430ce4(0xf5)],
+          Beauty: SSRPass[_0x430ce4(0xf6)][_0x430ce4(0xe9)],
+          Depth: SSRPass["OUTPUT"]["Depth"],
+          Normal: SSRPass[_0x430ce4(0xf6)][_0x430ce4(0xaa)],
+          Metalness: SSRPass[_0x430ce4(0xf6)][_0x430ce4(0x10c)],
+        })[_0x430ce4(0x12c)](function (_0x424e1c) {
+          const _0x1980a0 = _0x430ce4;
+          ssrPass[_0x1980a0(0x135)] = _0x424e1c;
         }),
-        _0x3e355f[_0x21c06c(0x93)](ssrPass, _0x21c06c(0xfb)),
-        _0x3e355f[_0x21c06c(0x93)](ssrPass, "output", {
-          Default: SSRPass[_0x21c06c(0xfc)][_0x21c06c(0xce)],
-          "SSR\x20Only": SSRPass[_0x21c06c(0xfc)]["SSR"],
-          Beauty: SSRPass[_0x21c06c(0xfc)][_0x21c06c(0x116)],
-          Depth: SSRPass[_0x21c06c(0xfc)][_0x21c06c(0x10c)],
-          Normal: SSRPass[_0x21c06c(0xfc)]["Normal"],
-          Metalness: SSRPass[_0x21c06c(0xfc)]["Metalness"],
-        })[_0x21c06c(0xcd)](function (_0x3e995d) {
-          const _0x554d3b = _0x21c06c;
-          ssrPass[_0x554d3b(0x121)] = _0x3e995d;
-        }),
-        (ssrPass[_0x21c06c(0x11e)] = 0.5),
-        (groundReflector[_0x21c06c(0x11e)] = ssrPass[_0x21c06c(0x11e)]),
-        _0x3e355f[_0x21c06c(0x93)](ssrPass, _0x21c06c(0x11e))
-          ["min"](0x0)
-          [_0x21c06c(0xbd)](0x1)
-          [_0x21c06c(0xcd)](() => {
-            const _0x9e8422 = _0x21c06c;
-            groundReflector["opacity"] = ssrPass[_0x9e8422(0x11e)];
+        (ssrPass[_0x430ce4(0xff)] = 0.5),
+        (groundReflector[_0x430ce4(0xff)] = ssrPass[_0x430ce4(0xff)]),
+        _0x339732["add"](ssrPass, _0x430ce4(0xff))
+          [_0x430ce4(0x9d)](0x0)
+          [_0x430ce4(0x11f)](0x1)
+          [_0x430ce4(0x12c)](() => {
+            const _0x3d5e44 = _0x430ce4;
+            groundReflector["opacity"] = ssrPass[_0x3d5e44(0xff)];
           }),
-        _0x3e355f["add"](ssrPass, "blur"),
-        _0x586303[_0x21c06c(0x12b)](),
-        _0x586303[_0x21c06c(0x12c)](),
-        controls[_0x21c06c(0x9a)](_0x21c06c(0xb0), () => {
-          const _0x4b7766 = _0x21c06c;
-          console[_0x4b7766(0x126)](_0x4b7766(0x109), camera[_0x4b7766(0xb6)]),
-            console[_0x4b7766(0x126)](_0x4b7766(0xad), controls["target"]);
-        });
+        _0x339732[_0x430ce4(0x11a)](ssrPass, "blur"),
+        _0x5919e7[_0x430ce4(0x139)](),
+        controls[_0x430ce4(0x91)](_0x430ce4(0x129), () => {});
+    },
+    createGlowEffect = (
+      _0xaaa0b9,
+      _0x303af8,
+      _0x57a217,
+      _0x280cd2,
+      _0x3a7d7b,
+      _0xd1ceb6,
+      _0x37013a
+    ) => {
+      const _0x37dd16 = _0x17dd9c;
+      for (let _0x5b6d6b = 0x0; _0x5b6d6b < _0xd1ceb6; _0x5b6d6b++) {
+        const _0x2d34dc = (_0x5b6d6b / _0xd1ceb6) * Math["PI"] * 0x2,
+          _0x587053 = Math[_0x37dd16(0xe4)](_0x2d34dc) * _0x37013a,
+          _0x587515 = Math[_0x37dd16(0x110)](_0x2d34dc) * _0x37013a,
+          _0xd4d845 = new _0x1fb42a[_0x37dd16(0xee)](
+            _0x303af8,
+            _0x57a217,
+            _0x280cd2,
+            _0x3a7d7b
+          );
+        _0xd4d845["position"]["set"](_0x587053, 0x1, _0x587515),
+          (_0xd4d845[_0x37dd16(0xd6)] = !![]),
+          _0xaaa0b9[_0x37dd16(0x11a)](_0xd4d845);
+      }
     },
     updateEnvironment = () => {
-      const _0x1a7e15 = _0x2a118b,
-        _0xc58e8f = environments[_0x1a7e15(0xb4)](
-          (_0x214bc4) =>
-            _0x214bc4[_0x1a7e15(0xf9)] === initialState[_0x1a7e15(0xfd)]
+      const _0x21705e = _0x17dd9c,
+        _0x2361a4 = environments[_0x21705e(0x130)](
+          (_0x2a1718) =>
+            _0x2a1718[_0x21705e(0x112)] === initialState["environment"]
         )[0x0];
-      console[_0x1a7e15(0x126)](_0x1a7e15(0xc2), _0xc58e8f),
-        getCubeMapTexture(_0xc58e8f)[_0x1a7e15(0xd6)](
-          ({ envMap: _0x4dc892 }) => {
-            exrEnv = _0x4dc892;
-          }
-        );
+      getCubeMapTexture(_0x2361a4)[_0x21705e(0xce)](({ envMap: _0x5527d0 }) => {
+        exrEnv = _0x5527d0;
+      });
     },
-    getCubeMapTexture = (_0x297bf9) => {
-      const _0x3dffab = _0x2a118b,
-        { id: _0x32b74d, path: _0x435a24 } = _0x297bf9;
-      if (_0x32b74d === _0x3dffab(0xf7))
-        return Promise[_0x3dffab(0x114)]({ envMap: neutralEnvironment });
-      if (_0x32b74d === "") return Promise[_0x3dffab(0x114)]({ envMap: null });
-      return new Promise((_0x3a6675, _0x2d1e10) => {
-        const _0x4b4470 = _0x3dffab;
-        new EXRLoader()[_0x4b4470(0xdc)](
-          _0x435a24,
-          (_0x392478) => {
-            const _0x1b611e = _0x4b4470,
-              _0x20cd22 =
-                pmremGenerator[_0x1b611e(0xdd)](_0x392478)[_0x1b611e(0x123)];
-            pmremGenerator["dispose"](),
-              console[_0x1b611e(0x126)](_0x1b611e(0xcb), _0x20cd22),
-              _0x3a6675({ envMap: _0x20cd22 });
+    getCubeMapTexture = (_0x22374d) => {
+      const _0x465014 = _0x17dd9c;
+      console[_0x465014(0xe2)](_0x465014(0xf0), _0x22374d);
+      const { id: _0x4bb1f8, path: _0x37186d } = _0x22374d;
+      if (_0x4bb1f8 === _0x465014(0x8b))
+        return Promise[_0x465014(0xc6)]({ envMap: neutralEnvironment });
+      if (_0x4bb1f8 === "") return Promise[_0x465014(0xc6)]({ envMap: null });
+      return new Promise((_0x1ff8a0, _0x2275dd) => {
+        new EXRLoader()["load"](
+          _0x37186d,
+          (_0x2e39c3) => {
+            const _0x110f43 = _0x165e,
+              _0x56acb5 =
+                pmremGenerator[_0x110f43(0x86)](_0x2e39c3)[_0x110f43(0x119)];
+            pmremGenerator[_0x110f43(0xdb)](),
+              console["log"](_0x110f43(0xe1), _0x56acb5),
+              _0x1ff8a0({ envMap: _0x56acb5 });
           },
           undefined,
-          _0x2d1e10
+          _0x2275dd
         );
       });
     },
+    getDetailModel = (_0x3d0eeb) => {
+      const _0x5ed34a = _0x17dd9c;
+      console["log"](_0x5ed34a(0xc9)),
+        _0x3d0eeb["preventDefault"](),
+        (mouse["x"] =
+          (_0x3d0eeb[_0x5ed34a(0x101)] / window[_0x5ed34a(0x109)]) * 0x2 - 0x1),
+        (mouse["y"] =
+          -(_0x3d0eeb[_0x5ed34a(0x9b)] / window[_0x5ed34a(0x84)]) * 0x2 + 0x1),
+        raycaster[_0x5ed34a(0x90)](mouse, camera);
+      let _0x135265 = raycaster[_0x5ed34a(0x11c)](scene[_0x5ed34a(0xbe)], !![]);
+      if (_0x135265[_0x5ed34a(0xc3)] > 0x0) {
+        let _0x569216 = _0x135265[0x0][_0x5ed34a(0xbc)];
+        console[_0x5ed34a(0xe2)](
+          _0x5ed34a(0xb9),
+          _0x135265[0x0][_0x5ed34a(0xa3)]
+        ),
+          console["log"](_0x5ed34a(0xeb), _0x569216);
+      }
+    },
     animate = () => {
-      const _0x3c38d6 = _0x2a118b;
+      const _0x52e8b1 = _0x17dd9c;
       requestAnimationFrame(animate),
-        controls["update"](),
-        TWEEN["update"](),
-        ssrParams[_0x3c38d6(0xc9)]
-          ? composer["render"]()
-          : renderer[_0x3c38d6(0x11c)](scene, camera);
+        controls[_0x52e8b1(0x114)](),
+        TWEEN[_0x52e8b1(0x114)](),
+        ssrParams[_0x52e8b1(0xca)]
+          ? composer[_0x52e8b1(0xb1)]()
+          : renderer[_0x52e8b1(0xb1)](scene, camera);
     };
   function onWindowResize() {
-    const _0x206b50 = _0x2a118b,
-      _0x2e7fc9 = window["innerWidth"],
-      _0x25a42a = window[_0x206b50(0x99)];
-    camera[_0x206b50(0xd8)](),
-      renderer[_0x206b50(0xe7)](_0x2e7fc9, _0x25a42a),
-      composer[_0x206b50(0xe7)](_0x2e7fc9, _0x25a42a),
-      groundReflector[_0x206b50(0xf5)]()[_0x206b50(0xe7)](_0x2e7fc9, _0x25a42a),
-      groundReflector["resolution"]["set"](_0x2e7fc9, _0x25a42a);
+    const _0x1c3ecf = _0x17dd9c,
+      _0x496816 = window[_0x1c3ecf(0x109)],
+      _0x349113 = window[_0x1c3ecf(0x84)];
+    camera[_0x1c3ecf(0xd3)](),
+      renderer[_0x1c3ecf(0x113)](_0x496816, _0x349113),
+      composer[_0x1c3ecf(0x113)](_0x496816, _0x349113),
+      groundReflector[_0x1c3ecf(0xd7)]()[_0x1c3ecf(0x113)](
+        _0x496816,
+        _0x349113
+      ),
+      groundReflector["resolution"][_0x1c3ecf(0xfe)](_0x496816, _0x349113);
   }
   const onOverViewButton = () => {
-    const _0x5f0668 = _0x2a118b;
+    const _0x481b47 = _0x17dd9c;
     isGoMallMode = !isGoMallMode;
     if (isGoMallMode) {
-      textButtonView = _0x5f0668(0x11a);
-      let _0x5c1b98 = {
-        x: camera[_0x5f0668(0xb6)]["x"],
-        y: camera[_0x5f0668(0xb6)]["y"],
-        z: camera[_0x5f0668(0xb6)]["z"],
+      textButtonView = _0x481b47(0xea);
+      let _0x214a01 = {
+        x: camera[_0x481b47(0x133)]["x"],
+        y: camera[_0x481b47(0x133)]["y"],
+        z: camera[_0x481b47(0x133)]["z"],
       };
-      new TWEEN[_0x5f0668(0x12e)](_0x5c1b98)
+      new TWEEN[_0x481b47(0xb7)](_0x214a01)
         ["to"]({
           x: 0.33266818379163465,
           y: 0.4567208098842309,
           z: 0.009396602938231524,
         })
-        ["onUpdate"](() => {
-          const _0x88e7e4 = _0x5f0668;
+        [_0x481b47(0x115)](() => {
+          const _0x18bd03 = _0x481b47;
           return (
-            controls[_0x88e7e4(0xa9)][_0x88e7e4(0xa3)](
+            controls[_0x18bd03(0xad)][_0x18bd03(0xfe)](
               -0.18035187854860613,
               0.34989708000472913,
               0.014436166392607084
             ),
-            camera[_0x88e7e4(0xb6)]["copy"](_0x5c1b98)
+            camera[_0x18bd03(0x133)]["copy"](_0x214a01)
           );
         })
-        ["start"]();
+        [_0x481b47(0x118)]();
     } else {
-      textButtonView = "View\x20Mode";
-      let _0x27feca = {
+      textButtonView = _0x481b47(0xe0);
+      let _0x3a898e = {
         x: camera["position"]["x"],
-        y: camera[_0x5f0668(0xb6)]["y"],
-        z: camera[_0x5f0668(0xb6)]["z"],
+        y: camera[_0x481b47(0x133)]["y"],
+        z: camera["position"]["z"],
       };
-      new TWEEN["Tween"](_0x27feca)
+      new TWEEN[_0x481b47(0xb7)](_0x3a898e)
         ["to"]({ x: 0x0, y: 0x3, z: -0x1 })
-        [_0x5f0668(0x9e)](() => {
-          const _0x2e1823 = _0x5f0668;
+        [_0x481b47(0x115)](() => {
+          const _0x3f2eab = _0x481b47;
           return (
-            controls["target"][_0x2e1823(0xa3)](0x0, 0x0, 0x0),
-            camera[_0x2e1823(0xb6)][_0x2e1823(0xaa)](_0x27feca)
+            controls[_0x3f2eab(0xad)][_0x3f2eab(0xfe)](0x0, 0x0, 0x0),
+            camera["position"][_0x3f2eab(0xf4)](_0x3a898e)
           );
         })
-        ["start"]();
+        [_0x481b47(0x118)]();
     }
   };
   onMount(() => {
-    const _0x43d1ff = _0x2a118b;
+    const _0x244045 = _0x17dd9c;
     init(),
       animate(),
-      window[_0x43d1ff(0x9a)](_0x43d1ff(0x117), onWindowResize);
+      window["addEventListener"](_0x244045(0xfa), onWindowResize);
   });
 </script>
 
